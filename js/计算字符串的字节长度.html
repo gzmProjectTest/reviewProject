@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    const str = ' fF过sadjflsdj副驾驶漏打卡放假啦收到';
+    function strCode(str) {
+        let count = 0;
+        for (let i = 0; i < str.length; i ++) {
+            if (str.charCodeAt(i) <= 255) {
+                count ++;
+            }
+            else {
+                count += 2;
+            }
+        }
+        return count;
+    }
+    console.log(strCode(str));
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*k */
+    console.log("开始同步");
+    setTimeout(function(){
+        console.log('异步宏任务');
+    },0);
+    setTimeout(console.log('同步1'),0);
+    async function w(){
+        setTimeout(function(){
+            console.log('async 异步宏任务');
+        });
+        console.log('async 同步----1')
+        await console.log('async 同步await----2');
+        console.log('async 微任务 结束');
+    }
+    w();
+    new Promise((resolve)=>{
+        setTimeout(()=>{
+            console.log('promise 异步宏任务');
+        }, 0);
+        setTimeout(console.log('promise 同步----1'), 0);
+        resolve();
+
+    }).then(()=>{
+        console.log('promiese 微任务结束');
+    })
+
+    console.log('console同步');
+       // 
+    // async function test() {
+    //     console.log("test start...");
+    //     await console.log('111');//关键点1
+    //     await console.log('222');
+    //     console.log('333');
+    // }
+
+    // test();
+
+    </script>
+</body>
+</html>

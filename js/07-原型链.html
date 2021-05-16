@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+
+    // 原型链的增删改查    修改原型上的属性跟方法需要用他的 prototype 来修改
+    function Person() {}
+
+    const person = new Person();
+    // 增
+    Person.prototype.name = '张三';
+    Person.prototype.age = 20;
+    console.log(Person.prototype);
+    // 删
+    delete Person.prototype.name;
+    console.log(Person.prototype);
+    // 改
+    Person.prototype.age = 22222;
+    // 查
+    console.log('person.name', person.age);
+
+
+    // 绝大多数对象都会继承自Object.prototype  是对的，Object.create.(放的是原型) ,
+    // 因为有Object.create(null)，空对象没有数据，也没有父级
+    var Fn = Object.create(Function.prototype).__proto__;
+    console.log(Fn); // ƒ () { [native code] }
+
+    Object.create(Function.prototype).__proto__.__proto__ === Object.prototype
+    // true
+    /*
+    function test() {
+        console.log('12345');
+        var a = 10;
+        console.log('a', a);
+        c = 20;
+    }
+    console.log(test());
+    console.log('c', c);
+
+    function Test1() {
+
+    }
+    console.log(new Test1());
+    */
+
+    
+    </script>
+</body>
+</html>

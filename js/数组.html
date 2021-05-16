@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // typeof运算符认为数组的类型就是对象。
+    typeof [1, 2, 3]; // "object"
+    var arr = ['a', 'b', 'c'];
+
+    Object.keys(arr);
+    // ["0", "1", "2"]
+
+    /*
+
+    let arr1 = [{a: 1}, {b: 2}];
+    let arr2 = [{a: 1}];
+
+    arr1.forEach((item1) => {
+        arr2.forEach((item2)=>{
+            if (item1.a === item2.a) {
+                console.log('有');
+                return;
+            }
+        })
+    })
+
+    */
+    
+    // arr1.forEach((item) => {
+    //     if (arr2.some(item.a)) {
+    //         console.log('you')
+    //     }
+
+    // })
+    // let intersection = arr1.filter(
+    //     (v) => {
+    //         console.log(arr2.includes(v.a))
+    //     }
+    //     // v => arr2.includes(v)
+    // ) // [2]
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

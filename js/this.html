@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var name = '222';
+    var a = {
+        name: '111',
+        say: function () {
+            console.log(this.name);
+        }
+    };
+    var fun = a.say;
+    fun();
+    a.say();
+
+    var b = {
+        name: '333',
+        say: function () {
+            console.log(this.name);
+        }
+    };
+    b.say(a.say);
+    b.say = a.say;
+    b.say();
+
+    // 2.  undefined  1   undefined
+    function print() {
+        console.log(foo);
+        var foo = 1;
+        console.log(foo);
+        console.log(hello);
+    }
+
+
+
+   
+    </script>
+
+    <script>
+    /**
+    var x = 0;
+    let a = {
+        x: 1,
+        y: 1,
+        funx: function () {
+            const x = 2;
+            // console.log(this)
+            console.log(this.x);
+        },
+        funy: function () {
+            const y = 2;
+            console.log(this.y);
+        },
+        funz: function () {
+            const y = 2;
+            // console.log(this)
+            console.log(this.y);
+        }
+    };
+    let b = {
+        x: 3
+    };
+    a.funx(); // a掉用的 funx 就指向 a 1
+    a.funz();        // a掉用的 funx 就指向 a 1
+    a.funx.bind(b)   // a掉用的 funx 就指向 b 为 b 里边的值 3
+    a.funx.bind(window)() // bind改变this指向 window 0
+    a.funx.bind(b).bind(window)() //bind 中第二次bind会失效,只执行第一次的结果 3
+    a.funx.bind(window).bind(b) // 0
+    a.funx.call(b) //指向b 3
+    a.funx.call(window); // 0
+    a.funx.call(null)    // call 中的 null与undefined 都指向 window
+    a.funx.call(undefined)  // call 中的 null与undefined 都指向 window
+    a.funx.apply(b); // 3
+    setTimeout(()=>{
+        a.funx(); // 在计时器中,this默认指向window, 因为它是箭头函数,会指向掉用它的那个this
+    },0)
+    setTimeout(()=>{
+        a.funx.bind(b); //计时器中,this默认指向window, 因为它是箭头函数,会指向掉用它的那个this=1,bind改变this指向指向b所以为3
+    })
+    // setTimeout(a.funx, 0); // a.funx=1;计时器中默认指向window, 所有为 0
+    // setTimeout(a.funx.bind(b), 0); // 默认指向window = 0; bind改变this指向到b{ 3 }
+    // setTimeout(a.funx.bind(window), 0); // 默认指向window = 0; bind改变this指向到window 0
+    // const f = a;
+    // f.x = 10;
+    // console.log(f.x);
+    // console.log(a.x);
+    **/
+    </script>
+</body>
+</html>

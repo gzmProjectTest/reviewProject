@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <script>
+        var obj = {
+            name: 'byte',
+            last: 'dance',
+            email: 'test@bytedance.com',
+            id: '1'
+        };
+        function getParams(obj, keys) {
+            for (let key in obj) {
+                if (keys.indexOf(key) === -1) {
+                    delete obj[key];
+                }
+            }
+            return obj;
+        }
+        var user = getParams(obj, ['name', 'last', 'email']);
+        console.log(user);
+        </script>
+    </body>
+    </html>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- <script rel="script" src="js/vue-2.4.0.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- <link rel="stylesheet" href="css/animate.css"> -->
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style>
+        li{
+            border: 1px dashed #999;
+            margin: 5px;
+            line-height: 35px;
+            font-size: 14px;
+            padding-left: 5px;
+            width: 100%;
+            transition: all 0.5s ease;
+        }
+
+        li:hover{
+            /* background-color: hotpink; */
+            transition: all 0.5s ease;
+        }
+
+        /* v-move 可由 自定义类名动画代替 如下方 fade-enter-active*/
+        /*v-move 和 v-leave-active 配合使用，能够实现列表后续的元素，渐渐地漂上来的效果 */
+        /* .v-move{
+            background-color: green;
+            transition: all 0.6s ease;
+        }
+        .v-leave-active{
+            background-color: greenyellow;
+            position: absolute;
+        } */
+        .fade-enter-active, .fade-leave-active {
+            transition: all 0.6s ease;
+        }
+        .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <el-button type="text" @click="dialogVisible = true">点击打开 Dialog</el-button>
+        <el-dialog
+        title="提示"
+        :visible.sync="dialogVisible"
+        width="30%"
+        :before-close="handleClose">
+        <transition-group tag="ul" class="container" name="fade">
+            <!-- 参考vue文档：https://cn.vuejs.org/v2/api/#transition-group  如果添加后动画没有生效，是因为没有唯一的key -->
+            <li
+                class="group-sort-list"
+                v-for="(item, index) in list"
+                :key="item.id"
+                draggable="true"
+                @dragstart="handleDragStart($event, item)"
+                @dragover.prevent="handleDragOver($event, item)"
+                @dragenter="handleDragEnter($event, item)"
+                @dragend="handleDragEnd($event, item)"
+            >
+                <span class="flex_1">{{ item.name }}</span>
+                <span>
+                    <i class="iconfont icon-tuodong"></i>
+                </span>
+            </li>
+        </transition-group>
+        <span slot="footer" class="dialog-footer">
+            <el-button @click="dialogVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+        </el-dialog>
+        <div>
+            <label>
+                ID:
+                <input type="text" v-model="id">
+            </label>
+            <label>
+                Name:
+                <input type="text" v-model="name">
+            </label>
+
+            <!-- <input type="button" value="添加" @click="add"> -->
+        </div>
+
+
+
+       <ul>
+           <!--在实现列表过渡时，如果需要过渡的元素是通过v-for渲染出来的，不能使用
+           transition 包裹，需要使用 transition-group -->
+
+           <!--若需要为 v-for 循环创建的元素设置动画，必须为每一个元素设置 :key 属性-->
+           <!-- 第一种实现拖拽样式 -->
+           <!-- <transition-group>
+               <li v-for="(item,i) in list" :key="item.id" @click="del(i)">
+                   {{ item.id }} --- {{ item.name }}
+               </li>
+           </transition-group> -->
+          
+       </ul>
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                id:'',
+                name :'',
+                list : [
+                    {id:1,name:'赵高'},
+                    {id:2,name:'秦桧'},
+                    {id:3,name:'严嵩'},
+                    {id:4,name:'魏忠贤'},
+                ],
+                dragging: {},
+                aaa: {},
+                dialogVisible: false
+            },
+            methods : {
+                handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      },
+                //第一种
+                // add(){
+                //     this.list.push({ id :this.id,name : this.name});
+                //     this.id = this.name = '';
+                // },
+                // del(i){
+                //     this.list.splice(i,1);
+                // },
+                handleDragStart(e, item) {
+                    console.log('118', e)
+                    this.dragging = item
+                },
+                handleDragEnd(e, item) {
+                    console.log('122---》鼠标按下离开之后的位置，相对的是该元素按下之后产生的拖拽阴影位置', e)
+                    // console.log('--->item', item)
+                    // console.log('--->this.dragging', this.dragging)
+                    // this.dragging = null
+                    console.log('this.aaa', this.aaa)
+                    // this.list = this.aaa
+                    // this.$forceUpdate()
+                },
+                handleDragOver(e, item) {
+                    // console.log('126--按下拖动开始触发', item)
+                    e.dataTransfer.dropEffect = 'move'
+                },
+                handleDragTabel(e, item) {
+                    console.log('130', e)
+                    e.dataTransfer.effectAllowed = 'move'
+                    if (item === this.dragging) {
+                        return
+                    }
+                    const newItems = [...this.tabelList]
+                    const src = newItems.indexOf(this.dragging)
+                    const dst = newItems.indexOf(item)
+                    newItems.splice(dst, 0, ...newItems.splice(src, 1))
+                    // this.tabelList = newItems
+                    this.$forceUpdate()
+                },
+                handleDragEnter(e, item) {
+                    console.log('143--按下拖拽，寻找插入的位置', item)
+                    e.dataTransfer.effectAllowed = 'move'
+                    if (item === this.dragging) {
+                        console.log('return')
+                        return
+                    }
+                    const newItems = [...this.list]
+                    const src = newItems.indexOf(this.dragging)
+                    const dst = newItems.indexOf(item)
+                    console.log('src---', src)
+                    console.log('dst---', dst)
+                    newItems.splice(dst, 0, ...newItems.splice(src, 1))
+                    console.log(' this.aaa----',  this.aaa)
+
+                    this.list = newItems
+                    this.$forceUpdate()
+                   
+                },
+            }
+        });
+     </script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div> 如果call()和apply()的第一个参数是null，在非严格模式下，第一个参数为null或者undefined时会自动替换为指向全局对象(window)</div>
+    <div>参考链接：https://juejin.im/post/6844903895743856654</div>
+    
+   <script>
+    /*
+    // call的作用是允许在一个对象上调用该对象没有定义的方法，并且这个方法可以访问该对象中的属性，
+    var a={
+        name:'Bob',
+        food:'fish',
+        say:function(){
+            console.log('HI,this is a.say!!');
+        }
+    }
+    function b(name){                      //b.call(a,'Tom');使得a对象能调用其他函数方法
+        console.log("post Params:"+name);   //a对象使用了b('Tom')方法, 输出post Params: Tom
+        console.log('I am '+this.name);     //a对象获取了自己的属性 ，输出 I am Bob
+        this.say();                         //a对象使用自己的方法, 输出 HI,this is a.say!!
+    }
+    b.call(a,'Tom');
+    // 封装call
+    Function.prototype.call = function (context) {
+        // 处理context可能为空的情况
+        if (context === null || context === undefined || context === '') {
+            context = window;
+        }
+        else {
+            context = Object(context);
+        }
+        console.log('callthis', this);
+        context.fn = this;
+        let args = [];
+        for (let i = 1; i < arguments.length; i++) {
+            args.push(arguments[i]); // call中的第 0 位是 执行期上下文obj， 所以要从第一位开始
+        }
+        let r = context.fn(...args);
+        delete context.fn;
+        return r;
+    };
+    // 第一种  Person1没有name，通过改变this指向，打印obj的name
+    // function Person1() {
+    //     console.log('Person1.this.name', this.name);
+    // }
+    // var box = {
+    //     color: '蓝色'
+    // };
+    // let obj = {
+    //     name: '我'
+    // };
+    // function sayColor() {
+    //     console.log(this.color);
+    // }
+    // Person1.call(obj)
+    // sayColor.call(box);
+
+
+    // 第二种 对象调用 a.person2.call()
+    // let obj = {
+    //     x: 3
+    // };
+    // let a = {
+    //     x: 1,
+    //     y: 1,
+    //     Person2: function () {
+    //         const x = 2;
+    //         console.log(this);
+    //         console.log(this.x);
+    //     }
+    // };
+    // a.Person2.call(obj);
+
+
+    // 第三种：
+    function Person3(name, age) {
+        this.name = name;
+        this.age = age;
+        return this;
+    }
+    let obj = {};
+    let person31 = new Person3('王武', 20);
+    let person32 = Person3.call(obj, '锅', 11);
+    */
+    </script>
+
+    <script>
+        /*
+    Function.prototype.apply = function (context, argument) {
+        if (context === null || context === undefined || context === '') {
+            context = window;
+        }
+        else {
+            context = Object(context);
+        }
+        context.fn = this;
+        console.log('callthis', this);
+        if (!argument) {
+            return context.fn();
+        }
+        let args = [];
+        for (let i = 0; i < argument.length; i++) {
+            args.push(argument[i]);
+        }
+        let r = context.fn(...args);
+        delete context.fn;
+        return r;
+    };
+    let obj = {};
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        return this;
+    }
+    let person = Person.apply(obj, ['果果', 12]);
+    */
+    </script>
+
+    <script>
+        /* bind 原理
+            obj.bind(thisObj, arg1, arg2, ...);
+            把obj绑定到thisObj，这时候thisObj具备了obj的属性和方法。与call和apply不同的是，bind绑定后不会立即执行。
+       
+
+    function f(name, age, n, a) {
+        console.log(name, age, n, a);
+        console.log(this);
+    }
+    let obj = {name: 'wangcai'};
+    Function.prototype.bind = function (context) {
+        let that = this;
+        let newArr = Array.prototype.slice.call(arguments, 1);
+        return function () {
+            let newArr2 = Array.prototype.slice.call(arguments);
+            console.log('newArr2', newArr2);
+            return that.apply(context, newArr.concat(newArr2));
+        };
+    };
+    let newF = f.bind(obj, 'hello', 'world', 'lalala');
+    newF();
+     */
+    </script>
+
+   
+</body>
+</html>

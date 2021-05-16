@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 每个函数都有 prototype 属性
+        var a = 5;
+        function test() {
+            // var this = {
+            //     __proto__ : test.prototype
+            // }
+            // return this;
+            console.log(this);
+            this.b = 2
+            console.log(this.b)
+            a = 0;
+            console.log(a);
+            console.log(this.a);
+            var a;
+            console.log(a);
+        }
+        // 正常函数访问的是作用域， Global GO：{}  Activation AO:{}  作用域链
+        // test();
+        
+
+        // new 以后this指向当前的作用域 new时发生 __ prpto __ : Test.prototype, 没有。所有返回undefined  原型链
+        // new test();
+
+        // function Father() {
+        //     var aaa = 123;
+        //     this.say = function() {
+        //         console.log(aaa);
+        //     }
+        // }
+        // var Father = new Father();
+
+
+        var aaa1 = '123';
+        function fn1() {
+            // var this = Object.create(fn1.prototype); 这时候的this指向是 fn1 的原型， 所有原型上没有 aaa1，为undefined
+            aaa1 = '234';
+            console.log(this.aaa1);
+        };
+        new fn1(); 
+
+        var aaa2 = '123';
+        function fn2() {
+            // var this = Object.create(fn1.prototype); 这时候的this指向是 fn2 的原型，原型上有 aaa2，为234
+            this.aaa2 = '234';
+            console.log(this.aaa2);
+        };
+        new fn2(); 
+
+        var aaa3 = '123';
+        function fn3() {
+            // var this = Object.create(fn1.prototype); 
+            // 函数访问它的变量像上寻找， 就出现了原型链
+            this.aaa3 = '234';
+            console.log(aaa3);
+        };
+        new fn3();
+
+
+    </script>
+</body>
+</html>

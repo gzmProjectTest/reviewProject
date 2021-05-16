@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var aaa = '12345';
+    function print() {
+        aaa.a = 'a';
+        let bbb = 123;
+        let ccc = 567;
+        return function fn() {
+            console.log(bbb);
+            console.log(ccc);
+            ddd = bbb;
+        };
+    }
+    print()();
+    print()();
+
+
+    function throttle(fn, gapTime) {
+        if (gapTime === null || gapTime === undefined) {
+            gapTime = 1000;
+        }
+        let lastTime = null;
+        // 返回新的函数
+        return function (...args) {
+            let nowTime = +new Date();
+            if (nowTime - lastTime > gapTime || !lastTime) {
+                fn.apply(this, args);
+                lastTime = nowTime;
+            }
+        };
+    }
+    </script>
+</body>
+</html>

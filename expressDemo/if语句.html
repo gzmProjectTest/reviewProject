@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>if语句在函数中才可以使用return</title>
+</head>
+<body>
+    <script>
+    (function () {
+        if (1) {
+            console.log('0');
+            return false;
+        }
+        if (1) {
+            console.log('1');
+            return false;
+        }
+    })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const obj = {}
+        // 将相同的供应商放在一个数组中
+        const tableData = [
+            {
+                supplierName: 'a',
+                id: '1'
+            },
+            {
+                supplierName: 'b',
+                id: '2'
+            },
+            {
+                supplierName: 'a',
+                id: '3'
+            }
+        ] 
+        tableData.forEach( item => {
+            let array = obj[item['supplierName']] || []
+            array.push(item)
+            obj[item['supplierName']] = array
+        })
+    </script>
+</body>
+</html>

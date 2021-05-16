@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 1.  使用promise解决异步，等异步axios请求完(4秒以后)在执行页面的渲染。
+    /*
+    function checkNetwork(params) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (params) {
+                    resolve(params);
+                    return;
+                }
+                reject('我是请求失败的');
+            }, 4000);
+        });
+    }
+    checkNetwork(0).then(pop=>{
+        console.log('我是promise', pop);
+    })
+    .catch(erro =>{
+        console.log(erro);
+    });
+    */
+    
+    // 2.  saync awiat 的使用
+    /* */
+    function getUserInfo(setUser) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (setUser === '张三') {
+                    resolve('张三');
+                }
+                else {
+                    reject('姓名为空');
+                }
+            }, 4000);
+        });
+    }
+
+    function getUserId(setId) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                if (setId) {
+                    resolve(141022183704190029);
+                }
+                else {
+                    reject('用户id空');
+                }
+            }, 4000);
+        });
+    }
+
+    // const getAuthorizeStatus = async (faceType) {}
+    // const getAuthorStatus = async faceType => {
+    //     try {
+    //         const userInfo = await getUserInfo('张三');
+    //         console.log(userInfo, '张三一共4秒');
+    //         const userId = await getUserId();
+    //         console.log(userId, 'id一共8秒');
+    //     }
+    //     catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+    // getAuthorStatus();
+    Promise.all([getUserInfo('张三'), getUserId(123)]).then(result => {
+        console.log(result);
+    });
+   
+
+
+
+
+    </script>
+</body>
+</html>

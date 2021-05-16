@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  局部的函数执行，有自己的作用域。 counter 属于全局 this
+        //  函数内部的东西只有 return 才会被外部接收的变量所使用  
+        // 例如： Counter。increment  而 Counter。priateCounter 就为 undefined
+    var Counter = (function () {
+        var privateCounter = 0;
+        function changeBy(val) {
+            privateCounter += val;
+        }
+        return {
+            increment: function () {
+                changeBy(1);
+            },
+            decrement: function () {
+                changeBy(-1);
+            },
+            value: function () {
+                return privateCounter;
+            }
+        };
+    })();
+
+        
+        
+        
+    </script>
+</body>
+</html>

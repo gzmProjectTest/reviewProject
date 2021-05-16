@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    function deepClone(obj) {
+        let objClone = Array.isArray(obj) ? [] : {};
+        if (obj && obj instanceof Object) {// 判断数组是否存在并且是否是一个object
+            for (key in obj) {
+                // 验证key 是不是obj 上的属性，  原型  与 __proto__  这两个上边不算
+                if (obj.hasOwnProperty(key)) {// 不将继承上的代码遍历,如果没有 = true
+                    // 判断ojb子元素是否为引用值，如果是，递归复制， 展开查看它是不是引用值。如果是，改成原始值
+                    if (obj[key]&& obj[key] instanceof Object) {
+                        objClone[key] = deepClone(obj[key]);
+                    }
+                    else{
+                        // 如果不是，简单复制
+                        objClone[key] = obj[key];
+                    }
+                }
+            }
+        }
+        return objClone;
+    }
+    let a = [1, [6, 7, 8]],
+        b = deepClone(a);
+    a[0] = 2;
+    console.log(a, b);
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const tableData = [
+            {
+                productName: 'a',
+                supplierName: 'a1',
+                modelName: 'a11',
+                dinnerCounts: 1
+            },
+            {
+                productName: 'b',
+                supplierName: 'b1',
+                modelName: 'b11',
+                dinnerCounts: 2
+            },
+            {
+                productName: 'a',
+                supplierName: 'a1',
+                modelName: 'a11',
+                dinnerCounts: 3
+            },
+            {
+                productName: 'b',
+                supplierName: 'b1',
+                modelName: 'b11',
+                dinnerCounts: 4
+            },
+        ]
+        //相同的物品，规格，物料编码相同合并
+        tableData = tableData.reduce((obj, item) => {
+            // 暂时先对比 productName supplierName
+            // 后续需要对比物料编码是否相同
+            let find = obj.find(i => i.productName === item.productName && i.supplierName === item.supplierName && i.modelName === item.modelName)
+            let _d = {
+                ...item
+            }
+            // find ? (find.dinnerCounts += Number(item.dinnerCounts)) : obj.push(_d)
+            if (find) {
+                find.dinnerCounts = Number(find.dinnerCounts) + Number(item.dinnerCounts)
+            } else {
+                obj.push(_d)
+            }
+            return obj
+        }, [])
+    </script>
+</body>
+</html>

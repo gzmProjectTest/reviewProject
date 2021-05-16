@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // 原型链继承  call、apply继承  构造函数+call 继承   圣杯模式继承   es6 class 类继承
+
+    /* 圣杯模式继承
+    Person.prototype.name = 'wwwww';
+    function Person() {}
+    function Son() {}
+    function inhert(target, origin) {
+        function F() {}
+        F.prototype = origin.prototype;
+        target.prototype = new F();
+        target.prototype.constructor = target;
+        target.prototype.uber = origin.prototype;
+        // 为什么要使用 new F();  因为他开辟了一个新的空间，互补影响，孩子增加属性改变不影响父亲
+        let F1 = new F();
+        let F2 = new F();
+        console.log(F1 === F2);
+    }
+    inhert(Son, Person);
+    let person = new Son();
+    console.log(person.name);
+    */
+
+    class Person {
+        sex = '男';
+        constructor(name) {
+            this.name = name;
+            console.log('sex', this.sex);
+        }
+        handleSet() {
+            console.log(this.name);
+        }
+    }
+    class Son extends Person {
+        constructor(name, age) {
+            super(name);
+            this.age = age;
+            // console.log(this.age);
+            // console.log(this.name);
+        }
+        handleget() {
+            console.log(this.age);
+            console.log(this.name);
+        }
+    }
+
+    let person = new Person('ggg', 10);
+    let son = new Son('hhh', 20);
+    console.log(person.name);
+    console.log(son.age);
+
+    </script>
+</body>
+</html>

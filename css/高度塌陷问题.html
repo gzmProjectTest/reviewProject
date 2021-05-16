@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title></title>
+        <style type="text/css">
+
+            .box1{
+                border: 1px solid red;
+                height:100%;
+                display: flex;
+                flex-direction:column;
+
+            }
+
+            .box2{
+                width: 400px;
+                height: 400px;
+                background-color: blue;
+                position: relative;
+            }
+            .box3{
+                width: 500px;
+                height: 400px;
+                background-color: pink;
+            }
+
+            /*通过after伪类，选中box1的后边*/
+            /*
+             * 可以通过after伪类向元素的最后添加一个空白的块元素，然后对其清除浮动，
+             *     这样做和添加一个div的原理一样，可以达到一个相同的效果，
+             *     而且不会在页面中添加多余的div，这是我们最推荐使用的方式，几乎没有副作用
+             */
+            
+
+            /*
+             * 在IE6中不支持after伪类,
+             *     所以在IE6中还需要使用hasLayout来处理
+             */
+            
+
+
+        </style>
+    </head>
+    <body>
+        <div class="box1">
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+    </body>
+</html>

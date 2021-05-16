@@ -1,0 +1,1884 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)http://agroup.baidu.com/zhengfu/md/article/1972824 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width">
+    <title> single-picker选择组件</title>
+
+    <link rel="shortcut icon" href="./single-picker选择组件_files/6912899b-ca2e-44b2-8237-8eba90b1a399">
+
+    <style type="text/css">
+    img.wp-smiley,
+    img.emoji {
+        display: inline !important;
+        border: none !important;
+        box-shadow: none !important;
+        height: 1em !important;
+        width: 1em !important;
+        margin: 0 .07em !important;
+        vertical-align: -0.1em !important;
+        background: none !important;
+        padding: 0 !important;
+    }
+</style>
+<style type="text/css">
+    #masthead .site-title {font-family:Amatic SC}
+    body {
+        font-family:Roboto
+    }
+    h1,h2,h3,h4,h5,h6 {font-family:Roboto Slab}#masthead .site-description, .hentry .entry-meta {font-family:Roboto Condensed}
+    .recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}
+</style>
+
+
+<link rel="stylesheet" href="./single-picker选择组件_files/b33c9456.vendor.css" media="all">
+
+
+    <link rel="stylesheet" href="./single-picker选择组件_files/a914a842.app.css">
+
+
+    <script src="./single-picker选择组件_files/hm.js"></script><script src="./single-picker选择组件_files/hm(1).js"></script><script src="./single-picker选择组件_files/9e1a715a.harmmer.js"></script>
+
+    <script type="text/x-mathjax-config;executed=true">
+    MathJax.Hub.Config({
+        skipStartupTypeset: true,
+        "HTML-CSS": {
+            preferredFont: "TeX",
+            availableFonts: [
+                "STIX",
+                "TeX"
+            ],
+            linebreaks: {
+                automatic: true
+            },
+            EqnChunk: 10,
+            imageFont: null
+        },
+        tex2jax: { inlineMath: [["$","$"],["\\\\(","\\\\)"]], displayMath: [["$$","$$"],["\\[","\\]"]], processEscapes: true },
+        TeX: $.extend({
+            noUndefined: {
+                attributes: {
+                    mathcolor: "red",
+                    mathbackground: "#FFEEEE",
+                    mathsize: "90%"
+                }
+            },
+            Safe: {
+                allow: {
+                    URLs: "safe",
+                    classes: "safe",
+                    cssIDs: "safe",
+                    styles: "safe",
+                    fontsize: "all"
+                }
+            }
+        }, undefined),
+        messageStyle: "none"
+    });
+</script>
+<script src="./single-picker选择组件_files/MathJax.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script src="./single-picker选择组件_files/13e54fa5.vendor.js"></script>
+
+
+    <script src="./single-picker选择组件_files/b0412775.comments.js"></script>
+
+    <script src="./single-picker选择组件_files/c33d2e8e.blueimp.js"></script>
+
+
+    <script type="text/javascript" charset="utf-8">
+
+      window.baseDir = '/editor/articles';
+
+      if (!/(\?|&)debug($|&)/.test(location.search)) {
+        window.baseDir = '/editor/res-min/articles';
+      }
+
+      window.bustversion = 1587647650861;
+
+      window.require = {
+        baseUrl: window.baseDir,
+        deps: ['index'],
+        urlArgs: "bust=" + bustversion
+      };
+      function TBD (){
+        var args = [].slice.call(null,arguments);
+        args.unshift('TBD :')
+        console.log.apply(null,args)
+      }
+    </script>
+    <script src="./single-picker选择组件_files/require.js"></script>
+
+    <script type="text/javascript" charset="utf-8">
+      var group = {"id":34107,"createdAt":"2019-07-08 17:46:49","updatedAt":"2019-09-25 10:17:22","name":"中国政府服务","type":"PRIVATE","teamId":1,"description":"用政务，上百度","display":"zhengfu","icon":"https://agroup-bos.cdn.bcebos.com/6912899b-ca2e-44b2-8237-8eba90b1a399","iconSha1":"20ec842a22e5062314353606d4ad1458108a6e53","inviteCode":"eed086dee83b49829939271d62d30921","noticeVisible":true,"projectVisible":true,"noticeId":0,"esUpdatedAt":"2019-07-08 17:46:50","status":"NORMAL","groupRight":"ADD","team":{"id":1,"createdAt":"2016-01-07 22:12:32","updatedAt":"2016-01-07 22:12:49","name":"Baidu","displayName":"baidu","description":"Baidu","inviteCode":"","level":"VIP","status":"NORMAL"},"notice":{"visible":true,"id":null}};
+      var title = 'single-picker选择组件.md';
+      var fileid = '1972824';
+      var is_temp = null;
+      var is_admin = false;
+      var me = {"__v":0,"username":"v_guozhiming","avatar":"https://agroup-bos.cdn.bcebos.com/6c6a186a60eb467aa14fc9f5c382e4d257831ffe","email":"v_guozhiming@baidu.com","nickname":"v_guozhiming","realname":"v_guozhiming","_id":"5db18fd3fb77741800d6c8c2"};
+    </script>
+
+  <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="index" src="./single-picker选择组件_files/index.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Hover_Arrow {position: absolute; width: 15px; height: 11px; cursor: pointer}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; color: #666666}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_Menu_Close {position: absolute; width: 31px; height: 31px; top: -15px; left: -15px}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style></head>
+
+  <body class="viewer publisher home blog custom-background"><div id="MathJax_Message" style="display: none;"></div>
+
+  <div class="agroup-area">
+                  <a class="ag-logo-area ag-brand" href="http://agroup.baidu.com/">
+                      <img src="./single-picker选择组件_files/95eef01f3a292df506153315bb315c6035a873d8.jpg" class="ag-logo">
+                      <span class="hidden-folded m-l-xs" style="margin-left:5px;">AGroup</span>
+                  </a>
+              </div>
+
+    <div id="page">
+        <div class="container ">
+            <div class="row row-offcanvas row-offcanvas-left">
+                <div id="secondary" class="col-lg-3">
+    <header id="masthead" class="site-header" role="banner">
+        <div class="hgroup">
+            <h1 class="site-title display-title">
+                <a href="http://agroup.baidu.com/zhengfu/message" rel="home" style="position:relative;">
+                    <img src="./single-picker选择组件_files/6912899b-ca2e-44b2-8237-8eba90b1a399" class="group-icon">
+                    
+                    <small class="pull-right" style=" color: #ABABAB; position:absolute;bottom:0;font-size:12px;"><i class="icon-lock" title="" data-original-title="仅成员可见"></i></small>
+                    
+                </a>
+            </h1>
+            <h2 itemprop="description" class="site-description " style="color:#fff;font-size:16px;">中国政府服务</h2>
+            <h2 itemprop="description" class="site-description ">用政务，上百度</h2>
+        </div>
+        <!-- <button type="button" class="btn btn&#45;link hidden&#45;lg toggle&#45;sidebar" data&#45;toggle="offcanvas" aria&#45;label="Sidebar"><i class="fa fa&#45;gear"></i></button> -->
+        <!-- <button type="button" class="btn btn&#45;link hidden&#45;lg toggle&#45;navigation" aria&#45;label="Navigation Menu"><i class="fa fa&#45;bars"></i></button> -->
+        <nav id="site-navigation" class="navigation main-navigation" role="navigation">
+            <div class="nav-menu">
+                <ul>
+                    <!-- <li class="page_item page&#45;item&#45;2"> -->
+                    <!--     <a href="/zhengfu/message" target="_blank"><i class="icon&#45;chat&#45;empty"></i> <span class="vmid">群组动态</span></a> -->
+                    <!-- </li> -->
+                    <li class="page_item page-item-2">
+                        <a href="http://agroup.baidu.com/zhengfu/md/list"> <i class="icon-book vmid"></i> <span class="vmid">群组笔记</span></a>
+                    </li>
+                    <!-- <li class="page_item page&#45;item&#45;2"> -->
+                    <!--      -->
+                    <!--          -->
+                    <!--         <span class="desc"><i class="icon&#45;megaphone"></i> 还没有群组公告</span> <a style="padding:0;" href="/zhengfu/md/notice/create" title="公告很重要！">点这创建</a> -->
+                    <!--          -->
+                    <!--      -->
+                    <!-- </li> -->
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="sidebar-offcanvas">
+        <div id="main-sidebar" class="widget-area" role="complementary">
+            <aside id="search-3" class="widget widget_search">
+                <form method="get" id="searchform" action="http://agroup.baidu.com/zhengfu/md/list">
+                    <label for="s" class="assistive-text">搜索</label>
+                    <input type="text" class="field" name="s" id="s" placeholder="搜索 zhengfu 的笔记">
+                    <input type="submit" class="submit" name="submit" id="searchsubmit" value="Search">
+                </form>
+            </aside>
+
+            <aside class="widget widget_tab_nav">
+                <div class="btn-group btn-group-justified" role="group" aria-label="Justified button group">
+                    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="btn btn-default trading-btn" role="button" data-action="trading">
+                        <span class="fa fa-line-chart"></span>
+                    </a>
+                    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="btn btn-default folder-btn active" role="button" data-action="folder_mk">
+                        <span class="fa fa-sitemap"></span>
+                    </a>
+                    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="btn btn-default recent-btn" role="button" data-action="recent_mk">
+                        <span class="fa fa-history"></span>
+                    </a>
+                    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="btn btn-default tags-btn" role="button" data-action="tags">
+                        <span class="fa fa-tags"></span>
+                    </a>
+                </div>
+            </aside>
+
+
+            <aside class="widget widget_trading widget_tab_content" style="display: none;">
+                <div class="text-center">
+                    <div class="btn-group btn-group-xs" role="group" aria-label="Extra-small button group">
+                        <button type="button" class="btn btn-default active" data-action="day_hot">日</button>
+                        <button type="button" class="btn btn-default" data-action="week_hot">周</button>
+                        <button type="button" class="btn btn-default" data-action="month_hot">月</button>
+                    </div>
+                </div>
+
+
+                <div class="widget_day_hot widget_tab_content">
+                    <h3 class="widget-title">今日热门公开文章</h3>
+                    <ul class="hot-article-container">
+                      <div class="text-center">
+                        <i class="fa fa-spinner fa-spin"></i>
+                      </div>
+                    </ul>
+                </div>
+                <div class="widget_week_hot widget_tab_content">
+                    <h3 class="widget-title">本周热门公开文章</h3>
+                    <ul class="hot-week-article-container">
+                      <div class="text-center">
+                        <i class="fa fa-spinner fa-spin"></i>
+                      </div>
+                    </ul>
+                </div>
+                <div class="widget_month_hot widget_tab_content">
+                    <h3 class="widget-title">本月热门公开文章</h3>
+                    <ul class="hot-month-article-container">
+                      <div class="text-center">
+                        <i class="fa fa-spinner fa-spin"></i>
+                      </div>
+                    </ul>
+                </div>
+
+            </aside>
+
+            <aside class="widget widget_tags widget_tab_content" style="display: none;">
+                <h3 class="widget-title">标签</h3>
+                <ul class="tag-container">
+                    <div class="text-center">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </ul>
+            </aside>
+
+            <aside class="widget widget_recent_mk widget_tab_content" style="display: none;">
+                <h3 class="widget-title">近期文章</h3>
+                <ul class="latest-article-container">
+                    <div class="text-center">
+                        <i class="fa fa-spinner fa-spin"></i>
+                    </div>
+                </ul>
+            </aside>
+
+            <aside class="widget widget_folder_mk widget_tab_content" style="display: block;">
+                <div>
+                    <span class="fa fa-folder-open text-info"></span>
+                    <span>笔记</span>
+                    <a class="fa fa-cog pull-right folder-setting" target="_blank" href="http://agroup.baidu.com/zhengfu/file/view/287724" title="" data-original-title="你可以进入“文件”功能下的笔记文件夹内，对文件夹和笔记进行新建，排序，重命名，删除，移动和复制等操作。"></a>
+                <div>
+                <div class="folder-article-container"><ul class="files">
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2708975?side=folder">未命名笔记</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2700785?side=folder">首页数据源分析</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2692948?side=folder">未命名笔记</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2647510?side=folder">业务交接文档-雷斌</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2386682?side=folder">登录联调</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2385066?side=folder">线下测试版本提示</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2271128?side=folder">未命名笔记</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/2116741?side=folder">政务研发</a>
+        </li>
+    
+
+    
+        <li class="file-item ">
+            <span class="fa fa-file-text-o"></span>
+            <a href="http://agroup.baidu.com/zhengfu/md/article/1940981?side=folder">ga-icon组件说明</a>
+        </li>
+    
+
+</ul>
+</div>
+            </div></div></aside>
+            <!-- <aside class="widget widget_group_memmber"></aside> -->
+            <!-- <aside class="widget widget_mostfile_group group_widget"></aside> -->
+            <!-- <aside class="widget widget_mostmember_group group_widget"></aside> -->
+            <aside class="widget widget_my_group group_widget"></aside>
+
+            <aside class="widget widget_feature" style="display:block;">
+                <h3 class="widget-title">其他</h3>
+                <ul class="">
+                    <li><a href="http://agroup.baidu.com/agroup/md/article/574"><abbr>AGroup 笔记使用指南?</abbr></a></li>
+                    <li><a href="http://agroup.baidu.com/agroup/md/article/575"><abbr>Markown简明语法手册?</abbr></a></li>
+                    <li><a href="http://agroup.baidu.com/agroup/md/article/13627"><abbr>笔记快速输入的技巧?</abbr></a></li>
+                    <li><a target="_blank" href="http://agroup.baidu.com/agroup/message">问题反馈</a></li>
+                    <li><a target="_blank" href="http://agroup.baidu.com/playground/message">功能体验</a></li>
+                    <li>Hi 交流群：1464734</li>
+                </ul>
+            </aside>
+
+        </div>
+    </div>
+</div>
+
+                <div id="primary" class="content-area transition-fast col-lg-9" itemprop="mainContentOfPage">
+
+                <div class="navbar navbar-gray ui-layout-north">
+                            <div class="navbar-inner">
+
+                                  <button class="btn full-screen-btn screen-btn">
+                                    <span class="fa fa fa-dedent fa-fw"></span>
+                                  </button>
+
+                                  <button class="btn unfull-screen-btn screen-btn">
+                                    <span class="fa fa-fw fa-indent"></span>
+                                  </button>
+
+                              <span id="folder-crumb"><span><a class="folder-name" href="http://agroup.baidu.com/zhengfu/file/view/290342">组件文档集合</a></span></span>
+                              <ul class="nav pull-right right-buttons">
+                                <li class="btn-group viewer-menu-bar">
+
+                                  
+                                  
+                                  <button class="btn copyemail clip-btn" data-cliptarget=".content-helper" data-cliptitle="复制正文" data-clipedtitle="已拷贝,可到邮件粘贴" data-original-title="" title="">
+                                    <span class="fa fa-clipboard"></span>
+                                  </button>
+                                  
+                                  
+                                  <button class="btn dropdown-toggle" data-toggle="dropdown" title="" style="margin-right:12px;" data-original-title="下载">
+                                    <i class="icon-download"></i>
+                                  </button>
+                                  
+                                  <ul class="dropdown-menu">
+                                    <li>
+                                      <a class="action-download-md" href="http://agroup.baidu.com/zhengfu/md/article/1972824#">
+                                        <img alt="theme" class="img-resize" src="./single-picker选择组件_files/Notes-icon.png">
+                                        <small>Markdown</small>
+                                      </a>
+                                      <!-- <li class="file-type action-download-html">
+                                        <a class="action-download-html" href="#">
+                                            <img alt="theme" class="img-resize" src="/editor/res/img/Html-icon.png">
+                                            <small>HTML邮件</small>
+                                        </a>
+                                    </li> -->
+                                    </li><li>
+                                      <a class="action-download-docx" href="http://agroup.baidu.com/zhengfu/md/article/1972824#">
+                                        <img alt="theme" class="img-resize" src="./single-picker选择组件_files/Word-icon.png">
+                                        <small>Word</small>
+                                      </a>
+                                    </li>
+                                    <li>
+                                      <a class="action-download-pdf" href="http://agroup.baidu.com/zhengfu/md/article/1972824#">
+                                        <img alt="theme" class="img-resize" src="./single-picker选择组件_files/PDF-icon.png">
+                                        <small>PDF</small>
+                                      </a>
+                                    </li>
+                                  </ul>
+                                  
+                                    <a class="btn mdedit" href="http://agroup.baidu.com/zhengfu/md/edit/1972824" title="" data-original-title="编辑">
+                                        <i class="icon-edit"></i>
+                                    </a>
+                                  
+                                </li>
+                              </ul>
+                              <ul class="nav pull-right title-container">
+                                <li>
+                                  <div class="working-indicator"></div>
+                                </li>
+                                <li><span class="btn btn-success file-title-navbar"></span>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+
+
+                      <div id="content" class="site-content" role="main" style="height:100%;">
+                          <article id="preview-contents" style="border-bottom:none;min-height:1000px;" itemscope="" class="post-19 post type-post status-publish format-standard hentry category-uncategorized tag-boat tag-lake">
+                            <div class="fork-me-wrapper">
+                              <div class="fork-me">
+                                <span class="fork-me-link">
+                                  <span class="fork-me-text">模版</span>
+                                </span>
+                              </div>
+                            </div>
+
+                              <header class="entry-header">
+                                    <h1 class="mk-page-title" id="single-picker选择组件">single-picker选择组件</h1>
+                                    <div class="info">
+                                    <a href="http://agroup.baidu.com/zhengfu">
+                                    <img id="uavator" class="group-avatar" height="20" width="20" src="./single-picker选择组件_files/6912899b-ca2e-44b2-8237-8eba90b1a399" title="" data-original-title="中国政府服务">
+                                    </a>
+                                    
+                                    <small class="pull-right" style=" color: #ABABAB; "><i class="icon-lock" title="" data-original-title="仅成员可见"></i></small>
+                                    
+                                      <!-- <span class="author&#45;label creater">&#38;nbsp;&#38;nbsp;&#38;nbsp;</span> -->
+                                      <span class="author-label lastupdate">tianzhaozhao 更新于6 个月前</span>
+                                      <a target="_blank" class="history-link" id="file-folder" href="http://agroup.baidu.com/zhengfu/file/view/290342">来自：组件文档集合</a>
+                                      <!--<a target="_blank" class="history-link" href="/zhengfu/md/draft/1972824"><i class="icon-folder-open"></i>本地草稿</a>-->
+                                      <a target="_blank" class="history-link" href="http://agroup.baidu.com/zhengfu/md/history/1972824"><i class="icon-clock"></i>历史版本</a>
+                                      <a target="_blank" class="history-link" href="http://agroup.baidu.com/zhengfu/md/list"><i class="icon-search"></i>搜索组内笔记</a>
+                                      
+                                      <a target="_blank" class="history-link" href="http://agroup.baidu.com/zhengfu/md/blank/create"><i class="icon-plus"></i>创建新笔记</a>
+                                      
+                                    </div>
+                                    <div class="participation author-label">
+                                      <span href="#blob_contributors_box" rel="facebox"> 共<strong class="participation-count">4</strong>位编辑者 : </span>
+                                    <a class="p-writer" style="margin:0" target="_blank" href="http://neisou.baidu.com/new/search?word=zhuliangcan&amp;ds=family&amp;tn=agroup_redirect" title="" data-original-title="zhuliangcan"><img class="avatar" height="20" src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe" width="20" data-original-title="" title=""></a><a class="p-writer" style="margin:0" target="_blank" href="http://neisou.baidu.com/new/search?word=huangzilong&amp;ds=family&amp;tn=agroup_redirect" title="" data-original-title="huangzilong"><img class="avatar" height="20" src="./single-picker选择组件_files/3671f6fa095ee94e05920089eca40afe97f638d9" width="20" data-original-title="" title=""></a><a class="p-writer" style="margin:0" target="_blank" href="http://neisou.baidu.com/new/search?word=v_zhangxin19&amp;ds=family&amp;tn=agroup_redirect" title="" data-original-title="v_zhangxin19"><img class="avatar" height="20" src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)" width="20" data-original-title="" title=""></a><a class="p-writer" style="margin:0" target="_blank" href="http://neisou.baidu.com/new/search?word=tianzhaozhao&amp;ds=family&amp;tn=agroup_redirect" title="" data-original-title="tianzhaozhao"><img class="avatar" height="20" src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe" width="20" data-original-title="" title=""></a></div>
+                                    <div class="tags-container">
+</div>
+                                      <!-- <h1 class="entry&#45;title" itemprop="name"> -->
+                                      <!-- </h1> -->
+                              </header>
+                              <div class="entry-content" itemprop="articleBody" id="commentable-container"><h2 id="组件名称" class="commentable-section">组件名称<div class="side-comment  section0">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></h2>
+
+<p class="commentable-section">单选选择组件（single-picker）<div class="side-comment  section1">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<h2 id="示例图" class="commentable-section">示例图<div class="side-comment  section2">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></h2>
+
+<p class="commentable-section"><img src="./single-picker选择组件_files/56c800cc1c4e368a44cf80b19750c68e36aac698" alt="图片" title="" data-original-title=""><div class="side-comment  section3">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<h2 id="可配置属性与控制的功能" class="commentable-section">可配置属性与控制的功能<div class="side-comment  section4">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></h2>
+
+<h4 id="属性说明" class="commentable-section">属性说明：<div class="side-comment  section5">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></h4>
+
+<table class="table table-hover table-bordered table-striped table-condensed commentable-section">
+<thead>
+<tr>
+  <th>属性名</th>
+  <th>类型</th>
+  <th>必填</th>
+  <th>默认值</th>
+  <th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>options</td>
+  <td>array</td>
+  <td>否</td>
+  <td>[]</td>
+  <td>选择项</td>
+</tr>
+<tr>
+  <td>placeholder</td>
+  <td>string</td>
+  <td>否</td>
+  <td>请输入</td>
+  <td>默认值</td>
+</tr>
+<tr>
+  <td>value</td>
+  <td>string</td>
+  <td>否</td>
+  <td>-</td>
+  <td>选择的索引，默认不需要传</td>
+</tr>
+<tr>
+  <td>error</td>
+  <td>bol</td>
+  <td>否</td>
+  <td>false</td>
+  <td>展示错误的，label变红</td>
+</tr>
+<tr>
+  <td>label</td>
+  <td>string</td>
+  <td>否</td>
+  <td>-</td>
+  <td>表单名</td>
+</tr>
+<tr>
+  <td>change</td>
+  <td>func</td>
+  <td>否</td>
+  <td>-</td>
+  <td>值改变后的回调  {value: 0} value中的数组值代表的是索引。</td>
+</tr>
+<tr>
+  <td>mode</td>
+  <td>string</td>
+  <td>是</td>
+  <td>selector</td>
+  <td>选择器模式</td>
+</tr>
+<tr>
+  <td>title</td>
+  <td>string</td>
+  <td>否</td>
+  <td>设置</td>
+  <td>选择器标题（仅安卓有效）默认值为 “设置”</td>
+</tr>
+<tr>
+  <td>range-key</td>
+  <td>String</td>
+  <td></td>
+  <td>当 options 是一个二维 Array. 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容</td>
+  <td></td>
+</tr>
+</tbody><div class="side-comment  section6">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></table>
+
+
+<p class="commentable-section">时间选择器：mode = time<div class="side-comment  section7">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<table class="table table-hover table-bordered table-striped table-condensed commentable-section">
+<thead>
+<tr>
+  <th>属性名</th>
+  <th>类型</th>
+  <th>默认值</th>
+  <th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>value</td>
+  <td>String</td>
+  <td></td>
+  <td>表示选中的时间，格式为 “hh:mm”</td>
+</tr>
+<tr>
+  <td>start</td>
+  <td>String</td>
+  <td></td>
+  <td>表示有效时间范围的开始，字符串格式为 “hh:mm”</td>
+</tr>
+<tr>
+  <td>end</td>
+  <td>String</td>
+  <td></td>
+  <td>表示有效时间范围的结束，字符串格式为 “hh:mm”</td>
+</tr>
+</tbody><div class="side-comment  section8">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></table>
+
+
+<p class="commentable-section">日期选择器：mode = date<div class="side-comment  section9">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<table class="table table-hover table-bordered table-striped table-condensed commentable-section">
+<thead>
+<tr>
+  <th>属性名</th>
+  <th>类型</th>
+  <th>默认值</th>
+  <th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>value</td>
+  <td>String</td>
+  <td>当前日期</td>
+  <td>表示选中的日期，格式为 “YYYY-MM-DD”</td>
+</tr>
+<tr>
+  <td>start</td>
+  <td>String</td>
+  <td></td>
+  <td>表示有效日期范围的开始，字符串格式为 “YYYY-MM-DD”</td>
+</tr>
+<tr>
+  <td>end</td>
+  <td>String</td>
+  <td></td>
+  <td>表示有效日期范围的结束，字符串格式为 “YYYY-MM-DD”</td>
+</tr>
+<tr>
+  <td>fields</td>
+  <td>String</td>
+  <td>day</td>
+  <td>有效值 year、 month、 day，表示选择器的粒度</td>
+</tr>
+</tbody><div class="side-comment  section10">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></table>
+
+
+<p class="commentable-section">fields有效值：<div class="side-comment  section11">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<table class="table table-hover table-bordered table-striped table-condensed commentable-section">
+<thead>
+<tr>
+  <th>值</th>
+  <th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>year</td>
+  <td>选择器粒度为年</td>
+</tr>
+<tr>
+  <td>month</td>
+  <td>选择器粒度为月份</td>
+</tr>
+<tr>
+  <td>day</td>
+  <td>选择器粒度为天</td>
+</tr>
+</tbody><div class="side-comment  section12">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></table>
+
+
+<p class="commentable-section">省市区选择器：mode = region<div class="side-comment  section13">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<table class="table table-hover table-bordered table-striped table-condensed commentable-section">
+<thead>
+<tr>
+  <th>属性名</th>
+  <th>类型</th>
+  <th>默认值</th>
+  <th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>value</td>
+  <td>Array</td>
+  <td>[]</td>
+  <td>表示选中的省市区，默认选中每一列的第一个值</td>
+</tr>
+<tr>
+  <td>custom-item</td>
+  <td>String</td>
+  <td></td>
+  <td>可为每一列的顶部添加一个自定义的项</td>
+</tr>
+<tr>
+  <td>bindchange</td>
+  <td>EventHandle</td>
+  <td></td>
+  <td>value 改变时触发 change 事件，event.detail = {value}， 暂不支持统计用区划代码（code）、邮政编码（postcode）。</td>
+</tr>
+<tr>
+  <td>title</td>
+  <td>String</td>
+  <td></td>
+  <td>选择器标题（仅安卓有效）默认值为 “设置”</td>
+</tr>
+</tbody><div class="side-comment  section14">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></table>
+
+
+<p class="commentable-section">多列选择器：mode = multiSelector<div class="side-comment  section15">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<table class="table table-hover table-bordered table-striped table-condensed commentable-section">
+<thead>
+<tr>
+  <th>属性名</th>
+  <th>类型</th>
+  <th>默认值</th>
+  <th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+  <td>range</td>
+  <td>二维 Array/Array.</td>
+  <td>[]</td>
+  <td>mode 为 selector 或 multiSelector 时，range 有效。二维数组，长度表示多少列，数组的每项表示每列的数据，如[[“a”,”b”], [“c”,”d”]]</td>
+</tr>
+<tr>
+  <td>range-key</td>
+  <td>String</td>
+  <td></td>
+  <td>当 options 是一个二维 Array. 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容</td>
+</tr>
+<tr>
+  <td>value</td>
+  <td>Array</td>
+  <td>[ ]</td>
+  <td>value 每一项的值表示选择了 options 对应项中的第几个（下标从 0 开始）</td>
+</tr>
+<tr>
+  <td>bindcolumnchange</td>
+  <td>function</td>
+  <td>-</td>
+  <td>某一列的值改变时触发 columnchange 事件，event.detail = {column: column, value: value}，column 的值表示改变了第几列（下标从0开始），value 的值表示变更值的下标</td>
+</tr>
+<tr>
+  <td>cusvalue</td>
+  <td>Boolean</td>
+  <td>false</td>
+  <td>mode 为 multiSelector 时，cusvalue 为 true 是可以通过slot为 single-picker组件自定义显示值</td>
+</tr>
+</tbody><div class="side-comment  section16">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></table>
+
+
+<h2 id="使用示例" class="commentable-section">使用示例<div class="side-comment  section17">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></h2>
+
+<p class="commentable-section">json:<div class="side-comment  section18">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<pre class="linenums prettyprint prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="pun">{</span></code></li><li class="L1"><code><span class="pln">    </span><span class="str">"navigationBarTitleText"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"标题"</span><span class="pun">,</span></code></li><li class="L2"><code><span class="pln">    </span><span class="str">"navigationStyle"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"custom"</span><span class="pun">,</span></code></li><li class="L3"><code><span class="pln">    </span><span class="str">"usingComponents"</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L4"><code><span class="pln">        </span><span class="str">"single-picker"</span><span class="pun">:</span><span class="pln"> </span><span class="str">"@baidu/swan-solution-components/src/single-picker"</span></code></li><li class="L5"><code><span class="pln">    </span><span class="pun">}</span></code></li><li class="L6"><code><span class="pun">}</span></code></li></ol><span class="fa fa-clipboard clip-btn" data-original-title="复制到剪贴板" title=""></span></pre>
+
+<p class="commentable-section">swan:<div class="side-comment  section20">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<pre class="linenums prettyprint prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="tag">&lt;view</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"item"</span><span class="tag">&gt;</span></code></li><li class="L1"><code><span class="pln">    </span><span class="tag">&lt;single-picker</span><span class="pln"> </span><span class="atn">mode</span><span class="pun">=</span><span class="atv">"region"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"{{a}}"</span><span class="pln"> </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"请选择城市"</span><span class="pln"> </span><span class="atn">bindchange</span><span class="pun">=</span><span class="atv">"singleChange"</span><span class="pln"> </span><span class="atn">label</span><span class="pun">=</span><span class="atv">"城市选择器六"</span><span class="pln"> </span><span class="atn">options</span><span class="pun">=</span><span class="atv">"{{options}}"</span><span class="tag">&gt;&lt;/single-picker&gt;</span></code></li><li class="L2"><code><span class="tag">&lt;/view&gt;</span></code></li><li class="L3"><code><span class="tag">&lt;view</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"item"</span><span class="tag">&gt;</span></code></li><li class="L4"><code><span class="pln">    </span><span class="tag">&lt;single-picker</span><span class="pln"> </span><span class="atn">range-key</span><span class="pun">=</span><span class="atv">"name"</span><span class="pln"> </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"{{b}}"</span><span class="pln"> </span><span class="atn">bindchange</span><span class="pun">=</span><span class="atv">"singleChange2"</span><span class="pln"> </span><span class="atn">label</span><span class="pun">=</span><span class="atv">"城市选择"</span><span class="pln"> </span><span class="atn">options</span><span class="pun">=</span><span class="atv">"{{options}}"</span><span class="tag">&gt;&lt;/single-picker&gt;</span></code></li><li class="L5"><code><span class="tag">&lt;/view&gt;</span></code></li><li class="L6"><code><span class="tag">&lt;single-picker</span></code></li><li class="L7"><code><span class="pln">        </span><span class="atn">mode</span><span class="pun">=</span><span class="atv">"date"</span></code></li><li class="L8"><code><span class="pln">        </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"请选择"</span></code></li><li class="L9"><code><span class="pln">        </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"{{b}}"</span><span class="pln"> </span></code></li><li class="L0"><code><span class="pln">        </span><span class="atn">bindchange</span><span class="pun">=</span><span class="atv">"singleChange2"</span><span class="pln"> </span></code></li><li class="L1"><code><span class="pln">        </span><span class="atn">label</span><span class="pun">=</span><span class="atv">"年度"</span></code></li><li class="L2"><code><span class="pln">        </span><span class="atn">fields</span><span class="pun">=</span><span class="atv">"{{'year'}}"</span></code></li><li class="L3"><code><span class="pln">    </span><span class="tag">&gt;</span></code></li><li class="L4"><code><span class="tag">&lt;/single-picker&gt;</span></code></li><li class="L5"><code><span class="tag">&lt;view</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"item"</span><span class="tag">&gt;</span></code></li><li class="L6"><code><span class="pln">    </span><span class="tag">&lt;single-picker</span></code></li><li class="L7"><code><span class="pln">        </span><span class="atn">mode</span><span class="pun">=</span><span class="atv">"multiSelector"</span></code></li><li class="L8"><code><span class="pln">        </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"{{c}}"</span></code></li><li class="L9"><code><span class="pln">        </span><span class="atn">bindchange</span><span class="pun">=</span><span class="atv">"singleChange3"</span></code></li><li class="L0"><code><span class="pln">        </span><span class="atn">label</span><span class="pun">=</span><span class="atv">"多行选择"</span></code></li><li class="L1"><code><span class="pln">        </span><span class="atn">options</span><span class="pun">=</span><span class="atv">"{{multiSelectorOptions}}"</span></code></li><li class="L2"><code><span class="pln">        </span><span class="atn">range-key</span><span class="pun">=</span><span class="atv">"name"</span></code></li><li class="L3"><code><span class="pln">    </span><span class="tag">&gt;&lt;/single-picker&gt;</span></code></li><li class="L4"><code><span class="tag">&lt;/view&gt;</span></code></li></ol><span class="fa fa-clipboard clip-btn" data-original-title="复制到剪贴板" title=""></span></pre>
+
+<p class="commentable-section">js:<div class="side-comment  section22">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<pre class="theme-peacock prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"><span class="typ">Page</span><span class="pun">({</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        show</span><span class="pun">:</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        a</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">undefined</span><span class="pun">,</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        value</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        options</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                id</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'北京'</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">},</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                id</span><span class="pun">:</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'河北'</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            </span><span class="pun">}</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="pun">],</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        multiSelectorOptions</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">            </span><span class="pun">[</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第一级 1'</span><span class="pun">,</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'1'</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第一级 2'</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'2'</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第一级 3'</span><span class="pun">,</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'3'</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">],</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">[</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第二级 1'</span><span class="pun">,</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'1'</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第二级 2'</span><span class="pun">,</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'2'</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第二级 3'</span><span class="pun">,</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'3'</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            </span><span class="pun">],</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="pun">[</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第三级 1'</span><span class="pun">,</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'1'</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第三级 2'</span><span class="pun">,</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'2'</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'第三级 3'</span><span class="pun">,</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">:</span><span class="pln"> </span><span class="str">'3'</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">            </span><span class="pun">]</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">    singleChange</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">e</span><span class="pun">);</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">({</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            a</span><span class="pun">:</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">value</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="pun">});</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    singleChange2</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">e</span><span class="pun">);</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">({</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            b</span><span class="pun">:</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">value</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="pun">});</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    singleChange3</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">e</span><span class="pun">);</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">({</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">            c</span><span class="pun">:</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">value</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="pun">});</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L8"><code class="language-javascript"><span class="pun">});</span></code></li><li class="L9"><code class="language-javascript"></code></li></ol><span class="fa fa-clipboard clip-btn" data-original-title="" title=""></span></pre>
+
+<h3 id="异步多级请求" class="commentable-section">异步多级请求<div class="side-comment  section24">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></h3>
+
+<p class="commentable-section">swan:<div class="side-comment  section25">
+  <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="marker pd">
+    <span>0</span>
+  </a>
+  
+  <div class="comments-wrapper">
+    <ul class="comments">
+      
+    </ul>
+    
+    <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="add-comment pd">评论</a>
+    
+    
+      <div class="comment-form">
+        <div class="author-avatar">
+          <img src="./single-picker选择组件_files/6c6a186a60eb467aa14fc9f5c382e4d257831ffe(1)">
+        </div>
+        <p class="author-name">
+          v_guozhiming
+        </p>
+        <textarea type="text" class="comment-box right-of-avatar" placeholder="评论..."></textarea>
+        <div class="actions right-of-avatar">
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link post pd">提交(Shift+Enter)</a>
+          <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" class="action-link cancel pd">取消</a>
+        </div>
+      </div>
+    
+  </div>
+</div></p>
+
+<pre class="linenums prettyprint prettyprinted" style=""><ol class="linenums"><li class="L0"><code><span class="tag">&lt;view</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"container"</span><span class="tag">&gt;</span></code></li><li class="L1"><code><span class="pln">    </span><span class="tag">&lt;view</span><span class="pln"> </span><span class="atn">class</span><span class="pun">=</span><span class="atv">"section"</span><span class="tag">&gt;</span></code></li><li class="L2"><code><span class="pln">        </span><span class="tag">&lt;single-picker</span></code></li><li class="L3"><code><span class="pln">            </span><span class="atn">options</span><span class="pun">=</span><span class="atv">"{{areas}}"</span></code></li><li class="L4"><code><span class="pln">            </span><span class="atn">mode</span><span class="pun">=</span><span class="atv">"multiSelector"</span></code></li><li class="L5"><code><span class="pln">            </span><span class="atn">placeholder</span><span class="pun">=</span><span class="atv">"请选择"</span></code></li><li class="L6"><code><span class="pln">            </span><span class="atn">value</span><span class="pun">=</span><span class="atv">"{{values}}"</span></code></li><li class="L7"><code><span class="pln">            </span><span class="atn">range-key</span><span class="pun">=</span><span class="atv">"name"</span></code></li><li class="L8"><code><span class="pln">            </span><span class="atn">bindchange</span><span class="pun">=</span><span class="atv">"selectorChange2"</span></code></li><li class="L9"><code><span class="pln">            </span><span class="atn">bindcolumnchange</span><span class="pun">=</span><span class="atv">"columnchange"</span></code></li><li class="L0"><code><span class="pln">            </span><span class="atn">label</span><span class="pun">=</span><span class="atv">"地域"</span></code></li><li class="L1"><code><span class="pln">        </span><span class="tag">&gt;</span></code></li><li class="L2"><code><span class="pln">        </span><span class="tag">&lt;/single-picker&gt;</span></code></li><li class="L3"><code><span class="pln">    </span><span class="tag">&lt;/view&gt;</span></code></li><li class="L4"><code><span class="tag">&lt;/view&gt;</span></code></li></ol><span class="fa fa-clipboard clip-btn" data-original-title="" title=""></span></pre>
+
+<pre class="theme-peacock prettyprint linenums prettyprinted" style=""><ol class="linenums"><li class="L0"><code class="language-javascript"></code></li><li class="L1"><code class="language-javascript"><span class="typ">Page</span><span class="pun">({</span></code></li><li class="L2"><code class="language-javascript"><span class="com">/* eslint-disable */</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">    data</span><span class="pun">:</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        values</span><span class="pun">:[],</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        areas</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">            </span><span class="pun">[</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'请选择'</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'北京'</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'天津'</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                </span><span class="pun">},</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'河北'</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">],</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">[</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'请选择'</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="pun">],</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">            </span><span class="pun">[</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'请选择'</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">            </span><span class="pun">]</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="pun">]</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">    selectorChange2</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">e</span><span class="pun">);</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">    columnchange</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">e</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">getOptions</span><span class="pun">(</span><span class="pln">e</span><span class="pun">.</span><span class="pln">column</span><span class="pun">,</span><span class="pln"> e</span><span class="pun">.</span><span class="pln">value</span><span class="pun">);</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">    getOptions</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">column</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">column</span><span class="pun">,</span><span class="pln"> value</span><span class="pun">);</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="kwd">const</span><span class="pln"> areas </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">data</span><span class="pun">.</span><span class="pln">areas</span><span class="pun">;</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="kwd">const</span><span class="pln"> values </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">data</span><span class="pun">.</span><span class="pln">values</span><span class="pun">;</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">value </span><span class="pun">===</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">||</span><span class="pln"> column </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">===</span><span class="pln"> areas</span><span class="pun">.</span><span class="pln">length</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">            </span><span class="kwd">return</span><span class="pun">;</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">        </span><span class="pun">}</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln">let i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> areas</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">            </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i </span><span class="pun">&gt;</span><span class="pln"> column</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                areas</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                    name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'请选择'</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                </span><span class="pun">}];</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">}</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">        </span><span class="pun">}</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        values</span><span class="pun">[</span><span class="pln">column</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> value</span><span class="pun">;</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">({</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            areas</span><span class="pun">,</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="pun">});</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">        </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">mockData</span><span class="pun">(</span><span class="pln">areas</span><span class="pun">[</span><span class="pln">column</span><span class="pun">][</span><span class="pln">value</span><span class="pun">].</span><span class="pln">name</span><span class="pun">,</span><span class="pln"> column</span><span class="pun">).</span><span class="pln">then</span><span class="pun">(</span><span class="pln">res</span><span class="pun">=&gt;{</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">            console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">res</span><span class="pun">);</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">            res</span><span class="pun">.</span><span class="pln">unshift</span><span class="pun">({</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                name</span><span class="pun">:</span><span class="pln"> </span><span class="str">'请选择'</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">            </span><span class="pun">});</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">            areas</span><span class="pun">[</span><span class="pln">column </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> res</span><span class="pun">;</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">            </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">setData</span><span class="pun">({</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                areas</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">            </span><span class="pun">});</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">        </span><span class="pun">});</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">    </span><span class="pun">},</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">    mockData</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">name</span><span class="pun">,</span><span class="pln"> key</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">        console</span><span class="pun">.</span><span class="pln">log</span><span class="pun">(</span><span class="pln">name</span><span class="pun">,</span><span class="pln"> key</span><span class="pun">)</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">        let a </span><span class="pun">=</span><span class="pln"> key </span><span class="pun">===</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">?</span><span class="pln"> </span><span class="str">'地区'</span><span class="pln"> </span><span class="pun">:</span><span class="pln"> </span><span class="str">'街道'</span><span class="pun">;</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">        </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Promise</span><span class="pun">(</span><span class="pln">resolve</span><span class="pun">=&gt;{</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">            setTimeout</span><span class="pun">(()=&gt;{</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">                let value </span><span class="pun">=</span><span class="pln"> </span><span class="pun">[];</span></code></li><li class="L3"><code class="language-javascript"><span class="pln">                let i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span></code></li><li class="L4"><code class="language-javascript"><span class="pln">                </span><span class="kwd">while</span><span class="pun">(</span><span class="pln">i </span><span class="pun">&lt;</span><span class="pln"> </span><span class="lit">10</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L5"><code class="language-javascript"><span class="pln">                    value</span><span class="pun">[</span><span class="pln">i</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span></code></li><li class="L6"><code class="language-javascript"><span class="pln">                        name</span><span class="pun">:</span><span class="pln"> </span><span class="pun">`</span><span class="pln">$</span><span class="pun">{</span><span class="pln">name</span><span class="pun">}</span><span class="pln">$</span><span class="pun">{</span><span class="pln">a</span><span class="pun">}</span><span class="pln">$</span><span class="pun">{</span><span class="pln">i</span><span class="pun">}`</span></code></li><li class="L7"><code class="language-javascript"><span class="pln">                    </span><span class="pun">};</span></code></li><li class="L8"><code class="language-javascript"><span class="pln">                    i</span><span class="pun">++</span></code></li><li class="L9"><code class="language-javascript"><span class="pln">                </span><span class="pun">}</span></code></li><li class="L0"><code class="language-javascript"><span class="pln">                resolve</span><span class="pun">(</span><span class="pln">value</span><span class="pun">)</span></code></li><li class="L1"><code class="language-javascript"><span class="pln">            </span><span class="pun">},</span><span class="pln"> </span><span class="lit">200</span><span class="pun">)</span></code></li><li class="L2"><code class="language-javascript"><span class="pln">        </span><span class="pun">})</span></code></li><li class="L3"><code class="language-javascript"></code></li><li class="L4"><code class="language-javascript"><span class="pln">    </span><span class="pun">}</span></code></li><li class="L5"><code class="language-javascript"><span class="pun">});</span></code></li></ol><span class="fa fa-clipboard clip-btn" data-original-title="" title=""></span></pre></div>
+                              <pre style="display:none" class="content-helper">## 组件名称
+
+单选选择组件（single-picker）
+
+## 示例图
+
+![图片](https://agroup-bos.cdn.bcebos.com/56c800cc1c4e368a44cf80b19750c68e36aac698)
+## 可配置属性与控制的功能
+
+#### 属性说明：
+|属性名 | 类型 | 必填 | 默认值 |说明 |
+|---|---|---|---|---|
+|options| array | 否 | [] | 选择项 |
+|placeholder | string | 否 | 请输入 | 默认值 |
+|value | string | 否 | - | 选择的索引，默认不需要传 |
+|error| bol| 否 | false | 展示错误的，label变红 |
+|label | string | 否 | - | 表单名|
+|change| func | 否 | - | 值改变后的回调  {value: 0} value中的数组值代表的是索引。|
+|mode | string| 是 | selector | 选择器模式 |
+|title | string | 否 | 设置 | 选择器标题（仅安卓有效）默认值为 "设置" |
+|range-key	|String|		|当 options 是一个二维 Array.&lt;object&gt; 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容|
+
+
+时间选择器：mode = time
+
+|属性名	|类型	|默认值	|说明|
+|------|----|-------|---------|
+|value	|String|		|表示选中的时间，格式为 "hh:mm"|
+|start	|String|		|表示有效时间范围的开始，字符串格式为 "hh:mm"|
+|end|	String|		|表示有效时间范围的结束，字符串格式为 "hh:mm"|
+
+
+日期选择器：mode = date
+|属性名	|类型	|默认值	|说明|
+|------|----|-------|---------|
+|value|	String|	当前日期|	表示选中的日期，格式为 "YYYY-MM-DD"|
+|start|	String|		|表示有效日期范围的开始，字符串格式为 "YYYY-MM-DD"|
+|end|	String|		|表示有效日期范围的结束，字符串格式为 "YYYY-MM-DD"|
+|fields|	String|	day|	有效值 year、 month、 day，表示选择器的粒度|
+
+fields有效值：
+|值	|说明|
+|---|---|
+|year|	选择器粒度为年|
+|month|	选择器粒度为月份|
+|day|	选择器粒度为天|
+
+省市区选择器：mode = region
+
+|属性名	|类型 |	默认值 |	说明 |
+|------|----|-------|---------|
+|value|	Array	|[]	|表示选中的省市区，默认选中每一列的第一个值|
+|custom-item	|String	|	|可为每一列的顶部添加一个自定义的项|
+|bindchange	|EventHandle|		|value 改变时触发 change 事件，event.detail = {value}， 暂不支持统计用区划代码（code）、邮政编码（postcode）。|
+|title|	String	|	|选择器标题（仅安卓有效）默认值为 "设置"|
+
+多列选择器：mode = multiSelector
+|属性名	|类型|	默认值|	说明|
+|------|----|-------|---------|
+|range|	二维 Array/Array.&lt;object&gt;	|[]	|mode 为 selector 或 multiSelector 时，range 有效。二维数组，长度表示多少列，数组的每项表示每列的数据，如[["a","b"], ["c","d"]]|
+|range-key	|String|		|当 options 是一个二维 Array.&lt;object&gt; 时，通过 range-key 来指定 Object 中 key 的值作为选择器显示内容|
+|value|	Array|	[ ]	|value 每一项的值表示选择了 options 对应项中的第几个（下标从 0 开始）|
+|bindcolumnchange| function | - |某一列的值改变时触发 columnchange 事件，event.detail = {column: column, value: value}，column 的值表示改变了第几列（下标从0开始），value 的值表示变更值的下标 |
+|cusvalue|Boolean|false|mode 为 multiSelector 时，cusvalue 为 true 是可以通过slot为 single-picker组件自定义显示值|
+
+
+## 使用示例
+json:
+
+    {
+        "navigationBarTitleText": "标题",
+        "navigationStyle": "custom",
+        "usingComponents": {
+            "single-picker": "@baidu/swan-solution-components/src/single-picker"
+        }
+    }
+
+swan:
+    
+    &lt;view class="item"&gt;
+        &lt;single-picker mode="region" value="{{a}}" placeholder="请选择城市" bindchange="singleChange" label="城市选择器六" options="{{options}}"&gt;&lt;/single-picker&gt;
+    &lt;/view&gt;
+    &lt;view class="item"&gt;
+        &lt;single-picker range-key="name" value="{{b}}" bindchange="singleChange2" label="城市选择" options="{{options}}"&gt;&lt;/single-picker&gt;
+    &lt;/view&gt;
+    &lt;single-picker
+            mode="date"
+            placeholder="请选择"
+            value="{{b}}" 
+            bindchange="singleChange2" 
+            label="年度"
+            fields="{{'year'}}"
+        &gt;
+    &lt;/single-picker&gt;
+    &lt;view class="item"&gt;
+        &lt;single-picker
+            mode="multiSelector"
+            value="{{c}}"
+            bindchange="singleChange3"
+            label="多行选择"
+            options="{{multiSelectorOptions}}"
+            range-key="name"
+        &gt;&lt;/single-picker&gt;
+    &lt;/view&gt;
+js:
+```javascript { .theme-peacock }
+Page({
+    data: {
+        show: '',
+        a: undefined,
+        value: 1,
+        options: [
+            {
+                id: 0,
+                name: '北京'
+            },
+            {
+                id: 2,
+                name: '河北'
+            }
+        ],
+        multiSelectorOptions: [
+            [
+                {
+                    name: '第一级 1',
+                    value: '1'
+                },
+                {
+                    name: '第一级 2',
+                    value: '2'
+                },
+                {
+                    name: '第一级 3',
+                    value: '3'
+                }
+            ],
+            [
+                {
+                    name: '第二级 1',
+                    value: '1'
+                },
+                {
+                    name: '第二级 2',
+                    value: '2'
+                },
+                {
+                    name: '第二级 3',
+                    value: '3'
+                }
+            ],
+            [
+                {
+                    name: '第三级 1',
+                    value: '1'
+                },
+                {
+                    name: '第三级 2',
+                    value: '2'
+                },
+                {
+                    name: '第三级 3',
+                    value: '3'
+                }
+            ]
+        ]
+    },
+    singleChange(e) {
+        console.log(e);
+        this.setData({
+            a: e.value
+        });
+    },
+    singleChange2(e) {
+        console.log(e);
+        this.setData({
+            b: e.value
+        });
+    },
+    singleChange3(e) {
+        console.log(e);
+        this.setData({
+            c: e.value
+        });
+    }
+});
+
+
+```
+
+
+
+
+### 异步多级请求
+
+
+swan:
+    
+    &lt;view class="container"&gt;
+        &lt;view class="section"&gt;
+            &lt;single-picker
+                options="{{areas}}"
+                mode="multiSelector"
+                placeholder="请选择"
+                value="{{values}}"
+                range-key="name"
+                bindchange="selectorChange2"
+                bindcolumnchange="columnchange"
+                label="地域"
+            &gt;
+            &lt;/single-picker&gt;
+        &lt;/view&gt;
+    &lt;/view&gt;
+       
+
+
+
+```javascript { .theme-peacock }
+
+Page({
+/* eslint-disable */
+    data: {
+        values:[],
+        areas: [
+            [
+                {
+                    name: '请选择'
+                },
+                {
+                    name: '北京'
+                },
+                {
+                    name: '天津'
+                },
+                {
+                    name: '河北'
+                }
+            ],
+            [
+                {
+                    name: '请选择'
+                }
+            ],
+            [
+                {
+                    name: '请选择'
+                }
+            ]
+        ]
+    },
+    selectorChange2: function(e) {
+        console.log(e);
+    },
+    columnchange: function(e) {
+        this.getOptions(e.column, e.value);
+    },
+    getOptions: function(column, value) {
+        console.log(column, value);
+        const areas = this.data.areas;
+        const values = this.data.values;
+        if (value === 0 || column + 1 === areas.length) {
+            return;
+        }
+        for (let i = 0; i &lt; areas.length; i++) {
+            if (i &gt; column) {
+                areas[i] = [{
+                    name: '请选择'
+                }];
+            }
+        }
+        values[column] = value;
+        this.setData({
+            areas,
+        });
+        this.mockData(areas[column][value].name, column).then(res=&gt;{
+            console.log(res);
+            res.unshift({
+                name: '请选择'
+            });
+            areas[column + 1] = res;
+            this.setData({
+                areas
+            });
+        });
+    },
+    mockData: function(name, key) {
+        console.log(name, key)
+        let a = key === 0 ? '地区' : '街道';
+        return new Promise(resolve=&gt;{
+            setTimeout(()=&gt;{
+                let value = [];
+                let i = 0;
+                while(i &lt; 10) {
+                    value[i] = {
+                        name: `${name}${a}${i}`
+                    };
+                    i++
+                }
+                resolve(value)
+            }, 200)
+        })
+        
+    }
+});
+```
+</pre>
+                          </article>
+                      </div>
+                      <!-- <footer class="site&#45;info" itemscope="" itemtype="http://schema.org/WPFooter"> -->
+                          <!--         <a href="http://wordpress.org/" title="Semantic Personal Publishing Platform">Proudly powered by WordPress</a>. -->
+                          <!--         Theme: Flat 1.7.4 by <a rel="nofollow" href="https://themeisle.com/themes/flat/" title="Flat WordPress Theme">Themeisle</a>.				</footer> -->
+                  </div>
+              </div>
+          </div>
+      </div>
+
+
+      <div class="extension-preview-buttons" style="position: fixed; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); touch-action: pan-y; transform: translate(-40px, -40px);">
+          <div class="btn-group drag-me dropup" title="" data-toggle="tooltip" data-original-title="可以拖动!">
+              <i class="icon-ellipsis-vert"></i>
+          </div>
+          <div class="btn-group dropup"><button class="btn btn-success dropdown-toggle" title="" data-toggle="dropdown" data-original-title="内容目录" aria-expanded="false">
+                  <i class="icon-list"></i>
+              </button>
+              <div class="dropdown-menu pull-right">
+                  <p>
+                      <a href="http://agroup.baidu.com/zhengfu/md/article/1972824#" style=" padding-left: 10px; /* color: #111; */ border-left: 3px solid #528FF0; ">single-picker选择组件</a>
+                  </p>
+                  <hr>
+                  <div class="table-of-contents" style="max-height: 539px;"><div class="toc">
+<ul>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#single-picker%E9%80%89%E6%8B%A9%E7%BB%84%E4%BB%B6">single-picker选择组件</a><ul>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#%E7%BB%84%E4%BB%B6%E5%90%8D%E7%A7%B0">组件名称</a></li>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#%E7%A4%BA%E4%BE%8B%E5%9B%BE">示例图</a></li>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#%E5%8F%AF%E9%85%8D%E7%BD%AE%E5%B1%9E%E6%80%A7%E4%B8%8E%E6%8E%A7%E5%88%B6%E7%9A%84%E5%8A%9F%E8%83%BD">可配置属性与控制的功能</a><ul>
+<li><ul>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#%E5%B1%9E%E6%80%A7%E8%AF%B4%E6%98%8E">属性说明：</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#%E4%BD%BF%E7%94%A8%E7%A4%BA%E4%BE%8B">使用示例</a><ul>
+<li><a href="http://agroup.baidu.com/zhengfu/md/article/1972824#%E5%BC%82%E6%AD%A5%E5%A4%9A%E7%BA%A7%E8%AF%B7%E6%B1%82">异步多级请求</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+                  <hr>
+              </div>
+          </div>
+      </div>
+
+  
+
+  <div class="modal modal-share fadeIn">
+      <div class="modal-dialog">
+          <div class="modal-content">
+
+              <div class="modal-header">
+                  <h3 class="modal-title">分享</h3>
+              </div>
+              <div class="modal-body">
+                  <div class="input-title">组内成员编辑(可实时协同)</div>
+                  <div class="input-container">
+                      <input class="member-write" readonly="">
+                  </div>
+
+                  <div class="input-title">组内成员查看</div>
+                  <div class="input-container no-border-margin">
+                      <input class="member-read" readonly="">
+                  </div>
+                  <div class="input-title">所有人查看</div>
+                  <div class="input-container">
+                      <input class="anyone-read" readonly="">
+                  </div>
+
+                  <div class="help-block"><b>注意：</b>
+                      <span>将编辑地址分享给别人可以进行实时协同编辑</span>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                  <a class="btn btn-primary" data-dismiss="modal">关闭</a>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+      <div class="slides"></div>
+      <h3 class="title"></h3>
+      <a class="prev">‹</a>
+      <a class="next">›</a>
+      <a class="close">×</a>
+      <a class="play-pause"></a>
+      <ol class="indicator"></ol>
+  </div>
+
+  <script type="text/javascript" charset="utf-8">
+      $('.entry-content').mkrend($('.content-helper').text());
+      $('.entry-title').html(title.replace(/\.md$/,'').replace(/[+]/g,' '));
+
+      var html = $('.entry-content').html();
+
+      $('#commentable-container').children().each(function(index,d){
+          if(d.tagName === 'PRE') return;
+          $(d).data()['section-id'] = index;
+          $(d).addClass('commentable-section');
+      });
+
+      if(is_temp) {
+          $('.fork-me-wrapper').show();
+          if(!is_admin) {
+              $('.mdedit').hide();
+          }
+      }
+      if(is_admin) {
+          if(is_temp) {
+              $('.unset-template').show();
+          } else {
+              $('.set-template').show();
+          }
+      }
+
+      $('.set-template').on('click',function(){
+          $.ajax({
+              url: '/' + group.display + '/md/template/' + fileid + '/set',
+              method: 'post',
+              type: 'json'
+          }).then(function(){
+              $('.set-template').hide();
+              $('.unset-template').show();
+              $('.fork-me-wrapper').show();
+          })
+      })
+
+      $('.unset-template').on('click',function(){
+          $.ajax({
+              url: '/' + group.display + '/md/template/' + fileid + '/unset',
+              method: 'post',
+              type: 'json'
+          }).then(function(){
+              $('.unset-template').hide();
+              $('.set-template').show();
+              $('.fork-me-wrapper').hide();
+          })
+      })
+
+
+  </script>
+
+
+  <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?627b54d0995642d4af51d214c1dae297";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm2 = document.createElement("script");
+  hm2.src = "//hm.baidu.com/hm.js?f9ceb520bc4c83dd22db05faae14c5a8";
+  var s2 = document.getElementsByTagName("script")[0];
+  s2.parentNode.insertBefore(hm2, s2);
+})();
+</script>
+
+
+</body></html>

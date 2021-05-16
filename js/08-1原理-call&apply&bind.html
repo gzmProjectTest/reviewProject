@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>call apply bind 用别人的方法实现自己的功能，如下，obj 没有name,age, 通过改变this指向可以访问name age</div>
+    <div>let obj = {}</div>
+    <div>person(name, age){ this.name = name; this.age = age;}</div>
+    <div>Person.call(obj, '123', '456')</div>
+    <div>call apply bind 改变this指向，给空的obj添加一些属性</div>
+    <script>
+        // 
+        // call的作用是允许在一个对象上调用该对象没有定义的方法，并且这个方法可以访问该对象中的属性，
+    // var a={
+    //     name:'Bob',
+    //     food:'fish',
+    //     say:function(){
+    //         console.log('HI,this is a.say!!');
+    //     }
+    // }
+    // function b(name){                      //b.call(a,'Tom');使得a对象能调用其他函数方法
+    //     console.log("post Params:"+name);   //a对象使用了b('Tom')方法, 输出post Params: Tom
+    //     console.log('I am '+this.name);     //a对象获取了自己的属性 ，输出 I am Bob
+    //     this.say();                         //a对象使用自己的方法, 输出 HI,this is a.say!!
+    // }
+    // b.call(a,'Tom');
+        //  手写 call  apply 思路
+    // 1. 首先需要封装一个函数，可接受call 中的第一个参数，定义为context
+    // 2. 对传入的context（this指向）进行判断， null undefined 不传 需要指向 window
+    // 3. 谁调用call 方法，this 指向谁， 比如 函数Person.call 调用，将函数体赋给 this
+    // 4. 使用arguments接受函数传递的（参数），call中第 0 位为 fn 的函数体，所以要从第一位开始查找
+    // 5. 执行context.fn函数将 arguments数组中的数据 新保存给 arr，然后当参数 解构 传递
+    // 6. 执行完以后删除 this保存的函数体
+    // 7. return 返回 context.fn 执行完以后返回的数据
+    Function.prototype.call = function (context) {
+        context = (context === null || context === undefined || context === '') ? window : Object(context);
+        context.fn = this;
+        let arr = [];
+        let argLenth = arguments.length;
+        for (let i = 1; i < argLenth; i ++) {
+            arr.push(arguments[i]);
+        }
+        let content = context.fn(...arr);
+        console.log(content);
+        delete context.fn;
+        return content;
+    };
+
+     // 1. 首先需要封装一个函数，可接受call 中的第一个参数，定义为context
+    // 2. 对传入的context（this指向）进行判断， null undefined 不传 需要指向 window
+    // 3. 谁调用call 方法，this 指向谁， 比如 函数Person.call 调用，将函数体赋给 this
+    // 4. 使用arg 接受函数传递的 （数组），如果没有 !arg  直接 return context.fn（） 执行，结束
+    // 5. 执行context.fn函数将 arguments数组中的数据 新保存给 arr，然后当参数 解构 传递
+    // 6. 执行完以后删除 this保存的函数体
+    // 7. return 返回 context.fn 执行完以后返回的数据
+    // Function.prototype.apply = function (context, arg) {
+    //     context = (context === null || context === undefined || context === '') ? window : Object(context);
+    //     context.fn = this;
+    //     if (!arg) {
+    //         return context.fn();
+    //     }
+    //     let arr = [];
+    //     let argLenth = arg.length;
+    //     for (let i = 0; i < argLenth; i ++) {
+    //         arr.push(arg[i]);
+    //     }
+    //     let content = context.fn(...arr);
+    //     delete context.fn;
+    //     return content;
+    // };
+    // let obj = {};
+    // function Person(name, age) {
+    //     this.name = name;
+    //     this.age = age;
+    //     return this;
+    // }
+    // let person = Person.call(obj, 'www', 33);
+
+     // call-apply 实现bind , 1. this 指向  2. 调用执行，开撸
+    // 1. 首先需要改变 this 指向 首先bind 传递的参数不是数组，所以使用call,
+    // 2. 因为考虑要使用 数组的方法，所以需要把 arguments 转换成数组， 使用 Array.prototype.slice.call()
+    // 3. 需要调用执行，所以 return 一个函数，生成闭包，
+    // 4. 函数调用时，还需要传参，使用 call,
+    // 5. 第 1 / 4步，的传参都都解决，改成数组了， 所以要使用 apply,
+    // 6. 使用apply 需要有返回值，谁调用this 指向谁
+    Function.prototype.bind = function (context) {
+        let that = this;
+        let newArr1 = Array.prototype.slice.call(arguments, 1);
+        return function () {
+            let newArr2 = Array.prototype.slice.call(arguments);
+            return that.apply(context, newArr1.concat(newArr2));
+        };
+    };
+    let obj = {};
+    function Person(name1, name2, name3) {
+        console.log(name1, name2, name3);
+        this.name1 = name1;
+        this.name2 = name2;
+        this.name3 = name3;
+        return this;
+    }
+    let person = Person.bind(obj, '1', '2');
+    console.log(person('3'));
+
+    // Function.prototype.bind = function(context){
+    //     let context = (context === null || context === undefined || context === '') ? window : Object(context);
+    //     let arr1 = Array.prototype.slice.call(arguments, 1);
+    //     return function() {
+    //         Array.prototype.slice.call(arguments, 1)
+    //     }
+    // }
+    </script>
+</body>
+</html>

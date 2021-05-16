@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // AO 的预编译
+    /*  1
+    function fn(a) {
+        console.log(a); // a（）{}
+        var a = 123;
+        console.log(a); // 123
+        function a() {}
+        console.log(a); // 123
+        var b = function () {};
+        console.log(b); // function b
+        function d() {}
+    }
+    fn(1);
+    */
+
+    // GO global
+    /*  2
+    var a = 123;
+    function a() {}
+    console.log(window.a);
+    console.log(a);
+    */
+
+    /*  3
+    function test() {
+        var a = b = 123;
+        console.log(a);
+        console.log(window.a);
+        console.log(b);
+        console.log(window.b);
+    }
+    test();
+
+    // GO
+        {
+            b: undefined --->  123
+            a: undefined
+        }
+    // AO
+        {
+            a: undefined --->  123
+            b:?----> GO 中找b 为 123
+        }
+    */
+
+    /*  4
+    function test(){
+        console.log(b);  // undefined
+        if (a) {             
+            var b = 100;
+        }
+        console.log(b);  // undefined
+        c = 234;               
+        console.log(c); // 234
+    }
+    var a
+    test()
+    a=10
+    console.log(c)  // 234
+
+    // GO 
+    */
+
+    if (typeof a && -true + (+undefined) + "") {
+        console.log('基础扎实');
+    }
+    if ("undefined") {console.log('我可以运行');}
+    if ("") {console.log('为假');}
+    if("a"){console.log('222')};
+    
+    </script>
+</body>
+</html>

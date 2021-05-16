@@ -1,0 +1,27 @@
+新增参数一
+// relationCard数组对象中需要增加 1 个参数：createTime
+
+借款：
+// 保存借款： url = "/zingbiz/financial/loan/save"
+// 更新借款： url = "/zingbiz/financial/loan/update"
+// 审核 ：   url = "/zingbiz/financial/loan/startWorkflow"
+
+无申请日常报销单：差旅报销：日常支出报销单
+// 保存借款： url = "/zingbiz/financial/reimbursement/save"
+// 更新借款： url = "/zingbiz/financial/reimbursement/update"
+// 审核 ：   url = "/zingbiz/financial/reimbursement/startWorkflow"
+
+{
+    "relationCard": [
+        {
+            "participantsCardUrl": "jMFzMrfeuqueZVVjyqRNRveq fmMRfqvYZN3qbMjYJvYbQn2u 6vYNjmIziEZj26JrYbQFBjA3 Z3EFvuyquyuaBFnIfuR7vu2y 2myEnqY7Bzy2fUnyAzBnYr6r 7ziqme7FFVvyuiiqyaNvmI3m",//参与人
+            "responsibleCardUrl": "jMFzMrfeuqueZVVjyqRNRveq 7ziqme7FFVvyuiiqyaNvmI3m", //负责人
+            "status": "start", // 任务的状态 start(进行中) activation(未开始)  solved（已结束）
+            "title": "222", //任务核算项名称
+            "account": "0.00", //任务核算项金额
+            "boardId": "", //查看任务集信息
+            "cardId": "", //查看任务详情信息
+            "listId": ""
+        }
+    ]
+}

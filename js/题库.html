@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.   在括号中可以声明两个常量，必先返回后者。否则报错；
+        /*
+        var num = (1, 2);
+        var f = (
+            function f() {
+                return '1';
+            },
+            function g() {
+                return 2;
+            }
+        )()
+        console.log(typeof f);
+        */
+
+        // 2.  空号中可执行表达式。 执行完后会立马销毁。
+        var x = 1;
+        if (function f() {}) {
+            x += typeof f;
+        }
+        console.log(x);
+
+
+    </script>
+</body>
+</html>

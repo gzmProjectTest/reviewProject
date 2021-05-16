@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    // fn.prototype.name = '张三';
+    // fn.prototype.age = 26;
+
+    const fn = function(){};
+
+    console.log('---------Object.prototype---------');
+    console.log(Object.prototype);
+    console.log('');
+    console.log('---------函数 fn.prototype 指向 prototype 对象---------');
+    console.log(fn.prototype);
+    console.log('');
+    console.log('---------函数 fn.prototype.__proto__ 指向 Object.prototype---------');
+    console.log(fn.prototype.__proto__);
+    console.log('');
+    console.log('---------函数 fn.__proto__ 指向函数自己 fn.prototype---------');
+    console.log(fn.__proto__);
+    console.log('');
+    console.log('---------函数 fn.__proto__.__proto__ 指向 Object.prototype---------');
+    console.log(fn.__proto__.__proto__);
+
+    // console.log('');
+    // console.log('---------构造函数（非函数）.__proto__ 指向> 函数 fn.prototype---------');
+    // console.log(new fn().__proto__);
+    // console.log('');
+    // console.log('---------构造函数（非函数）.__proto__.__proto__ 指向> Object.prototype---------');
+    // console.log(new fn().__proto__.__proto__);
+
+    // console.log(fn.name);
+
+    // console.log('fn.prototype', fn.prototype);
+
+    // console.log('new fn().__proto__', new fn().__proto__);
+    // console.log('（new fn().name）：', new fn().name);
+    // console.log('（new fn().age）：', new fn().age);
+    </script>
+</body>
+</html>

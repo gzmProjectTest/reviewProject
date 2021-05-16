@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>继承</title>
+</head>
+<body>
+    <script>
+    // 原型链共用祖先继承，圣杯模式
+    /*
+    Person.prototype.lastName = 111;
+    function Person() {
+
+    }
+    function Son() {
+
+    }
+    function extendFn(Target, Oringin) {
+        function Fn() {}
+        Fn.prototype = Oringin.prototype;
+        Target.prototype = new Fn();
+        Target.prototype.constuctor = Target;
+    }
+    extendFn(Son, Person);
+    var person = new Person();
+    var son = new Son();
+    */
+
+    //  变量私有化继承
+    /*
+    var extendFn = (function () {
+        var Fn = function () {};
+        return function (Target, Oringin) {
+            Fn.prototype = Oringin.prototype;
+            Target.prototype = new Fn();
+            Target.prototype.constuctor = Target;
+        };
+    }());
+    extendFn(Son, Person);
+    var person = new Person();
+    var son = new Son();
+    */
+
+    // call  apply 继承
+    /*
+    function Person(name, age) {
+        // var this = { __proto__: Person.prototype}
+        this.name = name;
+        this.age = age;
+    }
+    var person = new Person('张三', 20);
+
+    var obj = {};
+    Person.call(obj, '王五', 20);
+    Person.apply(obj, ['王五', 20]);
+
+    console.log(obj);
+    */
+
+    class Person {
+        // 定义父类时候需要有 constructor 来传递参数
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+    }
+    var person = new Person('安好');
+    class Son extends Person {
+        constructor(name, age) {
+            // 必须有 super() 没有会报错, constructor 里继承的属性不需要跟 父类一样,两个是各自的作用域,不会因另一个里的数据改变而改变
+            super(name, age);
+        }
+    }
+    var son = new Son('lisi', 15);
+
+    //小程序中封装 store
+    /*
+    let data = {renshebu: {
+        getnvq: {abcde: 1}
+        page1: {a: 1}
+        page2: {b: 2}
+    }};
+
+    class Store {
+        constructor(options) {
+            this.scope = options.scope;
+            if (!data[this.scope]) {
+                data[this.scope] = {};
+            }
+        }
+
+        set(key, value) {
+            data[this.scope][key] = value;
+        }
+        set(getnvq, {abcde: 1}) {
+            data[renshebu][getnvq] = {abcde: 1}
+        }
+
+        get(key) {
+            let value = data[this.scope][key];
+            return value ? value : null;
+        }
+        get(getnvq) {
+            let value = data[this.scope][getnvq];
+            return value ? value : null;
+        }
+
+        clear(key) {
+            data[this.scope][key] = null;
+        }
+    }
+
+    module.exports = {
+        getStore: options => new Store(options)
+    };
+
+    const rxStore = getStore({
+        scope: 'renshebu'
+    });
+    let data = rxStore.get('getnvq');
+    rxStore.set('getnvq', {query_self: action});
+    */
+
+    </script>
+</body>
+</html>

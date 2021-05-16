@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 作用域链  AO  GO  执行期上线文
+        /*
+        function a(){
+            function b() {
+                var b = 234;
+                a = 0;
+            }
+            var a = 123;
+            b();
+            console.log(a);
+        }
+        var glob = 100;
+        a();
+        */
+
+        // 作用域+闭包 练习题一：
+        /*
+        function a() {
+            var num = 100;
+            function b(){
+                num ++;
+                console.log(num);
+            }
+            return b;
+        }
+        var demo = a();
+        demo();
+        demo();
+        */
+
+        // 作用域+闭包 练习题二：
+        /*
+        function test() {
+            var num = 100;
+            function a() {
+                num ++;
+                console.log(num);
+            }
+            function b() {
+                num --;
+                console.log(num);
+            }
+            return [a, b];
+        }
+        var myArr = test();
+        myArr[0]();
+        myArr[1]();
+        */
+
+        // 闭包中可以 缓存， 可以实现私有化， 模块化开发，防止全局变量污染
+    </script>
+</body>
+</html>
