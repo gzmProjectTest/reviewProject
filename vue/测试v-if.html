@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div v-if="!item.dialogVisible" @click="handleClick" style="background-color: red;">点击打开 Dialog</div>
+        <input
+            v-else
+            ref="input1"
+            type="text"
+            style="background:green;"
+            v-model="value"
+            autofocus
+        />
+
+    </div>
+
+
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data : {
+                item: {
+                    dialogVisible: false
+                },
+                value: '123'
+            },
+            watch: {
+                'item.dialogVisible'() {
+                    this.$nextTick( ()=> {
+						console.log('422----->', this.$refs.input1[0])
+						if (this.$refs.input1[0] !== undefined) {
+							this.$refs.input1[0].focus()
+						}
+					})
+                }
+            },
+            methods : {
+                handleClick() {
+                    this.item.dialogVisible = true
+                    console.log(this.item.dialogVisible, '2222')
+                }
+            }
+        });
+     </script>
+</body>
+</html>
