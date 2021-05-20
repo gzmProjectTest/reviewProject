@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr1 = [
+            {
+                id: 1,
+                name: '哈哈1'
+            },
+            {
+                id: 2,
+                name: '哈哈2'
+            }
+        ]
+        const arr2 = [
+            {
+                id: 3,
+                name: '哈哈1'
+            },
+            {
+                id: 3,
+                name: '哈哈3'
+            }
+        ]
+        let isReturn = false
+        for (let i = 0; i < arr1.length; i ++) {
+            for (let j = 0; j < arr2.length; j ++) {
+                if (arr1[i].id === arr2[j].id) {
+                    console.log('有---')
+                    isReturn = true
+                    break
+                }
+            }
+            if (isReturn) {
+                break
+            }
+            console.log('继续执行')
+        }
+     
+    </script>
+</body>
+</html>
