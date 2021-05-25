@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>
+        1.测试由div切换至input使其input框聚焦.
+        2.使用tab键切换至div，让div转换为input，让input聚焦(添加tabindex属性，如果想要div编辑添加contenteditable="true")</title>
+        <!-- 参考地址链接：https://blog.csdn.net/hjm4702192/article/details/80183292 -->
 
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
@@ -14,13 +17,18 @@
 </head>
 <body>
     <div id="app">
-        <div v-if="!item.dialogVisible" @click="handleClick" style="background-color: red;">点击打开 Dialog</div>
+        <input type="text" name="t1" tabindex="1" />  
+        <input type="text" name="t2" tabindex="2" />  
+        <input type="text" name="t3" tabindex="-1" />  
+        <input type="text" name="t4" tabindex="3" /> 
+        <div tabindex="0"  v-if="!item.dialogVisible" @click="handleClick" style="background-color: red;" @focus="handleChange">点击打开 Dialog</div>
         <input
             v-else
             ref="input1"
             type="text"
             style="background:green;"
             v-model="value"
+            tabindex="4"
             autofocus
         />
 
@@ -50,6 +58,10 @@
                 handleClick() {
                     this.item.dialogVisible = true
                     console.log(this.item.dialogVisible, '2222')
+                },
+                handleChange() {
+                    this.item.dialogVisible = true
+                    console.log('12345')
                 }
             }
         });
