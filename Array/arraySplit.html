@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // zingbiz/financial/reimbursement/getUncommitInitData?reimbursementType=3
+        // 主部门：departmentId：company1528319080000001013
+        // 主部门Name：departmentName： ‘’
+        // 多部门：departmentIds：155221711000000101
+        // this.reimburseData.departmentName = this.reimburseData.departmentName ? this.reimburseData.departmentName : departmentName
+        // 当前没有主部门名称，可以根据祝部门id获取到名称，再次选择部门没有备用的部门，
+        // 先取getUncommitInitData中的主部门，如果this.reimburseData.departmentName为空，取主部门Name：departmentName：，如果还为空，根据主部门：departmentId：company1528319080000001013取部门
+        const str = '123'
+        const str1 = '1#2#3'
+        const orgUserDatas = [
+            {
+                text: "销售部",
+                id: "152832420000000103"
+            },
+            {
+                text: "客服部",
+                id: "155314172000000102"
+            },
+            {
+                text: "财务部",
+                id: "153151623000000102"
+            },
+            {
+                text: "人事部",
+                id: "153151680000000104"
+            },
+            {
+                text: "行政部",
+                id: "153681426000000104"
+            },
+            {
+                text: "研发部",
+                id: "153679443000000103"
+            },
+            {
+                text: "产品部",
+                id: "company1528319080000001013"
+            },
+            {
+                text: "市场部",
+                id: "177630138000000102"
+            },
+            {
+                text: "总裁办",
+                id: "company1528319080000001011"
+            },
+        ]
+        str.split('#').filter(item => {
+            orgUserDatas.findIndex(ele => {
+            if (ele.id === item) {
+                return optionsDepartment.push(ele)
+            }
+            if (ele.children && ele.children.length > 0) {
+                if (handleChildren(ele)[0].id === item) {
+                return optionsDepartment.push(handleChildren(ele)[0])
+                }
+            }
+            })
+        })
+        // 当字符串中没有#号时，返回的还是当前字符串
+        console.log('str===>', str.split('#'))
+        console.log('str===>1111', str1.split('#'))
+        // 当前字符串为空， 在怎么转类型， 返回还是空
+        const a = ''
+        document.write('a--->', a.split('#'))
+    </script>
+</body>
+</html>
