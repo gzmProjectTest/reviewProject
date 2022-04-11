@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+      // https://www.jianshu.com/p/29448abdaa70?tdsourcetag=s_pcqq_aiomsg 练习题2的解析
+      // https://www.jianshu.com/p/617cb02ccf77 练习题二
+      // 第四种：bind（） 
+      // bind方法和call、apply方法有些不同，如下：
+      var a = {
+          user:"剃了胡子",
+          fn:function(){
+              console.log(this.user, '16');
+          }
+      }
+      var b = a.fn;
+      b.prototype.user = '我试试原型链'
+      var c = new b()
+
+      // b.bind(a);  //代码没有被打印
+      // 我们发现代码没有被打印，对，这就是bind和call、apply方法的不同，实际上bind方法返回的是一个修改过后的函数。
+      var a = {
+          user:"剃了胡子",
+          fn:function(){
+              console.log(this.user);
+          }
+      }
+      var b = a.fn;
+      var c = b.bind(a);
+      console.log(c, ); //function() { [native code] }
+      // 函数c看看，能不能打印出对象a里面的user
+      var a = {
+          user:"剃了胡子",
+          fn:function(){
+              console.log(this.user , 35); //剃了胡子
+          }
+      }
+      var b = a.fn;
+      var c = b.bind(a);
+      c();
+      // 同样bind也可以有多个参数，并且参数可以执行的时候再次添加，但是要注意的是，参数是按照形参的顺序进行的
+      var a = {
+          user:"剃了胡子",
+          fn:function(e,d,f){
+              console.log(this.user); //剃了胡子
+              console.log(e,d,f); //10 1 2
+          }
+      }
+      var b = a.fn;
+      var c = b.bind(a,10);
+      c(1,2);
+  </script>
+</body>
+</html>

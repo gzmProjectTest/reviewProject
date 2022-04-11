@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        // 标题前端面试，总是会被问到这样一类问题：
+
+        //问题一: 解释下JavaScript中的this是怎么工作的？
+
+        //来来来，给你看下面这一段程序，这里的this.bar打印出来是什么值？下面这个this.bar打印出来又是什么值呢？
+        //在前端的面试当中，this的指向是面试官一定要问的问题。废话少说，这篇文章带你10分钟搞懂this的世界。
+
+        //本文参考了Kyle Simpson的《高级JavaScript》（Advanced JavaScript）这门课程，例子也选取了其中的例子。如果你也想成为前端大师，那么他的课程会是你前进路上的助推器！
+
+        //## 标题四种this绑定
+        //这四种绑定分类是基于调用点（call site），即函数是在哪里被谁调用的。也就是说this指向谁，跟函数在哪里定义没有关系，而是取决于被谁调用。下面我们具体分析每种绑定情况。
+
+        //## 标题默认绑定与隐式绑定
+
+        //让我们看看下面这个例子：
+        /*
+        function foo() { 
+            console.log(this.bar); 
+        } 
+        var bar = "bar1"; 
+        var o2 = {bar: "bar2", foo: foo}; 
+        var o3 = {bar: "bar3", foo: foo}; 
+        foo();            // "bar1" – 默认绑定
+        o2.foo();          // "bar2" – 隐式绑定
+        o3.foo();          // "bar3" – 隐式绑定
+
+        // foo()这种调用方法，就是默认绑定。如果在非严格模式下，this就是全局对象，浏览器当中就是window。而如果在严格模式（use strict）下，this就会是undefined。
+
+        // 之所以这是默认绑定，因为foo的调用不属于任何人，前面没有任何限定条件。这是最简单的绑定。
+
+        // o2.foo()和o3.foo()这两种调用方法，都是隐式绑定。Foo是作为o2和o3的方法而调用的，那么谁调用foo，this就指向谁。在上面的例子中，o2.foo()中的this指向o2，因此this.bar就是o2当中的bar: “bar2”；同理，o3.foo()打印出来的就是o3中的”bar3”。
+
+        // ## 标题显式绑定
+
+        // 我们看一个显式绑定的例子：       
+
+        function foo() { 
+        console.log(this.bar); 
+        } 
+        var bar = "bar1"; 
+        var obj = {bar: "bar2"}; 
+        
+        foo();          // "bar1"   默认绑定
+        foo.call(obj);     // "bar2"  显式绑定，使用obj作为"this" 
+
+        // 如果foo是通过call、apply或者bind调用的，那么这种调用就是显式绑定。这种绑定中,this的指向就是这三个函数中传递的第一个参数。
+
+        // ## 标题关键字new绑定
+
+        // 请看下面这个例子：
+        function foo() { 
+            this.baz = "baz"; 
+            console.log(this.bar + " " + baz); 
+        } 
+        var bar = "bar"; 
+        var baz = new foo(); 
+
+        // 如果把new这个关键字放在一个函数调用的前面，JS编译器会做这四件事情：
+
+        // 创建一个新的空的对象
+        // 把这个对象链接到原型对象上
+        // 这个对象被绑定为this
+        // 如果这个函数不返回任何东西，那么就会默认return this
+        // 关于new这个关键字的四步，看不懂也没事，有空的话会另写一篇文章具体介绍一下。不过，我们从这四步可以看出，如果在函数调用前面加上new，那么这个函数中的this就是这个新的对象。
+
+        // 上面的例子，最终会输出undefined undefined。这是因为baz这个变量并没有bar这个属性，而baz此时只被定义，没有被赋值，因此baz也是undefined。
+
+        // ## 箭头函数
+
+        // 箭头函数会无视以上所有的规则，this的值就是函数创建时候所在的lexical scope中的this，而和调用方式无关。可以对比下面两个例子：
+        // 箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+        // 箭头函数体内的this对象，就是定义该函数时所在的作用域指向的对象，而不是使用时所在的作用域指向的对象。
+        function Person(){
+            this.age = 0;
+            console.log(this, 'p1----')
+            setTimeout(function () {
+                console.log(this.age);     // 输出undefined
+            }, 1000);
+        }
+        var p1 = new Person();
+
+        
+        function Person(){
+            this.age = 10;
+            console.log(this, 'p2---')
+            setTimeout(()=> {
+                console.log(this.age);     // 输出10
+            }, 1000);
+        }
+        var p2 = new Person();
+
+        // 在上面没有使用箭头函数的例子当中，setTimeout内部的函数是被global调用的，而global没有age这个属性，因此输出undefined。
+        // 第二个例子使用了箭头函数，this就会使用lexical scope中的this，就是Person，因此输出10。
+
+
+
+        // 绑定优先级
+        // 如果多重绑定规格都适用，那么绑定规则的优先级顺序是这样的：
+
+        // 1. 箭头函数
+        // 2. 关键字new调
+        // 3. 显式绑定
+        // 4. 隐式绑定
+        // 5. 默认绑定
+
+        // 箭头函数优先级最高，会无视2-5绑定规则。而默认绑定优先级最低，只有其他绑定都不使用的时候，才会使用默认绑定。
+
+        // 好啦，这就是关于this的一切。希望看完这篇文章之后，你能够回答开头提出的那两个问题了。祝大家前端学习一切顺利。
+
+        // 转载链接:https://blog.csdn.net/weixin_39856208/article/details/111017155
+
+        // ES6的子类有没有自己的this？
+        // ##  正确解析一：
+        //     因为你跳过了 ES3 ，直接学习 ES6 ，才会有这种疑问。JS 的“类”是语法糖，本质上还是对象和 prototype 的关系，没有什么“子类的 this”、“父类的 this”之类的说法。按照 ES3 来理解：所谓的“类”，就是构造函数+prototype。所谓的 this，就是函数被调用时，this关键字的指向。所谓的“类继承”，就是 prototype 原型链。而 ES6 里的 extends ，无非就算把 ES3 时代的“类继承”方案，用语法糖的形式简化罢了。如果你不能理解 extends ，你应该：自己先想想，同样的功能，你用 ES3 该怎么实现。再去翻翻 ES6 规范文档，看看 extends 做了什么。而题述里引用的什么“子类的 this”、“父类的 this”，严格来说都是不准确的。只是这些写教材的人自以为聪明的发明创造，想要帮助你理解。如果这些小聪明反而让你造成困扰，那你还不如直接去看规范，免得被庸人耽误。
+        // 作者：鲁小夫
+        // 转载链接：https://www.zhihu.com/question/378032472/answer/1071518199
+
+        // ## 标题正确解析二：
+        // 来源：知乎
+        // 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+        //     作者：boyang Li
+        // 转载链接：https://www.zhihu.com/question/378032472/answer/1072686811
+        // 说明: 你问了一个错问题, 从概念上就错了因为this不属于任何人, 它是属于全世界
+
+        // 1、起源，从最基本的函数开始，函数调用
+        // 2.解析函数被调用,不配拥有姓名的右手手,它可以被多用地方使用，
+        // 2.1跟作用域不同，this的本性, 它是动态的， this的性质 （obj.sum调用）this的作用，可以使用（面向编程）
+        // 2.2函数中的this指向：简单来说函数内的this其实就是调用者的引用
+        // 2.3箭头函数this指向：箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+        // 3.函数使用面向对象编程思想，但是有人发出疑问，你没有继承，如何叫面向对象？js说我可以假装我有。 new 语法糖起源
+        // 4. new（语法糖）的发展，
+        // 4.1通过 call，apply，bind改变this指向，解决构造函数传参问题
+        // 4.2逼真到不用知道原型链的存在
+        // 5、也就是说无论是实例也好, 类也好, 都只是对象, 前半段的叙述已经说明, 对象是不配拥有this的 看这里(全局搜索)
+
+
+
+        // 1、起源，从最基本的函数开始，函数调用
+        // 所以还是耐心听我从头说起, 从本质说起, 从原理说起...
+        // 一个平平无奇的函数
+        function sum(a, b) {
+            return a + b
+        }
+        sum(1, 2) // 3
+
+        // 现在有对象obj, 再来调用同样的函数:
+        var obj = {
+            a: 1,
+            b: 2
+        }
+        sum(obj.a, obj.b) // 3
+
+        // 看起来很不舒服的样子咧, 让我们用this改写一下
+        obj.sum = function() { return this.a + this.b }
+        obj.sum() // 3
+
+        // 这样就能通过this引用obj的属性, 而不用额外传值了
+
+        // 2.解析函数被调用,不配拥有姓名的右手手,它可以被多用地方使用
+        // 跟作用域不同，this的本性, 它是动态的
+        // 但是你可能会说,这里的this明显指代的obj啊, 毕竟有obj.sum = xxx 对吧?
+
+        // 不, 要理解这段代码, 首先你得成为一台莫的感情的编译机器来解析一下这行代码
+        // obj.sum = function() { return this.a + this.b } 可以分解为:
+
+        // (左手手) (运算符) (右手手)
+        // lsh是左查询        rsh是右查询
+
+        
+        // 先看左手手, 这和我们之前看到的 var obj = ... 有点像, 但是我们不一样~
+        // 举个例子 运行 (var name) 和 (name) , 前者会报错, 而后者是正常的
+        // 这就是因为var是一个关键字, 编译器只认识固定的写法, 所以这是个语法错误
+        // 而name其实是个表达式, 它表示对变量name的引用. 
+        // obj.sum 其实也是表达式(obj.sum) 表示名为sum,爸爸为obj的引用
+        // 但是有一个共同点是无论是var name, name, obj.sum不过都是有个名字而已
+        // 真正的干货, 比如var obj={a:1, b:2} , 都在右手手里
+        // 平时我们做类似 obj.a += 1 的时候, 
+        // 其实本质类似是在编译器内部有一对set和get好兄弟帮我们做类似 set(obj.a, get(obj.a) + 1))的事情
+        // 其实get和set还是很辛苦的, 因为在整个作用域里可能会有各种重名, 要是找错人了你遭得住?
+        // 所以答应我, 变量命名这件事请严肃一点好么?
+
+        // 那我们再来讲讲不配拥有姓名的右手手
+        // function() { return this.a + this.b } 表示一个函数, 被称为函数字面量
+        // 同理 {a: 1, b:2} 表示一个对象, 被称为对象字面量
+        // 这些字面量表示生而为literal（字面意义的）我很抱歉,
+        // 他们不像数字字面量, 字符串字面量, 布尔值字面量永驻天地
+        // 如果没有变量惦记着, 给包养, 保不齐哪一天就被GC收了, 不带走一片云彩
+        // GC有多层含义，一是计算机术语，指Garbage Collection（垃圾回收）
+        // 比如1和1是一个人但是{}和{}是两个人啊，
+        // {} !== {} 跟原型有关，比如 Object.create({})
+        // 这些对象是真正占内存的数据, 但是必须被引用, 才能续上一秒
+        // 这个时候就要运算符(=)来帮忙牵线搭桥, 本质就是get和set民政局双雄给他们发个证
+        // 哼哼哼, 你以为这是个爱情故事, 所以两人爱情的结晶, 这个this就指向obj了, 喜当爹?
+        // 错, 对象都是大猪蹄子, 一个对象可以和好几个变量勾搭上, 然后转眼给你扣个帽子(浅拷贝)
+        // 你看清楚这孩子到底是谁的, 隔壁家老王obj2长这样
+        var obj2 = {
+            a: 2, b: 3
+        }
+        // obj2 直接蹬鼻子上脸, 大型现场ntr, 这场面简直都没法看
+        obj2.sum = obj.sum
+        // 然后...
+        obj2.sum() // 5
+        // 咳咳, 所以这件事情告诉我们, 领了证也不代表孩子是你亲生的...
+        // 这就是this的本性, 它是动态的
+        // 比如, 哪怕是这样欠打的代码, 你也不需要编译器, 就能知道每个变量指代的是什么
+        var b = 1
+        function f() {
+            var b = 2
+            function f() {
+                var b = 3
+                console.log(b)
+            }
+            console.log(b)
+        }
+        console.log(b)
+
+        // 这个就叫做词法作用域, 但是this是个例外, 它可能等于3, 也可能等于好几万, 反正光看代码我是没法知道的
+        function f() { console.log(this) }
+        // this到底等于几, 这要等到运行起来, 结合上下文来分析
+        // 函数中的this指向：简单来说函数内的this其实就是调用者的引用
+        // 比如a.b.c.sum, 其中可以分开看为 (a.b.c) 和 sum
+        // sum是引用的名, 而(a.b.c)是调用者base（为主）, 那么this就指向(a.b.c)
+
+        // 说了this的性质, 让我们说说this有什么用
+        // 假如这一天function sum嫌obj1,obj2一个个办证太慢了, 
+        // 需要开一家绿帽工厂
+        function sum() { return this.a + this.b }
+        function factory(a, b) {
+            return {a, b, sum}
+        }
+        // 好了机器开动生产
+        var obj3 = factory(1, 2)
+        obj3.sum() // 3
+        var obj4 = factory(3, 4)
+        obj4.sum() // 7
+        var obj5 = factory(5, 6)
+        obj5.sum() // 11
+        // 这绿帽生产速度, 一人一个爹都不带重阳, 但妈都是一个妈, 只占一个内存空间
+        // 相当于隐式得把obj当作参数传入了sum当中, 全面体现了JS特色面向对象编程的优越性
+        // 但是这时候有人就不服了, JS你连继承都没有, 你也配叫OO（面向对象）?
+
+
+        // 3.函数使用面向对象编程思想，但是有人发出疑问，你没有继承，如何叫面向对象？js说我可以假装我有。 new 语法糖起源
+        // JS表示, 我没有, 但是我可以假装我有, 于是有了语法糖关键字new
+        // 在那个WEB编程刀耕火种的年代, JS是这样模拟继承的
+        function Father(a) {
+            this.a = a
+        }
+        Father.prototype.double = function() { return this.a * 2 }
+        function Child(a, b) {
+            Father.call(this, a) // <== 看下边
+            this.b = b
+        }
+        Child.prototype = Object.create(Father.prototype);
+        Child.prototype.constructor = Child;
+        Child.prototype.sum = function() { return this.a + this.b }
+        const child = new Child(1,2)
+        child.sum() // 3
+        child.double() // 2
+        // 这个new做了什么呢? 大概这个意思吧
+        const $new = ($class, ...args) => {
+            const result = {
+                __proto__: $class.prototype // 等价于Object.create(Father.prototype) => {sum, __proto__:{double: Function}}
+            }
+            $class.call(result, ...args) // <== 看上边
+            return result
+        }
+        // function New() {
+        //     let obj = {}; // 创建对象
+        //     let constructor =  [].shift.call(arguments); // 获取构造函数，截取并返回 name 函数
+        //     if (constructor.prototype !== null) {
+        //         obj.__proto__ = constructor.prototype; // 构造函数链接到新对象
+        //     }
+        //     看这里 对象对不配有用this的，改变构造函数的this，并指向了obj
+        //     let ret = constructor.apply(obj, arguments); // 使用 apply，改变构造函数 this 的指向到新建的对象，这样 obj 就可以访问到构造函数中的属性
+        //     // 为什么要对返回值进行判断，因为 name 函数中有可能返回一个对象，或者函数，如果返回基本数据类型就 返回 obj。
+        //     if ((typeof ret === 'object' || typeof ret === 'function') && ret !== null) {
+        //         return ret;
+        //     }
+        //     return obj;
+        // }
+        // 因为this太过于活跃, 导致人们必须时时刻刻盯紧它
+        // 为了约束它的行为, 人们为this套上了三套枷锁call, apply, bind
+        // 这样,我们就可以任意绑定一个函数的this的指向了
+        // 嗯, 从此this不需要绑定到属性上, 直接就把引用对象当参数传进去就行了
+
+        // 4. new（语法糖）的发展，
+        // 4.1通过 call，apply，bind改变this指向，解决构造函数传参问题
+        // 4.2逼真到不用知道原型链的存在
+        // 通过这种方法人们搞定了构造函数传参的问题
+        // 后来JS终于有了自己的class关(yu)键(fa)字(tang)
+        // 可以假装自己也和其他OOP(面向对象的程序设计)一样了
+        // 这个class逼真到你可以完全用继承的思想去给JS编程, 而完全不用知道原型链的存在
+        // 你看这个像模像样的extends和super,静态方法都有了, 过几天私有成员都要出来了, 有内味了, 有内味了
+        class GrandChild extends Child {
+            constructor(a,b,c){
+                super(a,b);
+                this.c = c
+            }
+            threeSum() {
+                return this.a + this.b + this.c
+            } 
+        }
+        const grandChild = new GrandChild(1,2,3)
+        grandChild.threeSum() // 6
+        grandChild.double() // 2
+        grandChild.sum() // 3 
+        // 但本质还是那一套东西, 那么回到你的问题, 首先你的子类是什么
+        // 首先Child是一个函数
+        function Child(a, b) {
+            Father.call(this, a) 
+            this.b = b
+        }
+        // 他也是个对象, 它的属性类似
+        // {
+        //   prototype: {
+        //     sum,
+        //     __proto__:{
+        //       double,
+        //     }
+        //   }
+        // }
+        // 在这个函数中有this, 在sum和double中也有this
+        // 它指向谁? 只能在运行时确定. 
+        // 那么我么来试试 new一个实例出来看看会发生什么?
+        // 首先会创建{__proto__: Child.prototype}
+        // Child.prototype 首先是从Object.create(Father.prototype)创建的
+        // 相当于是创建了一个__proto__属性为Father.prototype的对象
+        // Father.prototype里有一个double方法
+        // 所以现在相当于 {__proto__:{double}} => Father.prototype.double
+        // 然后Child有自己的Child.prototype.sum方法 Child.prototype.sum = function() { return this.a + this.b }
+        // 所以现在相当于{ sum, __proto__:{double} }
+
+
+        obj = {
+            sum,
+            __proto__: { double }
+        }
+       
+        // 然后通过call来绑定this只想新建的obj来调用Child方法
+        function Child(a, b) {
+            Father.call(this, a) 
+            this.b = b
+        }
+        new Child(1, 2)
+        // const $new = ($class, ...args) => {
+        //     const result = {
+        //         __proto__: $class.prototype // 等价于Object.create(Father.prototype) => {sum, __proto__:{double: Function}}
+        //     }
+        //     $class.call(result, ...args) // <== 看上边
+        //     return result
+        // }
+        // 此时就翻译为:
+        function Child(a, b) {
+            Father.call(obj, a) 
+            obj.b = b
+        }
+        // 最后就有了最后的对象
+        obj = {
+            a,
+            b,
+            sum,
+            __proto__:{
+                double
+            }
+        }
+
+
+        // 5、也就是说无论是实例也好, 类也好, 都只是对象, 前半段的叙述已经说明, 对象是不配拥有this的 看这里(全局搜索)
+        // 你去看看现在这个obj和一开始的obj有区别么? 不要被语法糖给欺骗了哦
+        //   const obj2 = {a: 1, b: 2}
+
+        // function obj1() {
+        //     this.a = 3
+        //     this.b = 4
+        // }
+
+        // console.log(obj2, 123) // 打印 {a: 1, b: 2, [[Prototype]]: Object}
+        // console.log(new obj1, 4443)  // 打印 {a: 3, b: 4, [[Prototype]]: Object}
+        // 6、通过与class类配合使用，属于出了箭头函数。
+        // js又有新的控制的this手段: 箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+        // 主要是配合class使用:
+
+        class Child {
+            constructor(name){
+                this.name = name;
+                // this.sayHi = () => this.name;
+                this.sayHi = function () {
+                return this.name 
+                }
+            }
+        }
+        // 这样你就可以安心回调, 不用担心你的this被别的对象给勾走了
+        const a = new Child('a')
+        const b = {name: 'b'}
+        b.sayHi = a.sayHi
+        b.sayHi() // 'a'
+        */
+
+        // 那么现在你整明白this这个妖艳贱货了么?
+
+
+        
+
+
+      
+
+
+    </script>
+
+    <script>
+        const obj = {a: 1, b: 2}
+
+        function obj1() {
+            this.a = 3
+            this.b = 4
+        }
+
+        console.log(obj, 123)
+        console.log(new obj1, 4443)
+
+        /*
+        通过Object.create()创建对象
+        var o;
+
+        // 创建一个原型为null的空对象
+        o = Object.create(null);
+        console.log('0--', o)
+
+
+        o1 = {};
+        console.log('01--', o1)
+        // 以字面量方式创建的空对象就相当于:
+        o2 = Object.create(Object.prototype);
+        console.log('02--', o2)
+
+        o3 = Object.create({});
+        console.log('03--', o3)
+
+
+        o4 = Object.create(Object.prototype, {
+            // foo会成为所创建对象的数据属性
+            foo: {
+                writable:true, //可写
+                configurable:true, //可配置
+                value: "hello"
+            },
+            // bar会成为所创建对象的访问器属性
+            bar: {
+                configurable: false, //可配置
+                get: function() { return 10 },
+                set: function(value) {
+                    console.log("Setting `o.bar` to", value);
+                }
+            }
+        });
+
+
+        function Constructor(){
+            this.a = '999'
+            console.log(this.a, 'o5不能执行吧')
+        }
+        o4 = new Constructor();
+        console.log('o4', o4)
+        // 上面的一句就相当于:
+        o5 = Object.create(Constructor.prototype);
+        console.log('o5', o5)
+        // 当然,如果在Constructor函数中有一些初始化代码,Object.create不能执行那些代码
+
+
+        // 创建一个以另一个空对象为原型,且拥有一个属性p的对象
+        o6 = Object.create({}, {
+            p: {
+                value: 42,
+                // writable: true, // 只有与该属性相关联的值被改变
+                // enumerable: true, //只有在枚举相应对象上的属性时该属性显现
+                // configurable: true // 只有该属性描述符的类型可以被改变并且该属性可以从对应对象中删除
+            }
+        })
+
+        // // 省略了的属性特性默认为false,所以属性p是不可写,不可枚举,不可配置的:
+        o6.p = 24
+        console.log('o61--writable:true', o6.p)
+        //42
+
+        o6.q = 12
+        console.log('o62', o6)
+        for (var prop in o6) {
+            console.log('o63--enumerable:true', prop)
+        }
+        */
+
+    </script>
+</body>
+</html>

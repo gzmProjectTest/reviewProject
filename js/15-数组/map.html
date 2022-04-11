@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    /*
+      map: 返回一个新数组， 不影响原数组
+    */
+    var arr = ["a","b"];
+    // Array.prototype._map = function(fn) {
+    //   debugger
+    //   var newArr = [];
+    //   for(var i = 0; i<this.length; i++){
+    //     const flag = fn(this[i],i,this)
+    //     if (flag){
+    //       newArr.push(this[i])
+    //     }
+    //   }
+    //   return newArr
+    // }
+    // arr.map((currentValue,index,arr)=>{
+    //   console.log("_map当前元素"+currentValue)
+    //   console.log("_map当前索引"+index)
+    //   console.log("_map数组对象"+arr)
+    // })
+
+    // 进阶版
+    Array.prototype.selfMap = function () {
+      debugger
+      const ary = this
+      const result = new Array(ary.length);
+      /* 
+        slice 这个方法在不接受任何参数的时候会返回 this 本身
+        arguments 是属于函数内部的变量，其值是函数参数列表，一个类数组对象,是具有长度属性的,却并不是数组,不具备slice()这个方法,那就意味着 arguments.slice()行不通
+        这里可以改变this的call出现了,假如我用call将arguments把this给slice会发生什么?
+        slice会得到具有长度属性的对象,就实现了对象转数组的
+      */
+      const [ fn, thisArg ] = [].slice.call(arguments)
+      if (typeof fn !== 'function') {
+        throw new TypeError(fn + 'is not a function')  
+      }
+      for (let i = 0; i < ary.length; i++) {
+        // fix稀疏数组的情况
+        if (i in ary) {
+            result[i] = fn.call(thisArg, ary[i], i, ary);
+        }
+      }
+      return result
+    }
+    
+    const a = new Array(1, 2, 3, 4)
+    a.selfMap(item => item + 1) // [ 2, 3, 4, 5 ]
+  </script>
+</body>
+</html>

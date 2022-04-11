@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // es6中class类的全方面理解（一）------
+    // class Person{
+    //   constructor(age, name) {
+    //     console.log(this, '14--->')
+    //     this.age = age
+    //     this.name = name
+    //   }
+    // }
+    // const person = new Person(12, 'hhh')
+    // console.log(person, '1919--->')
+    // console.log(Person.prototype, '1920--->')
+
+    // function Fn(a, b) {
+    //   this.abc = a
+    //   this.def = b
+    // }
+    // const fn = new Fn(1, 2)
+    // console.log(fn, '202002--->')
+    // // 每构建出来的函数对象 new Object 都有一个__proto__ 指向这个函数的prototype
+    // console.log(Fn.prototype, '20202--->', fn.__proto__)
+
+    // es6中class类的全方面理解（二）------继承
+    class Cucurbit{
+        constructor(name,color){
+            console.log("farther")
+            this.name=name;
+            this.color=color;
+        }
+        say(){
+            console.log("我的名字叫"+this.name+"我是"+this.color+"颜色的");
+        }
+    }
+    class First extends Cucurbit{
+        constructor(name,color){
+          // console.log('super--before', this)
+          super(name);// 调用父类的constructor(name,color)
+          console.log('super--after', this)
+        }
+        say(){
+            console.log("我是child")
+            super.say();
+            // 1.作为父类的构造函数调用(已说明）
+            // 2.在普通方法中，作为父类的实例调用（已说明）
+            // 3.在静态方法中，作为父类调用（下篇文章会做介绍）
+        }
+    }
+    var wa=new First("大娃","红色");
+    wa.say();
+  </script>
+</body>
+</html>

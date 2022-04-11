@@ -1,0 +1,310 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-28 19:42:39
+ * @LastEditTime: 2022-02-28 21:21:09
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/js/14-this-箭头函数举例.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+         
+        // 举例
+        // 正确手写Bind结果
+        Function.prototype.testBind = function (...args) {
+            console.log(this, '22--->')
+            return () => {
+                console.log(this, '24--->')
+                this.apply(args[0], args.slice(1))
+            }
+        }
+
+        // fn1.testBind({a: 1}, 22)()
+        // 输出：1, 22
+
+        Function.prototype.testBind2 = (...args) => {
+            console.log(this, '30--->')
+            return () => {
+                console.log(this, '324--->')
+                this.apply(args[0], args.slice(1))
+            }
+        }
+
+        // 测试用例
+        function fn1 (attr1) {
+            console.log(this.a, attr1)
+        }
+
+        
+        // function()模式定义的函数的this指向调用它的对象，即“谁调用指向谁”
+        // 箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+
+        console.log(this, '48---->window')
+        fn1.testBind2({a: 1}, 22)()
+
+
+        // 博主一的例子：
+        // 原文链接：https://blog.csdn.net/Xu_cipu/article/details/122168188
+
+        // 本来只是遇见了一个面试题准备手写一下，但最后发现通过手写bind最主要的是深刻理解了箭头函数this指向问题。为什么这么说？上代码直接看
+
+        // 正确手写Bind结果
+        Function.prototype.mybind = function (...args) {
+            return () => {
+                this.apply(args[0], args.slice(1))
+            }
+        }
+        // 乍一眼看上去，感觉没啥，但其实我一开始写的是这样的：
+
+        Function.prototype.mybind = (...args) => {
+            return () => {
+                this.apply(args[0], args.slice(1))
+            }
+        }
+ 
+        // 细心的你应该发现，这里只把外层的function改成了箭头函数
+        // 然鹅，勤劳的你在浏览器跑一下就会发现，这样会报错：
+
+        // TypeError: this.apply is not a function
+        // ？？我一开始一脸懵逼，？怎么获取不到this了？this不是就是调用这个mybind函数的函数吗？
+
+        // 然后聪明 （菜鸡）的我console了一下这里的this，决定一探究竟：
+
+        Function.prototype.mybind = (...args) => {
+            console.log(this)
+            return () => {
+                this.apply(args[0], args.slice(1))
+            }
+        }
+      
+        // 聪明的你猜打印出来是啥？
+
+        // 是全局window对象
+        // 我····
+
+        // 好吧，整理心情，找出前一天才做过的“手写bind”答案，恍然大悟。。。
+
+        // 这时候记起了那两句万年规则：
+
+        // function()模式定义的函数的this指向调用它的对象，即“谁调用指向谁”
+        // 箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+
+        // 基于上面的例子，您品，您细品。
+
+        // 测试用例
+        function fn1 (attr1) {
+            console.log(this.a, attr1)
+        }
+
+        fn1.mybind({a: 1}, 22)()
+        // 输出：1, 22
+       
+        // 正确的结果之所以正确，就是因为调用这个用function()定义的函数mybind的对象，就是fn1
+        // 而不正确的错误写法之所以错误，是因为我们就是在全局范围通过箭头函数定义了一个mybind方法，它的this永远指向window
+
+        // 华丽的分割线：如果只想理解箭头函数this指向，上面的例子足矣
+        // 下面还有个类似的场景，有兴趣有时间可以接着看下
+
+        // ==============================================================
+        // 还是从正确的这个例子开始
+
+        // 正确手写Bind结果
+        Function.prototype.mybind = function (...args) {
+            return () => {
+                this.apply(args[0], args.slice(1))
+            }
+        }
+
+        // 里面的箭头函数我们改一下试下：
+
+        // 修改正确的手写Bind结果
+        Function.prototype.mybind = function (...args) {
+            return function () {
+                this.apply(args[0], args.slice(1))
+            }
+        }
+       
+        // 勤劳的你可以测下
+        // 结果是：
+
+        // TypeError: this.apply is not a function
+        // 1
+        // this又不对了···
+        // 聪明 （菜鸡）的我又console了一下this，决定一探究竟：
+        // 不过基于上面的讨论，我们知道，在return外侧的this，应该是没有问题的，所以内外都console一下：
+
+        Function.prototype.mybind = function (...args) {
+            console.log(this)
+            return function () {
+                console.log(this) // 这个this有问题
+                this.apply(args[0], args.slice(1))
+            }
+        }
+        
+        // 结果，第二个this是window！
+        // 再次细品：
+
+        // 测试用例
+        function fn1 (attr1) {
+            console.log(this.a, attr1)
+        }
+
+        fn1.mybind({a: 1}, 22)()
+       
+        // 这里，fn1.mybind（{a: 1}, 22)()这一句中，最后一个()之前，返回了一个函数，这个函数是通过function()定义的，在全局环境调用了一下，也就是window对象调用了它，所以这里的this又再一次指向了window
+
+        // 总结：
+        // “手写bind”的外层必须用function()形式定义函数，保证内部能获取到调用mybind的函数的this；而内部推荐使用箭头函数，来保持这个this的指向；当然，也可以通过闭包_self对象手动进行带入this操作：
+
+        // 正确的手写Bind结果，较复杂
+        Function.prototype.mybind = function (...args) {
+            const _self = this
+            return function () {
+                _self.apply(args[0], args.slice(1))
+            }
+        }
+
+
+        // 博主二的例子
+        // https://www.cnblogs.com/dongcanliang/p/7054176.html
+        // 参考链接：
+        // function()模式定义的函数的this指向调用它的对象，即“谁调用指向谁”
+        // 箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+        let p = {
+            a: function () {
+                console.log(this, 'p')
+                var obj = {
+                    i: 10,
+                    b: () => { console.log(this.i, this) }, // undefined p
+                    c: function () {
+                        console.log(this.i, this)
+                    }
+                }
+                obj.b()
+            }
+        }
+        p.a()
+
+
+        // 博主三的例子
+        function Person(a) {
+            console.log(this, 'person')
+            this.a = a
+            this.fn = () => {
+                return this.a
+            }
+            this.fn1 = function () {
+                return this.a
+            }
+        }
+        const person = new Person('hellow')
+        const person1 = { a: 'Sb' }
+        person1.fn = person.fn
+        person1.fn1 = person.fn1
+        person1.fn()
+        person1.fn1()
+
+        // person defined [scope] => GO { person: () {} person1: undefined, this: window }
+        // person doing [scope] => AO {this: person, a === undefined => 'hellow', }
+        //                         GO { person: () {} person1: {} }
+        // fn  defined => AO {this: person, a === undefined => 'hellow', }
+        //                         GO { person: () {} person1: undefined }
+
+        // person1.fn => AO {this: person, a === undefined => 'hellow', }
+        //                         GO { person: () {} person1: undefined }
+        // person1.fn doing [scope] = AO { 当前this指向 person 需要访问 this.a ,自己作用域没有，找上级的 AO，就是 hellow}
+        //                     person    AO {this: person, a === undefined => 'hellow', }
+        //                     person    GO { person: () {} person1: undefined }
+        
+
+        // 博主4： 考点 new Function()
+        var x = 10;
+        function foo() {
+            b = 30
+            var y = 20;
+            console.log('1234')
+            var barFn = new Function('console.log(this.x, this.y, this.b, this)');
+            barFn(); // 10, "y" is not defined
+        }
+        console.log(foo.__proto__, '函数的proto')
+        console.log(foo.prototype, '函数的proto')
+        
+        foo();
+*/
+        // GO {x = undefined = 10, this: window}
+        // foo defined [scope] => GO {x = undefined = 10, this: window, foo: functin(){}}
+
+        // foo doing [scope] => AO { y = undefined = 10, this: window, }
+        //                         GO {x = undefined = 10, this: window, foo: functin(){}}
+
+        // barFn defined [scope] => AO { y = undefined = 10, this: window, }
+        //                          GO {x = undefined = 10, this: window, foo: functin(){}}
+
+        // barFn doing [scope] => AO { window.x, window.y,  this: window}
+        //                         AO { y = undefined = 10, this: window, }
+        //                         GO {x = undefined = 10, this: window, foo: functin(){}}
+
+        // 解释 barFn()函数执行之后，为什么访问 y 为undefined
+        // 通常，函数将它所创建的位置记录在特殊属性[[Environment]]中。 它引用了创建地点的词法环境。
+
+        // 但是当使用new Function()创建函数时，其[[Environment]]不是引用当前的词法环境，而是引用全局环境。
+        // 参考链接：https://www.cnblogs.com/xiaokeai0110/p/10029024.html
+
+
+    var point = { 
+        x : 0, 
+        y : 0, 
+        moveTo : function(x, y) { 
+            this.x = x;
+            console.log(this.x); // 1
+            console.log(this);   // point对象
+
+            // 内部函数
+            var moveX = function(x) { 
+                this.x = x;
+                console.log(this, this.x)
+            }; 
+            // 内部函数
+            var moveY = function(y) { 
+                this.y = y;
+                console.log(this, this.y)
+            } 
+            console.log(this, '279--->')
+            // 不清楚为什么：参考
+            // https://www.shuzhiduo.com/A/QV5ZWmmbdy/
+            // https://segmentfault.com/q/1010000004648772
+            // https://segmentfault.com/a/1190000004515649
+            moveX(x); // 这里是全局调用  === 默认调用
+            moveY(y); 
+        } 
+    }; 
+    point.moveTo(1, 1); 
+    // console.log(point.x); // 1
+    // console.log(point.y); // 0
+    // console.log(x); // 1
+    // console.log(y);// 1
+
+    // moveTo doing [scope] => AO {this: point, x = 1}
+    //                         GO {this: window, point = {}}
+
+    // moveX defined [scope] => AO {this: point, x = 1}
+    //                     GO {this: window, point = {}}
+
+    // moveX doing [scope] => {this: window, window.x = 1, window.y = 1 }
+    //                         AO {this: point, x = 1}
+    //                         GO {this: window, point = {}}
+
+
+
+    </script>
+</body>
+</html>

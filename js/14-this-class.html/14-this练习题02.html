@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+     // 参考链接：https://www.cnblogs.com/wang--chao/p/14672579.html
+      //https://www.cnblogs.com/jeodeng/p/10658590.html
+        // https://blog.csdn.net/smalCat/article/details/82107587
+        // https://zhuanlan.zhihu.com/p/57204184
+      // 记住这句： 箭头函数的this指向定义它的地方的上下文环境this，后续不会改变的
+      // 函数需要有预编译
+      // 构造函数需要有原型链
+
+
+      
+      // 第一题：
+
+      // var app1 = {
+      //   a: 1,
+      //   fn: function() {
+      //     console.log('a'. this.a)
+      //   }
+      // }
+      // app1.fn();
+
+      // 普通函数fn的作用域就是在app1中，所以this.a就是1.
+
+      // var app2 = {
+      //   a: 1,
+      //   fn: () => {
+      //     console.log('this', this)
+      //     console.log('a', this.a)
+      //   }
+      // }
+      // app2.fn()
+
+      // 解析：fn函数执行期上下文为上
+      // GO === window
+      // GO： { 
+      //   app2 = undefined => app2 = {...}
+      // }
+      
+      let arr = [1,2,3]
+      // 第二题
+      function Person(){
+          this.age = 0;
+          console.log(this, 'p1----')
+          setTimeout(function () {
+              console.log(this.age);     // 输出undefined
+          }, 1000);
+          arr.forEach(function() {
+            console.log(this, '123')
+          }, this)
+      }
+      var p1 = new Person();
+
+
+      // (function () {
+      //   Array.prototype.forEach = Array.prototype.forEach || function (fn, context) {
+      //     context = context || this;
+
+      //     var i = 0,
+      //         len = this.length;
+      //     for (; i < len; i++) {
+      //       fn.call(context, this[i], i, this);
+      //     }
+      //   }
+      // })()
+
+      // if (!Array.prototype.forEach) {
+      //   Array.prototype.forEach = function forEach(callback, thisArg) {
+      //   var T, k;
+      //   if (this == null) {
+      //     throw new TypeError("this is null or not defined");
+      //   }
+      //   var O = Object(this);
+      //   var len = O.length >>> 0;
+      //   if (typeof callback !== "function") {
+      //     throw new TypeError(callback + " is not a function");
+      //   }
+      //   if (arguments.length > 1) {
+      //     T = thisArg;
+      //   }
+      //   k = 0;
+      //   while (k < len) {
+      //     var kValue;
+      //     if (k in O) {
+      //       kValue = O[k];
+      //        callback.call(T, kValue, k, O);
+      //     }
+      //       k++;
+      //     }
+      //   };
+      // }
+
+
+      // Person()
+      // GO { p1: undefined, person: person(){}}
+      // AO { }
+
+
+      
+      // function Person(){
+      //     this.age = 10;
+      //     console.log(this, 'p2---')
+      //     setTimeout(()=> {
+      //         console.log(this.age);     // 输出10
+      //     }, 1000);
+      // }
+      // var p2 = new Person();
+
+      // // 第三题
+      // class Child {
+      //   constructor(name){
+      //     this.name = name;
+      //     this.sayHi1 = () => this.name;
+      //     this.sayHi2 = function () {
+      //      return this.name 
+      //     }
+      //   }
+      // }
+      // // 这样你就可以安心回调, 不用担心你的this被别的对象给勾走了
+      // const a = new Child('a')
+      // const b = {name: 'b'}
+      // b.sayHi1 = a.sayHi1
+      // b.sayHi2 = a.sayHi2
+      // b.sayHi1() // 'a'
+      // b.sayHi2() // 'a
+
+  </script>
+</body>
+</html>

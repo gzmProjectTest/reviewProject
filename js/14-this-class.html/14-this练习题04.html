@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // var a = 10;
+    // var foo = {
+    //     a: 20,
+    //     fn: (function(){
+    //         console.log(this); // window
+    //         console.log(this.a); // 10
+    //     })()
+    // }
+
+    // var a = 10;
+    // var oTimer1 = setInterval(function(){
+    //     var a = 20;
+    //     console.log(this.a); // 10
+    //     clearInterval(oTimer1);
+    // },100);
+
+    // (function(){
+    //     eval("console.log(this)"); // Window
+    // })();
+    // function Foo(){
+    //     this.bar = function(){
+    //         eval("console.log(this)"); // Foo
+    //         console.log('this->', this)
+    //     }
+    // }
+    // var foo = new Foo();
+    // const aaa = foo.bar; // 不管如何赋值，最后 aaa执行都归window所有，相当于函数自执行
+    // aaa() aaa在执行的时候并没有绑定在某个对象上，相当于是全局状况下调用
+    // console.log(window.aaa, '4040')
+
+
+    // var a = 1;
+    // if(ture){
+    //     console.log(a);  //ReferrenceError
+    //     let a = 1;
+    // }
+
+
+    // var name = "222";
+    // var a = {
+    //   name: "111",
+    //   say: function () {
+    //     console.log(this.name);
+    //   }
+    // }
+    // var fun = a.say;
+    // fun();		//222
+    // a.say();	//111
+    
+    // var b = {
+    //   name : "333",
+    //   say: function (func){
+    //     func();
+    //   }
+    // }
+    
+    // b.say(a.say);	//222
+    // b.say = a.say;	
+    // b.say();		//333
+
+
+
+    // var a = 5
+    // function test() {
+    //   a = 0
+    //   console.log(a)
+    //   console.log(this.a) // this.a  跟 a 还是有区别的， 有this先找是否有对象调用该函数，那么看 a 函数中是否有定义变量 var a，会生成 AO
+    //   var a;
+    //   console.log(a)
+    // }
+    // test()
+    // new test()
+    // 分别执行 this.test  new test()
+    // test () 0 5 0 // 为什么是5，因为 5 获取的是 GO 中的a， 不是AO的
+    // new test() 0 undefined 0
+
+
+    // function Pig(){
+    //   this.age=99;
+    //   return 'abc';
+    // }
+    // var pig=new Pig();
+    // console.log(pig) //pig对象，因为函数作为构造函数运行时，return的值是忽略的，还是返回对象
+
+    var name='this is window';
+    var obj={name:'php',t:function(){
+      alert(this.name);
+    }}
+    // obj.t();
+    var dog = {name:'huzi'};
+    var tem = obj.t;
+    // tem();
+    dog.t = obj.t;//this is window  
+    // dog.t();
+    (dog.t = obj.t)(console.log(this, '105'));
+    //(dog.t=obj.t)是一个表达式，返回值是‘值’，即函数本身。
+    //立即使用函数本身。效果等同于(function(){alert(this.name);});        this理解为null,null又被解释成window       //母体是null
+  </script>
+</body>
+</html>

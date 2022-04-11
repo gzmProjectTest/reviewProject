@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    let flatArr = [
+      {id: 1, title: '标签1', parent_id: 0},
+      {id: 2, title: '标签2', parent_id: 0},
+      {id: 3, title: '标签2-1', parent_id: 2},
+      {id: 4, title: '标签3-1', parent_id: 3},
+      {id: 5, title: '标签4-1', parent_id: 4},
+      {id: 6, title: '标签2-1', parent_id: 2}
+    ]
+    function canvert(data) {
+      const result = []
+      const map = data.reduce((pre, cur, index, arr) => {
+        // console.log('pre', pre)
+        // console.log('cur', cur)
+        // console.log('index', index)
+        // console.log('arr', arr)
+        pre[cur.id] = cur
+        return pre
+      }, {})
+      // console.log(map, 'mmmm')
+      for (let item of data) {
+        if (item.parent_id === 0) {
+          result.push(item)
+          continue
+        }
+        // console.log('result', result)
+        console.log('123--->',  item.parent_id)
+        console.log('123--->',  map)
+        console.log('123--->',  map[item.parent_id])
+        // console.log('1111----->', item.parent_id in map)
+        if (item.parent_id in map) {
+          
+        }
+      }
+  
+    }
+    canvert(flatArr)
+    let obj = { 1: '002', 2: '002'}
+    if (1 in obj) {
+      console.log(9999)
+    }
+  </script>
+</body>
+</html>

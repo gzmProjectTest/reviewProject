@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    Array.prototype._map = function(fn) {
+      var newArr = [];
+      for(var i = 0; i<this.length; i++){
+          newArr.push(fn(this[i],i,this))
+      }
+      return newArr
+    }
+    function clone (value) {
+      if (Array.isArray(value)) {
+        return value._map(clone)
+      } else if (value && typeof value === 'object') {
+        const res = {}
+        for (const key in value) {
+          res[key] = clone(value[key])
+        }
+        return res
+      } else {
+        return value
+      }
+    }
+    const arr = [1, 2]
+    const arr2 = clone(arr)
+   
+  </script>
+</body>
+</html>

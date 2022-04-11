@@ -7,6 +7,17 @@
 </head>
 <body>
     <script>
+    //预编译发生在函数执行前一刻
+    // 四部曲：
+    //     1.创建AO对象 Activation Object 执行期上下文
+    //     2.找形参和变量声明，将变量和形参名作为AO属性名，值为undefined
+    //     3.将实参值和形参统一
+    //     4.在函数体里面找函数声明，值赋予函数体 function a(){}函数声明 const b = function()为表达式
+
+            // GO === window 未经声明的变量归window所有， a = 123 === window.a
+            // 1.创建GO对象 Global Object 执行期上下文 
+            // 2.找形参和变量声明，将变量和形参名作为AO属性名，值为undefined
+            // 4.在函数体里面找函数声明，值赋予函数体
     // AO 的预编译
     /*  1
     function fn(a) {

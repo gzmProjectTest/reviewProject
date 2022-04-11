@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使用float解决</title>
+  <style>
+    .container {
+      width: 100%;
+      min-height: 200px;
+      border: 1px solid skyblue;
+      overflow: hidden;
+    }
+    .container .container-item {
+      width: 25%;
+      height: 80px;
+      margin: 10px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      float: left;
+      position: relative;
+    }
+    .container .container-item div{
+      width: 45px;
+      height:45px;
+      background-color: red;
+    }
+  
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="container-item">
+      <div></div>
+    </div>
+    <div class="container-item">
+      <div></div>
+    </div>
+    <div class="container-item">
+      <div></div>
+    </div>
+    <div class="container-item">
+      <div></div>
+    </div>
+    <div class="container-item">
+      <div></div>
+    </div>
+    <div class="container-item">
+      <div></div>
+    </div>
+    <div class="container-item">
+      <div></div>
+    </div>
+  </div>
+  <div>
+    我来测试div
+  </div>
+</body>
+</html>

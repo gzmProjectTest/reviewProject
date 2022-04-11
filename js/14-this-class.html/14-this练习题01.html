@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    // 问题一
+    // function class1(){   
+    //   console.log('class1执行', this)
+    //   this.name = function(){    // 这里相当于给 class2 的this上添加了一个name 函数， 所以f执行name 可以返回
+    //     console.log("我是class1内的方法,通过class2调用");   
+    //   }   
+    // }   
+    // function class2(){ 
+    //   console.log('class2执行', this)
+    //   class1.call(this);  //此行代码执行后，当前的this指向了class1（也可以说class2继承了class1）   
+    // }   
+
+    // var f=new class2();   
+    // f.name();   //调用的是class1内的方法，将class1的name方法交给class2使用
+
+          // 问题二
+    class Child {
+      constructor(name){
+        this.name = name;
+        this.sayHi = () => {
+          console.log(this === window)
+          return this.name
+        };
+        // this.sayHi = function () {
+        //   console.log('this--->', this === window)
+        //   return this.name 
+        // }
+      }
+    }
+    // 这样你就可以安心回调, 不用担心你的this被别的对象给勾走了
+    // const a = new Child('a')
+    // const b = {name: 'b'}
+    // console.log(a.sayHi())
+    // // b.sayHi = a.sayHi
+    // // console.log(b.sayHi()) // 'a'
+
+        // 问题三
+    // function Person () {
+    //   let fullName = null;
+    //   this.getName = function () {        return fullName;};
+    //   this.setName = function (name) {
+    //     fullName = name;
+    //     return this;
+    //   };
+    // }
+    // let jon = new Person();
+    // jon.setName("Jon Doe");
+    // console.log(jon.getName()); // "Jon Doe"
+
+      //     // 问题四
+    // function Student(data){
+    //   this.name = data.name || "Jon Doe";
+    //   this.age = data.age>=0 ? data.age : -1;
+    //   this.getInfo = function () {        return this.name + ", " + this.age;};
+    //   this.sayHi = function () {
+    //     window.setTimeout( ()=> {
+    //       console.log( this );
+    //     }, 100 );
+    //   }
+    // }
+    
+    // let mary = new Student({
+    //   name: "Mary Lou",
+    //   age: 13
+    // });
+    // console.log( mary.getInfo() ); // "Mary Lou, 13"
+    // mary.sayHi();// window
+
+    // 问题五
+    // function foo() { 
+    //     this.baz = "baz"; 
+    //     console.log(this.bar + " " + baz); 
+    // } 
+    // var bar = "bar"; 
+    // var baz = new foo(); 
+
+    // 问题六
+    // function Person(){
+    //   this.age = 10;
+    //   this.handle = () => {
+    //     console.log(this, '91---this')
+    //     return this.age
+    //   }
+    //   setTimeout(()=> {
+    //     console.log(94, this.age);     // 输出10
+    //   }, 1000);
+    // }
+    // debugger
+    // var p = new Person();
+    // const b = {age: '20'}
+    // b.handle = p.handle
+    // console.log(b.handle, 'handle')
+    // console.log(100, b.handle())
+
+
+
+
+  </script>
+</body>
+</html>
