@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-04-08 19:54:35
+ * @LastEditTime: 2022-04-09 11:19:05
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/newDate/01.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function getZero(num) {
+      // 单数前面加0
+      if(parseInt(num) < 10){
+        num = '0'+ num;
+      }
+      return num;
+    }
+    let dateTime = new Date('2022-3-1')
+    let year = dateTime.getFullYear()
+    let month = dateTime.getMonth()
+    if (month === 0) {
+      month = 12
+      year = year - 1
+      dateTime.setYear(+year)
+    }
+    dateTime.setMonth(month)
+    let monian = new Date(year, month, 0) // 获取当前月的最后一天,注意是 new Date 中 第三个参数为 0
+    let beforeBusinessDate = year + '-' + getZero(month) + '-' + monian.getDate()
+    console.log('vsdfl', beforeBusinessDate)
+  </script>
+</body>
+</html>

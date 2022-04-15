@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>参考链接：https://blog.csdn.net/qq_28353055/article/details/88573762</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+    <div id="app">
+        <button id="one" @click="alert('1')">点击事件</button>
+       <table>
+           <thead>
+               <tr>
+                   <th>姓名</th>
+                   <th>年龄</th>
+                   <th>地址</th>
+                   <th>电话</th>
+               </tr>
+           </thead>
+           <tbody>
+                <tr v-for="(item,index) in tbodyData" :key="index">
+                    <th>
+                        <input v-model="item.name" class="name" @keyup="handleKeyup($event, index, 'name')"/>
+                    </th>
+                    <th>
+                        <input v-model="item.age" class="age" @keyup="handleKeyup($event, index, 'age')"/>
+                    </th>
+                    <th>
+                        <input v-model="item.address" class="address" @keyup="handleKeyup($event, index, 'address')"/>
+                    </th>
+                    <th>
+                        <input v-model="item.phone" class="phone" @keyup="handleKeyup($event, index, 'phone')"/>
+                    </th>
+                </tr>
+           </tbody>
+       </table>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tbodyData: [
+                    {
+                        name: '',
+                        age: '',
+                        address: '',
+                        phone: ''
+                    },
+                    {
+                        name: '',
+                        age: '',
+                        address: '',
+                        phone: ''
+                    },
+                    {
+                        name: '',
+                        age: '',
+                        address: '',
+                        phone: ''
+                    },
+                    {
+                        name: '',
+                        age: '',
+                        address: '',
+                        phone: ''
+                    }
+                ]
+            },
+            created() {
+
+            },
+            methods: {
+
+                handleKeyup (event, index, key) {
+                    //获取页面元素
+                    var id = document.getElementById('one');
+                    console.log(id, 'id')
+                    // *** 注意 *** 鼠标点击事件操作元素
+                    // 原生中使用onclick 触发点击事件
+                    // id.onclick = function(){
+                    //     alert('Hello');
+                    // }
+                    // vue中使用click 触发点击事件
+                    // id.click()
+                    console.log(event, index, key, 'event, index, key')
+                    let keyName = ['name', 'age', 'address', 'phone']
+                    // 左键
+                    if (event.keyCode === 37) {
+                        if (index === 0 && key === 'name') {
+                            return
+                        }
+                        let num = 0
+                        if (key === 'name') {
+                            index -= 1
+                            this.$nextTick(() => {
+                                let doms = document.getElementsByClassName('phone')[index]
+                                doms.focus()
+                                doms.select()
+                            })
+                            return
+                        }
+                        keyName.forEach((v, i) => {
+                            if (v === key) {
+                                num = i - 1
+                            }
+                        })
+                        this.$nextTick(() => {
+                            let doms = document.getElementsByClassName(keyName[num])[index]
+                            doms.focus()
+                            doms.select()
+                        })
+                        // 获取到所有class为[key]的dom列表
+                        // let doms = document.getElementsByClassName(key)
+                        // console.log(doms, '向上键')
+                        // if (!index) {
+                        //     index = this.tbodyData.length
+                        // }
+                        // // 选中类表中第index个，向上故而减1，dom里头包含的input，获取焦点以及选中input里的内容
+                        // let dom = doms[index - 1]
+                        // dom.focus()
+                        // dom.select()
+                        return
+                    }
+                    // 向上键
+                    if (event.keyCode === 38) {
+                        // 获取到所有class为[key]的dom列表
+                        let doms = document.getElementsByClassName(key)
+                        console.log(doms, '向上键')
+                        if (!index) {
+                            index = this.tbodyData.length
+                        }
+                        // 选中类表中第index个，向上故而减1，dom里头包含的input，获取焦点以及选中input里的内容
+                        let dom = doms[index - 1]
+                        dom.focus()
+                        dom.select()
+                        return
+                    }
+                    // 向下键
+                    if (event.keyCode === 40) {
+                        let doms = document.getElementsByClassName(key)
+                        console.log(doms, '向下键')
+                        if (+index === this.tbodyData.length - 1) {
+                            index = -1
+                        }
+                        let dom = doms[index + 1]
+                        dom.focus()
+                        dom.select()
+                        return
+                    }
+                    // 小键盘回车键 回车到最后一位鼠标聚焦在第一行第一列
+                    // if (event.keyCode === 13) {
+                    // // 小键盘回车因为需要根据class判断下一个，故而有input输入框的全部需要在这按顺序声明
+                    //     let keyName = ['name', 'age', 'address', 'phone']
+                    //     let num = 0
+                    //     if (key === keyName[keyName.length - 1]) {
+                    //         console.log('this.tbodyData.length', this.tbodyData.length)
+                    //         console.log('index', index)
+                    //         if (index === this.tbodyData.length - 1) {
+                    //             index = 0
+                    //         } else {
+                    //             ++index
+                    //         }
+                    //     } else {
+                    //         keyName.map((v, i) => {
+                    //             if (v === key) {
+                    //                 num = i + 1
+                    //             }
+                    //         })
+                    //     }
+                    //     let doms = document.getElementsByClassName(keyName[num])[index]
+                    //     console.log(doms, '小键盘回车键')
+                    //     doms.focus()
+                    //     doms.select()
+                       
+                    // } 
+                    // 小键盘回车键 回车到最后一位鼠标聚焦在第一行第一列
+                    if (event.keyCode === 13 || event.keyCode === 39) {
+                        if (index === this.tbodyData.length - 1 && key === 'phone') {
+                            this.tbodyData.push({
+                                name: '',
+                                age: '',
+                                address: '',
+                                phone: ''
+                            })
+                        }
+                        
+                        let num = 0
+                        if (key === keyName[keyName.length - 1]) {
+                            if (index === this.tbodyData.length - 1) {
+                                index = 0
+                            } else {
+                                ++index
+                            }
+                        } else {
+                            keyName.map((v, i) => {
+                                if (v === key) {
+                                    num = i + 1
+                                }
+                            })
+                        }
+                        this.$nextTick(() => {
+                            let doms = document.getElementsByClassName(keyName[num])[index]
+                            console.log(doms, '小键盘回车键')
+                            doms.focus()
+                            doms.select()
+                        })
+                       
+                    } 
+                   
+                }
+            }
+        })
+    </script>
+</body>
+</html>

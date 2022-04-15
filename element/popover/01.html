@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-11 15:00:26
+ * @LastEditTime: 2022-02-19 15:58:35
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/zing/凭证录入/001table单元格可编辑，可上下键切换，小键盘enter可选中下一个.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    
+</head>
+<body>
+    <div id="app">
+        {{ message }}
+        <div ref="myDiv"  style="position: fixed;left: 300px;width:200px;height:300px;background-color: red;">
+            <div style="width:200px;height:300px;background-color: pink;">
+
+            </div>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue!'
+            },
+            created() {
+                document.addEventListener('click', event => {
+                    const e = event || window.event
+                    console.log(e, 'eeeee')
+                    console.log(this.$refs.myDiv.contains(e.target), 'myDiv')
+                })
+                // document.addEventListener('click', this.addEventFun)
+            },
+            methods: {
+                handleaaa() {
+                    console.log('44--->')
+                },
+                addEventFun() {
+                    document.addEventListener('click', event => {
+                        const e = event || window.event
+                        console.log(e, 'eeeee')
+                        console.log(this.$refs.myDiv.contains(e.target), 'myDiv')
+                    })
+                }
+            },
+            // 移除事件句柄
+            beforeDestroy () {
+                document.removeEventListener('click', this.addEventFun)
+            }
+        })
+    </script>
+</body>
+</html>

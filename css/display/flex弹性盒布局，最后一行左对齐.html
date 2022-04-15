@@ -1,0 +1,54 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-09 12:06:22
+ * @LastEditTime: 2022-02-09 12:09:14
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/css/display/flex弹性盒布局，最后一行左对齐.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        ul:after{
+            content: "";
+            width: 23%;
+        }
+        ul li{
+            width: 23%;
+            height: 10vh;
+            margin-bottom: 1vh;
+            background: #2fbaff;
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- 
+        缺点：如果最后一行为两个li 那么列的排列位置就错乱了。
+     -->
+    <div class="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <!-- <li></li> -->
+            <!-- <li></li> -->
+        </ul>
+    </div>
+    
+</body>
+</html>

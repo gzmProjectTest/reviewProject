@@ -1,0 +1,31 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-23 15:08:07
+ * @LastEditTime: 2021-10-23 15:12:25
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/zing/多规格下获取第一条数据详情赋值给其他规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const comParam = ['manualBarCode', 'productBrand', 'minNumber', 'maxNumber', 'safeNumber', 'taxRate', 'mainStorehouseName', 'supplierName', 'purchaseUnitName', 'registeredAccount', 'productionLicense']
+        const obj = {manualBarCode: 3}
+        const firstTableData = {manualBarCode: 5, minNumber: 10, a: 1, b: 2, c: 3}
+        for (let key in firstTableData) {
+            if (comParam.some(item => item === key)) {
+                console.log(key, '23---->')
+                obj[key] = firstTableData[key]
+            }
+        }
+        console.log(obj ,32)
+    </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-01-11 20:03:05
+ * @LastEditTime: 2022-01-11 20:20:13
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/Array/for-001查找相同的对象.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [
+            {
+                name: '哈哈',
+                index: 0
+            },
+            {
+                name: '2',
+                index: 1
+            },
+            {
+                name: '3',
+                index: 2
+            },
+            {
+                name: '哈哈1',
+                index: 3
+            },
+            {
+                name: '哈哈',
+                index: 4
+            }
+        ]
+        for (let i = 0; i < arr.length; i ++) {
+            // for (let j = i + 1; j < arr.length; j ++) {
+            //     if (arr[i].name === arr[j].name) {
+            //         alert('11111')
+            //     }
+            // }
+            arr.some((item, index) => {
+                if (index > i && item.name === arr[i].name) {
+                    console.log(`第${i + 1}行${arr[i].name}有重复的数据---22`)
+                    break
+                }
+                return false
+            })
+            console.log('890')
+        }
+    </script>
+</body>
+</html>

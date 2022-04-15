@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-15 10:45:18
+ * @LastEditTime: 2021-10-28 16:00:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/正则/01.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤掉字符串中所有的逗号</title>
+</head>
+<body>
+    <script>
+        // 参考链接https://zhidao.baidu.com/question/582483530429795045.html
+        // 一、定义不同：
+            // \W：匹配包括下划线的任何单词字符，等价于 [A-Z a-z 0-9_]
+            // \W：匹配任何非单词字符，等价于 [^A-Z a-z 0-9_]
+            // [\w\.\_] 相当于[0-9a-zA-Z\.\_] ，就是比\w多匹配 '.' 和 ‘_’ 两种字符。
+
+        // 二、用途不同：
+            // w前面加了反斜杠，是\w,与[a-zA-Z0-9_]等价，
+            // 也就是包含下划线以下的所有字母和数字，
+            // 而后面的加号，则是匹配紧跟其前面那个字符的 一次或多次，
+            // 中括号[]表示匹配其中任意字符，
+            // [\w./]+就是一或多次匹配，任何数字，字母，下划线,斜杠,还有英文的句号(一个点)。
+
+        // 三、字符不同：
+            // W内的字符可以以任意次序出现。
+            // W后有了+，X内的字符可以取任意多个。于是[]内的字符可以以任意次序出现任意多次，直到遇到第一个非[]内的字符。
+        let buyertaxno = 'fas放假啊了水淀粉d//。。。。？？？🤮343'
+        // 查一下以下两个的区别
+        // /^[0-9a-zA-Z]$/ 这个是没有区间限制，只要输入就不满足正则
+        // /^[0-9a-zA-Z]$/ 这个是有区间限制，只要超过20个字符就会没有判断条件，都为false
+        var reg = new RegExp(/^[a-zA-Z0-9]{1,20}$/);
+        var reg1 = buyertaxno.replace(/[^\w]/g,'')
+        console.log(reg.test(buyertaxno))
+        console.log(reg1, 'reg1reg1reg1');
+        
+    </script>
+</body>
+</html>

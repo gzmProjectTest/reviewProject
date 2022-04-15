@@ -1,0 +1,80 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-02 15:15:20
+ * @LastEditTime: 2021-12-02 20:17:40
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/css/最小宽度1300显示滚动条，内容为1500，如何布局.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-表格中-最小宽度1300显示滚动条，内容为1500，且td不被压缩(跟table中的 style样式有关)如何布局</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            height: 100%;
+        }
+        table th,table td{
+            box-sizing: content-box;
+            border: 1px solid #BBBBBE;
+            width: 297px;
+            height: 50px;
+            
+        }
+        .jd{
+            background: url(http://source.qmenhu.com/data/source/imgs/zing/money_rp.png) no-repeat;
+            background-color: #fff;
+            background-size: 100% 50px;
+        }
+        .header{
+            height: 100px;
+            background: pink;
+            width: 100%;
+        }
+        .content{
+            height: 100%;
+            background-color: pink;
+        }
+        html,
+        body { height: 100%; padding: 0; margin: 0; }
+    </style>
+</head>
+<body>
+    <div style="min-width: 1300px;background-color: #ccc;overflow: auto;height: 100%;">
+        <div class="content"> 
+            <table border="1" style="width:100%;">
+                <tr style="display: flex;">
+                    <th style="flex-grow:1;width: 1px;">摘要</th>
+                    <th style="flex-grow:2;width:2px;">科目</th>
+                    <th>币别</th>
+                    
+                    <th>单位</th>
+                    <th>借</th>
+                    <th>贷</th>
+                </tr>
+                <tr style="display: flex;">
+                    <th style="flex-grow:1;width: 1px;">摘要</th>
+                    <th style="flex-grow:2;width:2px;">科目</th>
+                    <td>$币别</td>
+
+                    <td>$单位</td>
+                    <td class="jd"></td>
+                    <td class="jd"></td>
+                </tr>
+            </table>
+            <!-- 存在的问题：
+            1、表格的宽如果设置为100%，当内容超过1300，每个td的宽度就为 297，如果只展示3列，内容不够1300，那么宽度会自适应将td均匀分配 ，宽度就大于297，
+            2、当表格宽度设置为 100%，不会将外层的div撑开， -->
+        </div>
+    </div>
+
+
+</body>
+</html>

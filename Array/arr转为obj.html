@@ -1,0 +1,40 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-15 18:07:50
+ * @LastEditTime: 2021-09-15 19:42:40
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/arr转为obj.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const mapKey = {}
+        const arr = [
+            {
+                specification: "属性组2元",
+                value: "1"
+            },
+            {
+                specification: "属性组2元",
+                value: "2"
+            },
+        ]
+        arr.forEach( item => {
+            if (mapKey[item.specification]) {
+                mapKey[item.specification].push(item.value)
+            } else {
+                mapKey[item.specification] = [item.value]
+            }
+        })
+        console.log(mapKey, 'mapKeymapKey', Object.keys(mapKey))
+    </script>
+</body>
+</html>

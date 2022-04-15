@@ -1,0 +1,328 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-01 11:44:03
+ * @LastEditTime: 2021-09-05 17:11:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/过滤json中的数据/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+   
+    <script>
+        function checkoutSame(oldValTemplate, newValTemplate) {
+            return oldValTemplate && newValTemplate && newValTemplate !== undefined && oldValTemplate !== undefined && Object.prototype.toString.call(oldValTemplate) === Object.prototype.toString.call(newValTemplate)
+        }
+        function checkoutSame1(oldValTemplate, {}, key) {
+            return (typeof(oldValTemplate[key]) === 'string' || typeof(oldValTemplate[key]) === 'number') && oldValTemplate[key] !== undefined && oldValTemplate[key] !== null
+        }
+        function isObject(oldValTemplate, newValTemplate, propsKey = '', itemTemplate) {
+            if (checkoutSame1(oldValTemplate, newValTemplate, propsKey)) {
+                newValTemplate[propsKey] = oldValTemplate[propsKey]
+                return
+            }
+            if (checkoutSame(oldValTemplate, newValTemplate)) {
+                for (let key in newValTemplate) {
+                    if (checkoutSame1(oldValTemplate, {}, key)) {
+                        isObject(oldValTemplate, newValTemplate, key, itemTemplate)
+                    } else if (checkoutSame(oldValTemplate[key], newValTemplate[key])) {
+                        if (Object.prototype.toString.call(oldValTemplate[key]) === '[object Array]' && Object.prototype.toString.call(newValTemplate[key]) === '[object Array]') {
+                            // 旧模版中有数组，且新模版中的数组长度为0
+                            if (oldValTemplate[key] && oldValTemplate[key].length > 0 && newValTemplate[key] && newValTemplate[key].length === 1) {
+                                for (let i = 0; i < oldValTemplate[key].length; i++) {
+                                    console.log(oldValTemplate[key], newValTemplate[key], '108----->', i)
+                                    // debugger
+                                    isObject(oldValTemplate[key][i], newValTemplate[key][0])
+                                    if (itemTemplate) {
+                                        newValTemplate[key].push(itemTemplate)
+                                        console.log('---->aa1', itemTemplate)
+                                        console.log('---->aa222', newValTemplate[key])
+                                    }
+                                }
+                            }
+                        }
+                        //  else {
+                            // 如果for in 遍历的是数组，暂时先使用数组中的下标，如果有问题在对判断数组中的 partNumber（唯一）
+                            // isObject(oldValTemplate[key], newValTemplate[key])
+                        // }
+                    }
+                }
+            }
+        }
+
+        const template1 =
+            {
+                "orderType": "CGSQD",
+                "code": "",
+                "operator": "YFN3Yj2y2m2azQvUFnn2qi2u",
+                "cardUrl": "YFN3Yj2y2m2azQvUFnn2qi2u",
+                "createTime": "2021-09-01 11:13:03",
+                "orgName": "财务部",
+                "orgId": "company1873534580000001012",
+                "applyType": "tavern",
+                "remark": "测试采购申请",
+                "status": "WTJ",
+                "orderInfoItems": [
+                    {
+                        "productId": "187631045000000102",
+                        "productSpecsImgs": "",
+                        "productSpecsImgsId": null,
+                        "categoryName": "生活用品",
+                        "categoryId": "187445018000000102",
+                        "manualBarCode": " ",
+                        "manualBarCodeImg": " ",
+                        "projectId": null,
+                        "projectName": null,
+                        "salespProjectId": null,
+                        "salespProjectName": null,
+                        "totalPrice": "200.0",
+                        "averagePrice": "1.82",
+                        "totalAcpdCountingPrice": "0.0",
+                        "averageAcpdCountingPrice": "0.00",
+                        "oldPartNumber": null,
+                        "partNumber": "0100001",
+                        "partNumberPrefix": null,
+                        "partNumberSuffix": null,
+                        "codeSuffixLength": null,
+                        "partName": "大小 大 ",
+                        "stockNum": "110.000",
+                        "onlineStoreStockNum": null,
+                        "specifications": null,
+                        "minNumber": null,
+                        "maxNumber": null,
+                        "safeNumber": null,
+                        "cardUrl": null,
+                        "companyId": "company187353458000000101",
+                        "createDate": "2021-07-12 10:15:57",
+                        "genTime": "2021-07-12 10:15:57",
+                        "onlineStoreSaleNum": null,
+                        "lockNumber": null,
+                        "source": "WPK",
+                        "taskCardId": null,
+                        "productionAddress": null,
+                        "mainStorehouseId": "187355268000000102",
+                        "mainStorehouseName": "成品",
+                        "mainSourceType": "0",
+                        "weight": null,
+                        "pushMoneyType": null,
+                        "pushMoney": null,
+                        "putawayStockNum": null,
+                        "isStartUse": "true",
+                        "remark": "输入物品备注",
+                        "productBrand": null,
+                        "supplierId": "191859204000000101",
+                        "supplierName": "士大夫",
+                        "lotnumberManage": "false",
+                        "productStatus": "false",
+                        "subscript": "1",
+                        "salespPrice": null,
+                        "salePriceMin": null,
+                        "salePriceLately": null,
+                        "salePriceTaxLately": null,
+                        "purchasePrice": null,
+                        "purchasePriceMax": null,
+                        "purchasePriceLately": null,
+                        "purchasePriceTaxLately": null,
+                        "distributionPrice": null,
+                        "wholesalePrice": null,
+                        "retailPrice": null,
+                        "costPrice": null,
+                        "priceOneLevel": null,
+                        "priceTwoLevel": null,
+                        "priceThreeLevel": null,
+                        "priceFourLevel": null,
+                        "priceFiveLevel": null,
+                        "specificationsList": null,
+                        "specificationCategories": [],
+                        "specificationCategoriesobj": {},
+                        "snStatus": "false",
+                        "sale": "false",
+                        "shelfLife": "false",
+                        "qualitySafeType": "",
+                        "qualitySafeNum": "",
+                        "qualitySafeWarnNum": "",
+                        "productMainCode": "010",
+                        "productName": "两无产品",
+                        "orderIsUsed": null,
+                        "snCode": null,
+                        "unitName": "盒",
+                        "unitId": "187353476000290101",
+                        "currentStockNum": "110.000",
+                        "productStockNum": "110.000",
+                        "goodsTotalNum": "100.000",
+                        "costPriceTotle": null,
+                        "acpdCountUnitPriceTotle": null,
+                        "waitInStorageNum": null,
+                        "waitOutStorageNum": null,
+                        "inStorageingNum": null,
+                        "outStorageingNum": null,
+                        "saleNum": null,
+                        "purchaseNum": null,
+                        "productImg": "",
+                        "allCategoryName": null,
+                        "price": "1.82",
+                        "inOrOutNum": null,
+                        "storehouseNum": null,
+                        "pdCount": 0,
+                        "priceTax": "1.84",
+                        "acpdCountUnitPrice": "0.00",
+                        "goodsTotalPrice": null,
+                        "borrowCount": null,
+                        "existBom": null,
+                        "acpdCount": null,
+                        "acpdCountingPrice": null,
+                        "storehouseName": "B",
+                        "storehouseId": "192138464000000101",
+                        "locationName": "3",
+                        "locationId": null,
+                        "snCodeList": null,
+                        "warehousingBatchNumber": null,
+                        "waitInOrOutNum": null,
+                        "beforePartNumber": null,
+                        "takeDownOrderNum": null,
+                        "takeDownOrderItemCount": null,
+                        "reportDamageInfoItemCount": null,
+                        "inventoryPyNum": null,
+                        "inventoryPkNum": null,
+                        "initStockNum": null,
+                        "rowIdOfSource": null,
+                        "numUpWarn": "5",
+                        "numDwonWarn": "-5",
+                        "moneyUpWarn": "5",
+                        "moneyDwonWarn": "-5",
+                        "productTotal": "",
+                        "taxRate": "1.00",
+                        "acpdCountTax": "1.84",
+                        "predictDeliveryDate": "2021-09-01",
+                        "ratifyCount": "1.000",
+                        "moreUnitName": "",
+                        "moreUnitId": "",
+                        "precision": "3",
+                        "moreUnitNum": "1.000",
+                        "actualTax": "0.02",
+                        "locationCode": "CK4022764230179553280",
+                        "annexes": "/checkFile/company/company187353458000000101/2021/9/1/192280427000000102.jpg",
+                        "remarkInfo": "输入物品备注",
+                        "moreUnitFlag": "false",
+                        "count": "1.000",
+                        "productImgs": "",
+                        "accountTax": "1.84"
+                    }
+                ],
+                "account": 1.84,
+                "productCount": 1,
+                "operatorName": "曾翔",
+                "cardUserName": "曾翔",
+                "deliveryDate": "2021-09-01"
+            }
+        const template2 =
+            {
+                "orderType": "",
+                "code": "",
+                "operator": "",
+                "cardUrl": "",
+                "createTime": "",
+                "orgName": "",
+                "orgId": "",
+                "applyType": "",
+                "remark": "",
+                "status": "",
+                "orderInfoItems": [
+                    {
+                        "productId": "",
+                        "productSpecsImgs": "",
+                        "categoryName": "",
+                        "categoryId": "",
+                        "manualBarCode": " ",
+                        "manualBarCodeImg": " ",
+                        "totalPrice": "",
+                        "averagePrice": "",
+                        "totalAcpdCountingPrice": "",
+                        "averageAcpdCountingPrice": "",
+                        "partNumber": "",
+                        "partName": "",
+                        "stockNum": "",
+                        "companyId": "",
+                        "createDate": "",
+                        "genTime": "",
+                        "source": "",
+                        "mainStorehouseId": "",
+                        "mainStorehouseName": "",
+                        "mainSourceType": "",
+                        "isStartUse": "",
+                        "remark": "",
+                        "supplierId": "",
+                        "supplierName": "",
+                        "lotnumberManage": "",
+                        "productStatus": "",
+                        "subscript": "1",
+                        "specificationCategories": [],
+                        "specificationCategoriesobj": {},
+                        "snStatus": "",
+                        "sale": "",
+                        "shelfLife": "",
+                        "qualitySafeType": "",
+                        "qualitySafeNum": "",
+                        "qualitySafeWarnNum": "",
+                        "productMainCode": "",
+                        "productName": "",
+                        "unitName": "",
+                        "unitId": "",
+                        "currentStockNum": "",
+                        "productStockNum": "",
+                        "goodsTotalNum": "",
+                        "productImg": "",
+                        "price": "",
+                        "pdCount": "",
+                        "priceTax": "",
+                        "acpdCountUnitPrice": "",
+                        "storehouseName": "",
+                        "storehouseId": "",
+                        "locationName": "",
+                        "numUpWarn": "",
+                        "numDwonWarn": "",
+                        "moneyUpWarn": "",
+                        "moneyDwonWarn": "",
+                        "productTotal": "",
+                        "taxRate": "",
+                        "acpdCountTax": "",
+                        "predictDeliveryDate": "",
+                        "ratifyCount": "",
+                        "moreUnitName": "",
+                        "moreUnitId": "",
+                        "precision": "",
+                        "moreUnitNum": "",
+                        "actualTax": "",
+                        "locationCode": "",
+                        "annexes": "",
+                        "remarkInfo": "",
+                        "moreUnitFlag": "",
+                        "count": "",
+                        "productImgs": "",
+                        "accountTax": "",
+                    }
+                ],
+                "account": "",
+                "productCount": "",
+                "operatorName": "",
+                "cardUserName": "",
+                "deliveryDate": "",
+            }
+        
+        isObject(template1, template2)
+        console.log(template2, '76--->')
+
+
+        // for (let key in itemTemplate) {
+            // console.log(key,'----->326')
+        // }
+    </script>
+</body>
+</html>

@@ -1,0 +1,1251 @@
+import { deepCopy, isEmtVal } from '@/utils/fn'
+/**
+ * 价格转化
+ * @param price
+ * @returns {string | *}
+ */
+export function priceConversion(price) {
+	if (price) {
+		let arr = deepCopy(price).split('')
+		arr.splice(-2, 0, '.')
+		return arr.join('')
+	}
+	return ''
+}
+export function priceFill(price) {
+	if (/\./g.test(price)) {
+		// 是否有小数点
+		return Number(price)
+			.toFixed(2)
+			.toString()
+			.replace(/\./g, '')
+	}
+	return price + '00'
+}
+/**
+ * 处理计量组单位数据
+ * @param data
+ */
+
+function divideData(data) {
+	let arr = []
+
+	data.forEach(val => {
+		if (val.dataType === 'tree' && val.code !== '0000') {
+			// 计量单位组
+			val.tree = []
+			arr.push(val)
+		}
+	})
+	data.forEach(ele => {
+		if (ele.dataType === 'table') {
+			arr.forEach(item => {
+				if (item.id === ele.groupId) {
+					item.tree.push(ele)
+				}
+			})
+		}
+	})
+	return arr
+}
+
+/**
+ * 查询项目核算数据（所有）
+ */
+export function accountingProject(id, self) {
+	return new Promise((resolve, reject) => {
+		let url = '/zingbiz/financial/accountingProject/selectAll'
+
+		self.$http
+			.get(url, {
+				params: {
+					id: id,
+					pageNumber: 1,
+					pageSize: 9999
+				}
+			})
+			.then(res => {
+				if (res.data.success) {
+					resolve(res.data.data.table)
+				}
+			})
+	})
+}
+/**
+ * 添加凭证验证
+ * @param data
+ * @param self
+ * @returns {*}
+ */
+export function handlerData(data, self) {
+	console.log(79, data)
+	let flag = true
+	// if (self.systemSettingData.currentAccountingPeriod) {
+	//   self.$message({ type: 'error', message: '请先设置会计期间' })
+	//   return false
+	// }
+	// 过滤掉空数据
+
+	data.voucherInfoItems = data.voucherInfoItems.filter(val => {
+		return val.summary !== '' || val.subjectCode !== '' || val.debitAmount !== '' || val.creditAmount !== ''
+	})
+
+	if (data.voucherWord === '' || data.voucherWord === null) {
+		self.$message({ type: 'error', message: '请选择凭证字' })
+		return false
+	}
+
+	// 摘要必须选择一条
+	if (
+		data.voucherInfoItems.filter(val => {
+			return val.summary !== ''
+		}).length === 0
+	) {
+		self.$message({ type: 'error', message: '必须选择一条摘要' })
+		return false
+	}
+	// 科目必选
+	// 判断科目的信息
+	let voucherInfoData = data.voucherInfoItems.filter(val => {
+		return val.subjectCode !== '' || val.debitAmount !== '' || val.creditAmount !== ''
+	})
+
+	if (voucherInfoData.length < 2) {
+		self.$message({ type: 'error', message: '科目数据不能少于2条' })
+		return false
+	}
+	for (let i = 0; i < voucherInfoData.length; i ++) {
+		const item = voucherInfoData[i]
+		// voucherInfoData.forEach(item => {
+		// 筛选科目信息
+		if (item.subjectCode === '') {
+		self.$message({ type: 'error', message: '请选择科目' })
+		flag = false
+		break
+		}
+		let subject = self.subjectAllList.filter(val => {
+			return val.subjectCode === item.subjectCode
+		})
+		console.log('---->', subject)
+		// 数量辅助金额
+
+		if (subject[0].amountAuxiliaryAccounting === 'true') {
+			console.log('130------->,此时获取不到单位组，需要一个标识', item, i)
+			// 判断计量单位组和计量单位是否选择
+			if (item.unit === '') {
+				self.$message({ type: 'error', message: '请选择单位' })
+				flag = false
+				break
+			}
+			// if (item.unitGroup === '') {
+			// 	self.$message({ type: 'error', message: '请选择计量单位组' })
+			// 	flag = false
+			// 	break
+			// }
+			// 判断数量金额是否输入
+			if (item.count === '') {
+				self.$message({ type: 'error', message: '请输入数量' })
+				flag = false
+				break
+			}
+			if (item.price === '') {
+				self.$message({ type: 'error', message: '请输入金额' })
+				flag = false
+				break
+			}
+		}
+		// 项目核算
+		if (subject[0].businessAccounting === 'true') {
+			if (subject[0].accountingProject.split(' ').length !== item.accountingProject.split(' ').length) {
+				self.$message({ type: 'error', message: '请选择核算项目' })
+				flag = false
+				break
+			}
+		}
+		// 外币核算 非不核算和本位币 显示
+		if (subject[0].isForeignCurrencyAccounting === 'true' && subject[0].foreignCurrencyAccounting.length !== undefined && subject[0].foreignCurrencyAccounting.length === 0
+			|| subject[0].foreignCurrencyAccounting !== null && subject[0].foreignCurrencyAccounting.length > 0 && subject[0].foreignCurrencyAccounting !== '不核算') {
+			// subject[0].foreignCurrencyAccounting !== self.systemSettingData.currencyId
+			if (item.rate === '') {
+				self.$message({ type: 'error', message: '请输入汇率' })
+				flag = false
+				break
+			}
+			if (item.originalAccount === '') {
+				self.$message({ type: 'error', message: '请输入原币金额' })
+				flag = false
+				break
+			}
+		}
+		// 借贷方金额不能为空
+		if (item.debitAmount === '' && item.creditAmount === '') {
+			self.$message({ type: 'error', message: `第${i + 1}行分录请录入借贷方金额` })
+			flag = false
+			break
+		}
+		if (
+			data.voucherInfoItems.filter(val => {
+				return val.subjectCode !== ''
+			}).length < 2
+		) {
+			self.$message({ type: 'error', message: '请选择科目数据' })
+			flag = false
+			break
+		}
+		item.exchangeRate = item.rate
+		if (item.debitAmount) {
+			item.examineAspect = '借'
+			item.account = Number(priceConversion(item.debitAmount))
+			data.debitCount++
+			self.voucherInfo.debitCount++
+		} else {
+			item.examineAspect = '贷'
+			item.account = Number(priceConversion(item.creditAmount))
+			self.voucherInfo.lenderCount++
+			data.lenderCount++
+		}
+		if (item.isMinus) {
+			item.account = -item.account
+		}
+		delete item.showSubject
+		delete item.debitAmount
+		delete item.showDebit
+		delete item.creditAmount
+		delete item.showCredit
+		delete item.rate
+		delete item.convertWay
+    	delete item.showSummary
+		// delete item.fullData
+		delete item.showCount
+		delete item.showCurrency
+		delete item.currencyBalance
+		delete item.isMinus
+		// })
+	}
+
+
+	// 借贷方金额相等 正负数
+	// if (self.debitAccount === '000' && self.lenderAccount === '') {
+	//   self.lenderAccount = '000'
+	// } else if (self.debitAccount === '' && self.lenderAccount === '000') {
+	//   self.debitAccount = '000'
+	// }
+	if (self.debitAccount !== self.lenderAccount || data.isDebitMinus !== data.isLenderMinus) {
+		if (self.debitAccount === '000' && self.lenderAccount === '') {
+			console.log('成功')
+		} else if (self.debitAccount === '' && self.lenderAccount === '000') {
+			console.log('继续')
+		} else {
+			self.$message({ type: 'error', message: '借贷方金额不相等' })
+			return false
+		}
+	}
+	if (data.isDebitMinus) {
+		data.debitAccount = '-' + data.debitAccount
+	}
+	if (data.isLenderMinus) {
+		data.lenderAccount = '-' + data.lenderAccount
+	}
+	delete data.isLenderMinus
+	delete data.isDebitMinus
+	// 判断任务核算项
+	let taskTotal = 0
+	let taskFlag = true
+	if (data.relationCard.length !== 0) {
+		for (let i = 0; i < data.relationCard.length; i++) {
+			const val = data.relationCard[i];
+				
+			if (isEmtVal(val.title) && isEmtVal(val.account)) {
+				self.$message({ type: 'error', message: '请选择任务核算项' })
+				taskFlag = false
+				flag = false
+				return
+
+			}else if (!isEmtVal(val.title) && isEmtVal(val.account)) {
+				self.$message({ type: 'error', message: '请输入任务核算项金额' })
+				taskFlag = false
+				flag = false
+				return
+			}
+			taskTotal += Number(val.account)
+		}
+		if (taskFlag && Number(priceConversion(self.lenderAccount)) !== Number(taskTotal)) {
+			self.$message({ type: 'error', message: '任务核算项金额与合计金额不一致' })
+			return false
+		}
+	}
+	if (flag) {
+		return data
+	}
+	return false
+}
+
+/**
+ *  模板提交验证
+ */
+export function handlerTmepData(data, vaild, self,type) {
+	console.log(272, data)
+	let flag = true
+
+	data.voucherInfoItems = data.voucherInfoItems.filter(val => {
+		return val.summaryId !== '' || val.subjectCode !== '' || val.debitAmount !== '' || val.creditAmount !== ''
+	})
+  if (data.voucherWord === '' || data.voucherWord === null) {
+    self.$message({ type: 'error', message: '请选择凭证字' })
+    return false
+  }
+	// 摘要必须选择一条
+  if (type === 'add') {
+	  if (data.voucherInfoItems.filter(val => {
+        return val.summary !== ''
+      }).length === 0) {
+      self.$message({ type: 'error', message: '必须选择一条摘要' })
+      return false
+    }
+  } else if (type !== 'add'){
+    if (
+      data.voucherInfoItems.filter(val => {
+		// 暂时先修改成 summary
+		// return val.summaryId !== ''
+        return val.summary !== ''
+      }).length === 0
+    ) {
+      self.$message({ type: 'error', message: '必须选择一条摘要' })
+      return false
+    }
+  }
+
+	// 科目必选
+	// 判断科目的信息
+	let voucherInfoData = data.voucherInfoItems.filter(val => {
+		return val.subjectCode !== '' && val.subjectCode !== null
+	})
+	if (voucherInfoData.length !== data.voucherInfoItems.length) {
+		self.$message({ type: 'error', message: '请选择科目' })
+		return
+	}
+  	for (let i = 0; i < voucherInfoData.length; i++) {
+		const item = voucherInfoData[i]
+		if (item.summary === '') {
+			item.summary = deepCopy(item.summaryId)
+			item.summaryId = ''
+		}
+		// 筛选科目信息
+		let subject = self.subjectAllList.filter(val => {
+			return val.subjectCode === item.subjectCode
+		})
+		console.log('筛选科目信息', subject)
+
+		// 数量辅助金额
+		if (subject[0].amountAuxiliaryAccounting === 'true' && subject[0].amountAuxiliaryAccounting !== undefined) {
+			// 判断计量单位组和计量单位是否选择
+			console.log('334------->,此时获取不到单位组，需要一个标识', item)
+			if (item.unit === '') {
+				self.$message({ type: 'error', message: '请选择单位' })
+				flag = false
+				break
+			}
+			// if (item.unitGroup === '') {
+			// 	self.$message({ type: 'error', message: '请选择计量单位组' })
+			// 	flag = false
+			// 	break
+			// }
+			// 判断数量金额是否输入
+			if (item.count === '') {
+				self.$message({ type: 'error', message: '请输入数量' })
+				flag = false
+				break
+			}
+			if (item.price === '') {
+				self.$message({ type: 'error', message: '请输入金额' })
+				flag = false
+				break
+			}
+		}
+		console.log('356--->1',subject[0].accountingProject)
+		console.log('356--->2',item.accountingProject)
+		// 项目核算
+		if (subject[0].businessAccounting === 'true') {
+			if (subject[0].accountingProject.split(' ').length !== item.accountingProject.split(' ').length) {
+				self.$message({ type: 'error', message: '请选择核算项目' })
+				flag = false
+				break
+			}
+		}
+		// 外币核算 非不核算和本位币 显示
+		if (subject[0].isForeignCurrencyAccounting === 'true' && subject[0].foreignCurrencyAccounting.length !== undefined && subject[0].foreignCurrencyAccounting.length === 0
+			|| subject[0].foreignCurrencyAccounting !== null && subject[0].foreignCurrencyAccounting.length > 0 && subject[0].foreignCurrencyAccounting !== '不核算') {
+			// subject[0].foreignCurrencyAccounting !== self.systemSettingData.currencyId
+			if (item.rate === '') {
+				self.$message({ type: 'error', message: '请输入汇率' })
+				flag = false
+				break
+			}
+			if (item.originalAccount === '') {
+				self.$message({ type: 'error', message: '请输入原币金额' })
+				flag = false
+				break
+			}
+		}
+		// 判断是否保存借贷方金额 借贷方金额不能为空
+		if (vaild) {
+			if (item.debitAmount === '' && item.creditAmount === '') {
+				self.$message({ type: 'error', message: `第${i + 1}行分录请录入借贷方金额` })
+				flag = false
+				break
+			}
+		} else {
+			item.debitAmount = ''
+			item.creditAmount = ''
+		}
+
+		if (
+			data.voucherInfoItems.filter(val => {
+				return val.subjectCode !== ''
+			}).length < 2
+		) {
+			self.$message({ type: 'error', message: '请选择科目数据' })
+			flag = false
+			break
+		}
+		item.exchangeRate = item.rate
+		if (vaild) {
+			if (item.debitAmount) {
+				item.examineAspect = '借'
+				item.account = Number(priceConversion(item.debitAmount))
+				data.debitCount++
+				self.voucherInfo.debitCount++
+			} else {
+				item.examineAspect = '贷'
+				item.account = Number(priceConversion(item.creditAmount))
+				self.voucherInfo.lenderCount++
+				data.lenderCount++
+			}
+			if (item.isMinus) {
+				item.account = -item.account
+			}
+		}
+
+		delete item.showSubject
+		delete item.debitAmount
+		delete item.showDebit
+		delete item.creditAmount
+		delete item.showCredit
+		delete item.rate
+		delete item.convertWay
+		// delete item.fullData
+		delete item.showCount
+		delete item.showCurrency
+		delete item.currencyBalance
+		delete item.isMinus
+	}
+	if (vaild) {
+		if (self.debitAccount !== self.lenderAccount || data.isDebitMinus !== data.isLenderMinus) {
+			if (self.debitAccount === '000' && self.lenderAccount === '') {
+				console.log('成功')
+			} else if (self.debitAccount === '' && self.lenderAccount === '000') {
+				console.log('继续')
+			} else {
+				self.$message({ type: 'error', message: '借贷方金额不相等' })
+				return false
+			}
+		}
+		if (data.isDebitMinus) {
+			data.debitAccount = '-' + data.debitAccount
+		}
+		if (data.isLenderMinus) {
+			data.lenderAccount = '-' + data.lenderAccount
+		}
+	}
+
+	delete data.isLenderMinus
+	delete data.isDebitMinus
+	if (flag) {
+		return data
+	}
+	return false
+}
+/**
+ * 添加凭证明细
+ * @param index
+ * @param self
+ */
+export function addData(index, self) {
+	let obj = {
+		summaryId: '',
+    summary:'',
+    showSummary:false,
+		subjectName: '',
+		subjectCode: '',
+		count: '',
+		price: '',
+		currencyName: '',
+		currencyCode: '',
+		currencyBalance: '', // 余额
+		exchangeRate: '', // 汇率
+		originalAccount: '', // 原币金额
+		examineAspect: '借',
+		unit: '', // 单位
+		unitGroup: '', // 单位组
+		account: '',
+		accountingProjects: [], // 项目核算
+		accountingProject: '', // 父子用#  同级用空格隔开
+		isMinus: false, // 正数
+		showSubject: false, // 控制科目选择
+		debitAmount: '',
+		showDebit: false, // 控制借方金额输入
+		creditAmount: '',
+		showCredit: false, // 控制贷方金额输入
+		rate: '',
+		convertWay: '',
+    fullData: '',
+		showCount: false, // 控制数量显示
+		showCurrency: false // 控制币别显示
+	}
+
+	self.contentList.splice(index + 1, 0, obj)
+}
+
+/**
+ *  筛选摘要 （有可能输入 有可能选择）
+ * @param id
+ * @param abstractList
+ * @returns {*}
+ */
+export function getSummaryName(id, abstractList) {
+	if (
+		abstractList.filter(val => {
+			return val.rowId === id
+		}).length !== 0
+	) {
+		return abstractList.filter(val => {
+			return val.rowId === id
+		})[0].summaryContent
+	}
+	return id
+}
+
+/**
+ * @description: 页面初始化，展示的数据小于4条，需要将展示的数据增加到4条
+ * @param {Object} self
+ * @param {Number} initNumber
+ */
+export function initVoucher(self, initNumber = 0) {
+	if (initNumber <= 0) {
+		self.contentList = []
+	}
+	for (var i = initNumber; i < 4; i++) {
+		self.contentList.push({
+			summaryId: '',
+      summary:'',
+      showSummary:false,
+			subjectName: '',
+			subjectCode: '',
+			showSubject: false, // 控制科目选择
+			count: '',
+			price: '',
+			currencyName: '',
+			currencyCode: '',
+			currencyBalance: '', // 余额
+			exchangeRate: '', // 汇率
+			originalAccount: '', // 原币金额
+			examineAspect: '借',
+			unit: '', // 单位
+			unitGroup: '', // 单位组
+			account: '',
+			accountingProjects: [], // 项目核算
+			accountingProject: '', // 父子用#  同级用空格隔开
+			isMinus: false,
+			debitAmount: '',
+			showDebit: false, // 控制借方金额输入
+			creditAmount: '',
+			showCredit: false, // 控制贷方金额输入
+			rate: '',
+
+			convertWay: '',
+      fullData: '',
+			showCount: false, // 控制数量显示
+			showCurrency: false, // 控制币别显示
+			ruleForm: {
+				customer: '', // 科目 客户核算校验
+				showCustomer: false,
+				supplier: '', // 科目 供应商核算校验
+				showSupplier: false,
+				warehouse: '', // 科目 仓库核算校验
+				showWarehouse: false,
+				materiel: '', // 科目 物料核算校验
+				showMateriel: false,
+				department: '', // 科目 部门核算校验
+				showDepartment: false,
+				staffMember: '', // 科目 职员核算校验
+				showStaffMember: false
+			},
+			showAccountDetail: false
+		})
+	}
+}
+/**
+ * @description: 处理根据图片类型到处不同的class名
+ * @param {Object} val 导入图片之后的详情信息
+ * @return {String} 导出一个icon名称
+ */
+export function selectFileType(val) {
+	let type = ''
+
+	if (val.fileType === 'jpg' || val.fileType === 'jpeg' || val.fileType === 'png' || val.fileType === 'gif' || val.fileType === 'image') {
+	type = 'image'
+	// item.path = getThumbUrl(item.relativePath,26,26,'./static/images/ysImg.png',false)
+	} else if (val.fileType === 'xls' || val.fileType === 'xlsx') {
+	type = '#icon-ECEL'
+	} else if (val.fileType === 'doc' || val.fileType === 'docx') {
+	type = '#icon-WORD'
+	} else if (val.fileType === 'ppt' || val.fileType === 'pptx') {
+	type = '#icon-PPT'
+	} else if (val.fileType === 'pdf') {
+	type = '#icon-PDF'
+	} else if (val.fileType === 'properties' || val.fileType === 'log' || val === 'txt') {
+	type = '#icon-TET'
+	} else if (val.fileType === 'zip' || val.fileType === 'rar') {
+	type = '#icon-ZIP'
+	} else {
+	type = '#icon-GIF1'
+	}
+	return type
+}
+/**
+ * 处理图片大小，将大小转为kb
+ * @param {String} 图片大小
+ */
+export function	filterSize(limit){
+	if (limit === '' || limit === undefined || limit === null) {
+		return ''
+	}
+	var size = ''
+	if( limit < 0.1 * 1024 ){ //如果小于0.1KB转化成B
+		size = limit.toFixed(2) + 'B'
+	}else if(limit < 0.1 * 1024 * 1024 ){//如果小于0.1MB转化成KB
+		size = (limit / 1024).toFixed(2) + 'KB'
+	}else if(limit < 0.1 * 1024 * 1024 * 1024){ //如果小于0.1GB转化成MB
+		size = (limit / (1024 * 1024)).toFixed(2) + 'MB'
+	}else{ //其他转化成GB
+		size = (limit / (1024 * 1024 * 1024)).toFixed(2) + 'GB'
+	}
+	var sizestr = size + ''
+	var len = sizestr.indexOf('\.')
+	var dec = sizestr.substr(len + 1, 2)
+	if(dec === '00'){//当小数点后为00时 去掉小数部分
+		return sizestr.substring(0,len) + sizestr.substr(len + 3,2)
+	}
+	return sizestr
+}
+
+function handleImgParameter(resData) {
+	return {
+		id: resData.id,
+		fileSize: resData.fileSize, //大小
+		fileType: resData.fileType, //类型 文件后缀 jpeg png 等。。。
+		creater: resData.creater, // 时间
+		fileName: resData.fileName, // 图片名称
+		genTime: resData.genTime, //图片创建的用户
+		relativePath: resData.path, // 文件地址
+		fileSizeStr: filterSize(resData.fileSize), // 文件大小转 kb
+		fileSuffix: resData.fileName.split('.')[1], // 文件后缀 jpeg png 等。。。
+		iconClass: selectFileType(resData),
+		path: resData.path
+	}
+}
+
+function handleAttacheds(resData) {
+	let arr = []
+	for (let i = 0; i < resData.length; i ++) {
+		arr.push(handleImgParameter(resData[i]))
+	}
+	return arr
+}
+
+/**
+ *  处理凭证信息数据
+ * @param data
+ * @param self
+ */
+export function dealData(data, self,tem) {
+	let dataCopy = deepCopy(data)
+
+	delete dataCopy.voucherInfoItems
+	delete dataCopy.attacheds
+	self.voucherInfo = dataCopy
+	if (data.attacheds && data.attacheds.length > 0) {
+		self.voucherInfo.attacheds = handleAttacheds(data.attacheds)
+	} else {
+		self.$set(self.voucherInfo, 'attacheds', [])
+	}
+	if (/^-/g.test(self.voucherInfo.lenderAccount)) {
+		self.voucherInfo.isLenderMinus = true
+	}
+	if (/^-/g.test(self.voucherInfo.debitAccount)) {
+		self.voucherInfo.isDebitMinus = true
+	}
+	data.voucherInfoItems.forEach(val => {
+    // 摘要信息
+    val.showSummary = false
+    // 根据摘要列表筛选数据
+    if(val.summaryId && val.summaryId !== null) {
+      if (self.abstractList.filter(element => {
+          return element.rowId === val.summaryId
+        }).length !== 0) {
+        val.summary = self.abstractList.filter(element => {
+          return element.rowId === val.summaryId
+        })[0].summaryContent
+      }
+    }else {
+      if (tem) {
+        val.summary = deepCopy(val.summary)
+        val.summaryId = ''
+      }
+    }
+		val.showSubject = false
+		val.rate = val.exchangeRate
+		if (/^-/g.test(val.account)) {
+			val.isMinus = true
+			val.account = val.account.substring(1)
+		}
+		if (val.examineAspect === '借') {
+			val.debitAmount = priceFill(val.account)
+		} else if (val.examineAspect === '贷') {
+			val.creditAmount = priceFill(val.account)
+		}
+		val.showDebit = false
+		val.showCredit = false
+		if (val.price && val.count) {
+			self.showCount = true
+			val.showCount = true
+			if (self.titleList[2] && self.titleList[2].key && self.titleList[2].key !== 'amount') {
+				self.titleList.splice(2, 0, {
+					key: 'amount',
+					value: '数量',
+					shareLabel: ['数量', '单位', '单价']
+				})
+			}
+		}
+		if (val.currencyCode) {
+			self.showCurrency = true
+			val.showCurrency = true
+			if (self.titleList[self.titleList.length - 3].key !== 'currency') {
+				self.titleList.splice(-2, 0, {
+					key: 'currency',
+					value: '币别',
+					shareLabel: ['币别', '汇率', '原币']
+				})
+			}
+		}
+		// 币别
+		if (val.currencyCode) {
+			val.convertWay = self.currencyList.filter(currency => {
+				return currency.code === val.currencyCode
+			})[0].convertWay
+		}
+		// 计量单位
+		if (val.unitGroup) {
+			val.fullData = ''
+			let measureArr = divideData(self.measureList)
+
+			let group = measureArr.filter(measure => {
+				return measure.id === val.unitGroup
+			})
+
+			let unit = group[0].tree.filter(measureUnit => {
+				return measureUnit.id === val.unit
+			})
+
+			if (group.length !== 0) {
+				// let str1 = '单位组名称: ' + group[0].name
+				// let str2 = '单位名称: ' + unit[0].name
+				val.fullData += '.' + group[0].name + '_'
+				val.fullData += unit[0].name
+			}
+		}
+		// 项目核算
+		if (val.accountingProject) {
+			let projectArr = val.accountingProject.split(' ')
+
+			projectArr.forEach(item => {
+				let project = item.split('#')[0]
+
+				accountingProject(project, self).then(res => {
+					let arr = res.filter(ele => {
+						return ele.id === item.split('#')[1]
+					})
+
+					if (arr.length !== 0) {
+						if (val.fullData) {
+							if (arr[0].code) {
+								val.fullData += '.' + arr[0].code + '_' + arr[0].name
+							} else {
+								val.fullData += '.' + arr[0].name
+							}
+						} else if (arr[0].code) {
+							val.fullData = '.' + arr[0].code + '_' + arr[0].name
+						} else {
+							val.fullData = '.' + arr[0].name
+						}
+					}
+				})
+			})
+		}
+		// 会计科目
+	})
+	self.contentList = data.voucherInfoItems
+	if (data.voucherInfoItems && data.voucherInfoItems.length > 0) {
+		initVoucher(self, data.voucherInfoItems.length)
+	}
+}
+
+/**
+ * 处理模板返回的数据
+ * @param data
+ * @param self
+ */
+export function dealTempData(data, self) {
+	let dataCopy = deepCopy(data)
+
+	self.voucherInfo.lenderAccount = dataCopy.lenderAccount
+	self.voucherInfo.debitAccount = dataCopy.debitAccount
+	if (/^-/g.test(self.voucherInfo.lenderAccount)) {
+		self.voucherInfo.isLenderMinus = true
+	}
+	if (/^-/g.test(self.voucherInfo.debitAccount)) {
+		self.voucherInfo.isDebitMinus = true
+	}
+
+	data.voucherInfoItems.forEach(val => {
+    // if(val.summaryId) {
+    //   if (self.abstractList.filter(element => {
+    //       return element.rowId === val.summaryId
+    //     }).length !== 0) {
+    //     val.summaryContent = self.abstractList.filter(element => {
+    //       return element.rowId === val.summaryId
+    //     })[0].summaryContent
+    //   } else {
+    //     val.summaryContent = deepCopy(val.summaryId)
+    //     val.summaryId = ''
+    //   }
+    // }
+		val.showSubject = false
+		val.rate = val.exchangeRate
+		if (/^-/g.test(val.account)) {
+			val.isMinus = true
+			val.account = val.account.substring(1)
+		}
+		if (val.examineAspect === '借') {
+			if (val.account === null || val.account === '') {
+				val.debitAmount = ''
+			} else {
+				val.debitAmount = priceFill(val.account)
+			}
+		} else if (val.examineAspect === '贷') {
+			if (val.account === null || val.account === '') {
+				val.creditAmount = ''
+			} else {
+				val.creditAmount = priceFill(val.account)
+			}
+		}
+		val.showDebit = false
+		val.showCredit = false
+		if (val.price && val.count) {
+			self.showCount = true
+			val.showCount = true
+			if (self.titleList[2] && self.titleList[2].key && self.titleList[2].key !== 'amount') {
+				self.titleList.splice(2, 0, {
+					key: 'amount',
+					value: '数量',
+					shareLabel: ['数量', '单位', '单价']
+				})
+			}
+		}
+		if (val.currencyCode) {
+			self.showCurrency = true
+			val.showCurrency = true
+			if (self.titleList[self.titleList.length - 3].key !== 'currency') {
+				self.titleList.splice(-2, 0, {
+					key: 'currency',
+					value: '币别',
+					shareLabel: ['币别', '汇率', '原币']
+				})
+			}
+		}
+		// 币别
+		if (val.currencyCode) {
+			val.convertWay = self.currencyList.filter(currency => {
+				return currency.code === val.currencyCode
+			})[0].convertWay
+		}
+		// 计量单位
+		if (val.unitGroup) {
+			val.fullData = ''
+			let measureArr = divideData(self.measureList)
+
+			let group = measureArr.filter(measure => {
+				return measure.id === val.unitGroup
+			})
+
+			let unit = group[0].tree.filter(measureUnit => {
+				return measureUnit.id === val.unit
+			})
+
+			if (group.length !== 0) {
+				// let str1 = '单位组名称: ' + group[0].name
+				// let str2 = '单位名称: ' + unit[0].name
+				val.fullData += '.' + group[0].name + '_'
+				val.fullData += unit[0].name
+			}
+		}
+		// 项目核算
+		if (val.accountingProject) {
+			let projectArr = val.accountingProject.split(' ')
+
+			projectArr.forEach(item => {
+				let project = item.split('#')[0]
+
+				accountingProject(project, self).then(res => {
+					let arr = res.filter(ele => {
+						return ele.id === item.split('#')[1]
+					})
+
+					if (arr.length !== 0) {
+						if (val.fullData) {
+							if (arr[0].code) {
+								val.fullData += '.' + arr[0].code + '_' + arr[0].name
+							} else {
+								val.fullData += '.' + arr[0].name
+							}
+						} else if (arr[0].code) {
+							val.fullData = '.' + arr[0].code + '_' + arr[0].name
+						} else {
+							val.fullData = '.' + arr[0].name
+						}
+					}
+				})
+			})
+		}
+		// 会计科目
+	})
+	self.contentList = data.voucherInfoItems
+}
+/**
+ * 检查凭证编号是否重复
+ */
+export function voucherNumCheck(self) {
+	return new Promise((resolve, reject) => {
+		let url = '/zingbiz/financial/voucher/voucherNumCheck'
+
+		self.$http
+			.get(url, {
+				params: {
+					rowId: self.voucherInfo.rowId,
+					number: self.voucherInfo.number,
+					voucherWord: self.voucherInfo.voucherWord,
+					bookkeepingTime: self.voucherInfo.bookkeepingTime,
+					voucherType: self.voucherInfo.voucherType
+				}
+			})
+			.then(res => {
+				resolve(res.data)
+			})
+	})
+}
+/**
+ *  人民币小写金额转换为大写
+ */
+export function digitUppercase(n) {
+	let fraction = ['角', '分']
+
+	let digit = ['零', '壹', '贰', '叁', '肆', '伍', '陆', '柒', '捌', '玖']
+
+	let unit = [['元', '万', '亿'], ['', '拾', '佰', '仟']]
+
+	let head = n < 0 ? '欠' : ''
+
+	n = Math.abs(n)
+	let s = ''
+
+	for (let i = 0; i < fraction.length; i++) {
+		s += (digit[Math.floor((Math.floor(n * 1000 * 10 * Math.pow(10, i)) % (10 * 1000)) / 1000)] + fraction[i]).replace(/零./, '')
+	}
+	s = s || '整'
+	n = Math.floor(n)
+	for (let i = 0; i < unit[0].length && n > 0; i++) {
+		let p = ''
+
+		for (let j = 0; j < unit[1].length && n > 0; j++) {
+			p = digit[n % 10] + unit[1][j] + p
+			n = Math.floor(n / 10)
+		}
+		s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s
+	}
+	return (
+		head
+		+ s
+			.replace(/(零.)*零元/, '元')
+			.replace(/(零.)+/g, '零')
+			.replace(/^整$/, '零元整')
+	)
+}
+
+/**
+ * 打印模板
+ * @param domId
+ * @param noMargin
+ */
+export function printTemplateByDomId(domId, noMargin) {
+	let ele = document.getElementsByTagName('iframe')
+
+	let iframe = null
+
+	if (!ele.length) {
+		iframe = document.createElement('IFRAME')
+		document.body.appendChild(iframe)
+	} else {
+		iframe = ele[0]
+	}
+	iframe.setAttribute('style', 'position:absolute;width:0px;height:0px;left:-500px;top:-500px;')
+	let doc = iframe.contentWindow.document
+
+	doc.write(document.getElementById(domId).innerHTML)
+	doc.close()
+
+	//去除边距
+	if (noMargin) {
+		let parent = doc.getElementsByTagName('html')[0]
+
+		let styleEle = doc.createElement('style')
+
+		styleEle.innerHTML = '@page { margin: 0; padding: 0;}'
+		parent.appendChild(styleEle)
+	}
+
+	iframe.contentWindow.focus()
+	iframe.contentWindow.print()
+}
+
+// 格式化凭证类型
+export function formatVoucherType(voucherType) {
+  switch (voucherType) {
+    case 'JZX':
+      return '借转销'
+    case 'GDZC':
+      return '固定资产'
+    case 'JK':
+      return '借款单'
+    case 'JKPZ':
+      return '借款单'
+    case 'BX':
+      return '报销单'
+    case 'JZG':
+      return '借转购'
+    case 'CLBX':
+      return '差旅报销单'
+    case 'PTBX':
+      return '无申请日常报销单'
+    case 'RCBX':
+      return '无申请日常报销单'
+    case 'ZCBX':
+      return '日常支出报销单'
+    case 'HKPZ':
+      return '还款单'
+    case 'HK':
+      return '还款单'
+    case 'GZ':
+      return '工资单'
+    case 'SKDPZ':
+      return '收款单'
+    case 'FKDPZ':
+      return '付款单'
+    case 'QTRK':
+      return '其他入库单'
+    case 'QTCK':
+      return '其他出库单'
+    case 'PDRK':
+      return '盘点入库单'
+    case 'PDCK':
+      return '盘点出库单'
+    case 'CGRK':
+      return '采购入库单'
+    case 'CGCK':
+      return '采购出库'
+    case 'XSRK':
+      return '销售入库单'
+    case 'XSCK':
+      return '销售出库单'
+    case 'SCRK':
+      return '生产入库单'
+    case 'SCCK':
+      return '生产出库单'
+    case 'JDPZ':
+      return '酒店单'
+    case 'DCPZ':
+      return '点菜单'
+    case 'CBTJ':
+      return '成本调价单'
+    case 'PZ':
+      return '普通凭证'
+    case 'JTZJ':
+      return '计提折旧'
+		case 'YSKDPZ':
+			return ' 预收款单'
+		case 'YSTKDPZ':
+			return ' 预收退款单'
+	  case 'CGBX':
+			return '采购报销单'
+	  case 'YSKD':
+			return '预收款单'
+	  case 'YSTK':
+			return '预收退款单'
+	  case 'QTSR':
+			return '其他收入单'
+	  case 'SRTK':
+			return '其他收入退款单'
+	  case 'HXDD':
+			return '核销单'
+	  case 'YFKD':
+			return '预付款单'
+	  case 'YFTK':
+			return '预付退款单'
+	  case 'QTZC':
+			return '其他支出单'
+	  case 'ZCTK':
+			return '其他支出退款单'
+	  case 'BSDD':
+			return '报损单'
+		case 'SHRK':
+				return '售后入库单'
+		case 'SHCK':
+				return '售后出库单'
+		case 'ZCXZ':
+				return '资产新增'
+		case 'ZCBD':
+				return '资产变动'
+		case 'ZCQL':
+				return '资产清理'
+		case 'KCRK':
+				return '快采入库单'
+		case '':
+			return '全部单'
+    default:
+      return ''
+  }
+}
+
+function handleChildren(ele) {
+	if (ele.children && ele.children.length > 0) {
+		return handleChildren(ele.children)
+	}
+	return ele
+}
+
+/**
+ * 筛选当前用户所在部门
+ * @param {String}
+ * @param {String} departmentIds // 用户所在的部门id，以#号隔开，存放的是departmentId
+ * @param {String} companyId
+ * @returns {Array} 当前用户所在部门的详情信息
+ */
+export function getMemberData(that, departmentIds, companyId) {
+	return new Promise((resolve, reject) => {
+		that.$http.post('/zingbiz/auth/org/getPickData', {companyId}).then((res => {
+			const orgUserDatas = res.data.data.orgUserDatas
+			const optionsDepartment = []
+			if (departmentIds && departmentIds !== null && departmentIds !== '' && orgUserDatas && orgUserDatas.length > 0) {
+				departmentIds.split('#').filter(item => {
+					orgUserDatas.findIndex(ele => {
+					if (ele.id === item) {
+						return optionsDepartment.push(ele)
+					}
+					if (ele.children && ele.children.length > 0) {
+						if (handleChildren(ele)[0].id === item) {
+						return optionsDepartment.push(handleChildren(ele)[0])
+						}
+					}
+					})
+				})
+			}
+			resolve(optionsDepartment)
+		}))
+
+	})
+}
+
+/**
+ * 设置提交数据时 节流 首次执行，多次点击不执行
+ *
+ * @param {String} that 当前模块的this指向
+ * @param {String} fnName 函数名称
+ * @param {Number} delay 下次执行函数所触发的时间
+ */
+export function throttle(that, fnName, delay = 3000) {
+	let last = 0;
+	return function () {
+		let curr = +new Date();
+		if ((curr - last) > delay) {
+			that[fnName].apply(that, arguments);
+			last = curr;
+		}
+	}
+}
+ /**
+ *例如：2020年10月20日 转为 2020年第10期
+ * @export
+ * @param {String} str 日期
+ * @return {String} 转换后的日期
+ */
+export function getMyDateStage(str) {
+	let date = new Date(str),
+	MyYear = date.getFullYear(), //年
+	MyMonth = date.getMonth()+1, //月
+	MyTime = MyYear + '年第' + MyMonth + '期'
+	return MyTime
+}
+
+
+/**
+ * 处理金额,末尾添加两个小数
+ *
+ * @param {String} num 需要处理的金额
+ */
+export function keepTwoDecimalFull(num) {
+	var result = num;
+	result = Math.round(num * 100) / 100;
+	var str = result.toString(); //将数字转换为字符串
+	var posDecimal = str.indexOf('.'); //小数点的索引值
+	// 当整数时，posDecimal=-1 自动补0
+	if (posDecimal < 0) {
+		posDecimal = str.length;
+		str += '.';
+	}
+	// 当数字的长度< 小数点索引+2时，补0
+	while (str.length <= posDecimal + 2) {
+		str += '0';
+	}
+	return str;
+}
+
+/**
+ * @description: 校验金额
+ * @param {String} value 输入的金额
+ * @param {Object} item 当前项
+ * @param {String} key 当前修改的属性
+ */
+export function inputCheckPrice(value, item, key, that) {
+	if (!value) {
+		return
+	}
+	let reg1 = /(^[1-9]\d*((\.\d{1,2})|\.)?$)|(^0(\.\d{1,2}|\.)?$)/ ///^[+-]?\d*\.?\d{0,2}$/ //数字
+	if (isNaN(Number(value))) {
+		that.$message.error('请输入正确的数字，支持保留小数点后两位')
+		item[key] = ''
+		return
+	}
+	if (!reg1.test(value)) {
+		that.$message.error('请输入正确的数字，支持保留小数点后两位')
+		item[key] = value.replace(/^(.*\..{2}).*$/, '$1')
+	}
+}

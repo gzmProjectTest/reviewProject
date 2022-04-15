@@ -1,0 +1,42 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-28 17:31:36
+ * @LastEditTime: 2022-03-28 17:34:40
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/js/测试滚动条点击事件.html/index.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+ 
+    <head>
+        <meta charset="UTF-8" />
+        <title>Document</title>
+        <style>
+            *{margin: 0;padding: 0;}
+            #d1{width: 500px;height: 500px;overflow: auto;background: #f0f0f0;}
+        </style>
+        <!--这里需要引入jquery-->
+        <!-- <script src="jquery"></script> -->
+        <!--这里需要引入jquery End-->
+    </head>
+ 
+    <body>
+        <div id="d1">
+            <!--让内容足够多-->
+            <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+            <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+            <p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p><p>1</p>
+            <!--让内容足够多 End-->
+        </div>
+        <script>
+          
+          (function() {
+                const dom = document.getElementById('d1')
+                dom.onclick(function(){
+                  alert(1)
+                });
+              }())
+        </script>
+    </body>
+</html>

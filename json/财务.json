@@ -1,0 +1,72 @@
+{
+    applyType: "HK"
+    check_invite: "是"
+    companyId: "company189361558000000102"
+    expiration_time: ""
+    moduleType: "MODULE_TYPE_ZYK"
+    otherModuleData: "HK"
+    postParams: {
+        amount: "10.00"
+        approvalStatus: "WTJ"
+        attacheds: []
+        cardUser: "七月七"
+        code: "HKDD2110204400030"
+        createTime: "2021-10-20 19:57:29"
+        loan: {title: "测试bug37874", loanDate: "2021-10-20 19:39:33", unpaidAmount: "100.00"}
+        loanCode: "JKDD2110204400004"
+        title: "1"
+        way: "hand"
+    }
+    workflow_classify: "财务"
+    workflow_classify_id: "190996651000000101"
+    workflow_describe: ""
+    workflow_name: "七月七:财务通用"
+    workflow_nodeData: "{\"canYuZheData\":[],\"nodeData\":[{\"rowId\":\"190996688000020101\",\"nodeId\":\"190996688000020101\",\"templateId\":\"190996688000000101\",\"stepName\":\"发起节点\",\"executor_name\":\"七月七\",\"executor\":\"七月七\",\"cardUrl\":\"UjayQn3YruiuQFNBveaMbQFv\",\"description\":null,\"createDate\":\"2021-08-17 14:38:08\",\"serial\":\"0\",\"companyId\":\"company189361558000000102\",\"relationNodes\":null,\"relationNodesName\":null,\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":\"否\",\"linkNodeNum\":null,\"fwForOrgId\":null,\"fwForOrgName\":null,\"fwForRoleId\":null,\"fwForRoleName\":null,\"genTime\":\"2021-08-17 14:38:08\",\"attributeCode\":null,\"attributeName\":null,\"defaultContentForExecute\":null,\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"是\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":null,\"automaticRejectedDays\":null,\"handleType\":null,\"cashierExpenditure\":null,\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/checkFile/company/company167305223000000101/2020/11/19/167586581000000102.jpg\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null},{\"rowId\":\"190996711000000102\",\"nodeId\":\"190996711000000102\",\"templateId\":\"190996688000000101\",\"stepName\":\"1\",\"executor_name\":\"七月七\",\"executor\":\"七月七\",\"cardUrl\":\"UjayQn3YruiuQFNBveaMbQFv\",\"description\":null,\"createDate\":\"2021-08-17 14:38:31\",\"serial\":\"1\",\"companyId\":\"company189361558000000102\",\"relationNodes\":\"\",\"relationNodesName\":\"\",\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":null,\"linkNodeNum\":null,\"fwForOrgId\":\"\",\"fwForOrgName\":\"\",\"fwForRoleId\":\"\",\"fwForRoleName\":\"\",\"genTime\":\"2021-08-17 14:38:31\",\"attributeCode\":\"\",\"attributeName\":\"\",\"defaultContentForExecute\":\"同意\",\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":\"\",\"automaticRejectedDays\":\"\",\"handleType\":\"\",\"cashierExpenditure\":\"false\",\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/checkFile/company/company167305223000000101/2020/11/19/167586581000000102.jpg\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null}]}"
+    workflow_sort: "财务通用"
+    workflow_sort_describe: ""
+    workflow_sort_id: "190996688000000101"
+}
+
+applyType: "HK"
+check_invite: "是"
+companyId: "company189361558000000102"
+expiration_time: ""
+linkTaskIds: ""
+moduleType: "MODULE_TYPE_ZYK"
+otherModuleData: "HK"
+postParams: {
+    accountId: null
+    amount: "2"
+    approvalStatus: null
+    attacheds: []
+    auditTime: null
+    cardUrl: "UjayQn3YruiuQFNBveaMbQFv"
+    cardUser: "七月七"
+    code: "HKDD2110204500012"
+    companyId: null
+    createTime: "2021-10-20 19:56:37"
+    dataId: null
+    departmentId: "company1893615580000001021"
+    departmentIds: "company1893615580000001021 系统管理"
+    departmentName: "系统管理"
+    description: null
+    genTime: null
+    loan: null
+    loanCode: "JKDD2110204400004"
+    projectNum: null
+    rowId: null
+    title: "2"
+    voucherId: null
+    way: "hand"
+    workId: null
+}
+subNodeData: "{\"subNodeData\":[]}"
+templateId: "190996688000000101"
+workflow_classify: "财务"
+workflow_classify_id: "190996651000000101"
+workflow_describe: ""
+workflow_name: "七月七:财务通用"
+workflow_nodeData: "{\"canYuZheData\":[],\"nodeData\":[{\"rowId\":\"190996688000020101\",\"nodeId\":\"190996688000020101\",\"templateId\":\"190996688000000101\",\"stepName\":\"发起节点\",\"executor_name\":\"七月七\",\"executor\":\"七月七\",\"cardUrl\":\"UjayQn3YruiuQFNBveaMbQFv\",\"description\":null,\"createDate\":\"2021-08-17 14:38:08\",\"serial\":\"0\",\"companyId\":\"company189361558000000102\",\"relationNodes\":null,\"relationNodesName\":null,\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":\"否\",\"linkNodeNum\":null,\"fwForOrgId\":null,\"fwForOrgName\":null,\"fwForRoleId\":null,\"fwForRoleName\":null,\"genTime\":\"2021-08-17 14:38:08\",\"attributeCode\":null,\"attributeName\":null,\"defaultContentForExecute\":null,\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"是\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":null,\"automaticRejectedDays\":null,\"handleType\":null,\"cashierExpenditure\":null,\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/checkFile/company/company167305223000000101/2020/11/19/167586581000000102.jpg\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null},{\"rowId\":\"190996711000000102\",\"nodeId\":\"190996711000000102\",\"templateId\":\"190996688000000101\",\"stepName\":\"1\",\"executor_name\":\"七月七\",\"executor\":\"七月七\",\"cardUrl\":\"UjayQn3YruiuQFNBveaMbQFv\",\"description\":null,\"createDate\":\"2021-08-17 14:38:31\",\"serial\":\"1\",\"companyId\":\"company189361558000000102\",\"relationNodes\":\"\",\"relationNodesName\":\"\",\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":null,\"linkNodeNum\":null,\"fwForOrgId\":\"\",\"fwForOrgName\":\"\",\"fwForRoleId\":\"\",\"fwForRoleName\":\"\",\"genTime\":\"2021-08-17 14:38:31\",\"attributeCode\":\"\",\"attributeName\":\"\",\"defaultContentForExecute\":\"同意\",\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":\"\",\"automaticRejectedDays\":\"\",\"handleType\":\"\",\"cashierExpenditure\":\"false\",\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/checkFile/company/company167305223000000101/2020/11/19/167586581000000102.jpg\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null}]}"
+workflow_sort: "财务通用"
+workflow_sort_describe: ""
+workflow_sort_id: "190996688000000101"

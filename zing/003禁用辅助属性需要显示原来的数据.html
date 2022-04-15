@@ -1,0 +1,163 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-12-27 15:51:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            
+            data() {
+                return {
+                    attributeKeyMap: {},
+                    subParams: {
+                        
+                        // 价格管理
+                        moreUnitPriceList: [
+                            {
+                                specLabelId: "193320613000000102#193320613000010102",
+                                specValueId: "193336004000000101#193575570000000101",
+                                salespPrice: '', // 销售单价/销售价
+                            }
+                        ],
+                        // 辅助属性规格表展示的数据展示不回影响
+                        specificationCategories: [
+                            {
+                                childValue: "2G#4G",
+                                childValueId: "199637241000000102#199637245000000101",
+                                specification: "规格",
+                                rowId: "199539126000000101"
+                            },
+                            {
+                                childValue: "哈哈哈#大大大",
+                                childValueId: "201539895000000101#201882876000000101",
+                                specification: "hhh",
+                                rowId: "201470705000000102"
+                            },
+                        ],
+                    }
+                }
+            },
+            created() {
+                this.getBatchValList()
+                console.log(this.attributeKeyMap, '789')
+                
+            },
+            methods : {
+                
+                getBatchValList() {
+                    this.attributeKeyMap = {
+                        '199539126000000101' : [
+                            {
+                                autoGenerate: "true",
+                                childValList: Array(0),
+                                childValue: null,
+                                childValueId: null,
+                                code: "FZXS00001",
+                                codePrefix: "FZXS",
+                                companyId: "company199536870000000101",
+                                createTime: "2021-11-25 14:47:20",
+                                enable: "true",
+                                genTime: "2021-11-25 14:47:20",
+                                isRequired: null,
+                                leaveMessageValue: null,
+                                leaveMessageValueList: null,
+                                num: null,
+                                numFlag: "default",
+                                parentId: "199539126000000101",
+                                productId: null,
+                                productSpecification: null,
+                                productSpecificationId: null,
+                                remark: "",
+                                rowId: "199637241000000102",
+                                specification: "规格",
+                                type: "specificationCategoryVal",
+                                value: "2G",
+                                valueId: null,
+                                valueList: null
+                            },
+                            {
+                                autoGenerate: "true",
+                                childValList: Array(0),
+                                childValue: null,
+                                childValueId: null,
+                                code: "FZXS00002",
+                                codePrefix: "FZXS",
+                                companyId: "company199536870000000101",
+                                createTime: "2021-11-25 14:47:20",
+                                enable: "true",
+                                genTime: "2021-11-25 14:47:20",
+                                isRequired: null,
+                                leaveMessageValue: null,
+                                leaveMessageValueList: null,
+                                num: null,
+                                numFlag: "default",
+                                parentId: "199539126000000101",
+                                productId: null,
+                                productSpecification: null,
+                                productSpecificationId: null,
+                                remark: "",
+                                rowId: "199637245000000101",
+                                specification: "规格",
+                                type: "specificationCategoryVal",
+                                value: "4G",
+                                valueId: null,
+                                valueList: null,
+                                autoGenerate: "true"
+                            }
+                        ],
+                        '201470705000000102': [
+                            {
+                                autoGenerate: "true",
+                                childValList: Array(0),
+                                childValue: null,
+                                childValueId: null,
+                                code: "FZXS00015",
+                                codePrefix: "FZXS",
+                                companyId: "company199536870000000101",
+                                createTime: "2021-12-21 14:34:40",
+                                enable: "true",
+                                genTime: "2021-12-21 14:34:40",
+                                isRequired: null,
+                                leaveMessageValue: null,
+                                leaveMessageValueList: null,
+                                num: null,
+                                numFlag: null,
+                                parentId: "201470705000000102",
+                                productId: null,
+                                productSpecification: null,
+                                productSpecificationId: null,
+                                remark: "",
+                                rowId: "201882881000000101",
+                                specification: "hhh",
+                                type: "specificationCategoryVal",
+                                value: "大大大",
+                                valueId: null,
+                                valueList: null
+                            }
+                        ]
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

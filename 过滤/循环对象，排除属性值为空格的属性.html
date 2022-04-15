@@ -1,0 +1,38 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-24 20:37:48
+ * @LastEditTime: 2021-06-25 10:41:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/过滤/filter.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 循环对象，判断对象中某些属性是否存在，且排除属性值为空格的属性</title>
+</head>
+<body>
+    <script>
+        let data = {
+        "id": '',
+        "codeName": 1,
+        "equipmentInfo": null,
+        "pageSize": undefined,
+        "pageNum": {},
+        "bbb": 0,
+        "ccc": '0',
+      }
+      let newData = {}
+      // 循环对象，判断对象中某些属性是否存在，且排除属性值为空格的属性
+      for (let key in data) {
+        if ((data[key] && data[key].toString().replace(/(^\s*)|(\s*$)/g, '') !== '') || data[key] === 0) {
+          newData[key] = data[key]
+        }
+      }
+      console.log(newData, '33')
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-27 16:44:51
+ * @LastEditTime: 2021-07-27 16:50:02
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/map.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // ，替换数组中的字段名
+        const arr = [
+            {
+                name: 'a',
+                age: 10
+            },
+            {
+                name: 'b',
+                age: 11
+            },
+            {
+                name: 'c',
+                age: 12
+            }
+        ]
+        let arr1 = arr.map( item => {
+            return {
+                Name: item.name,
+                Age: item.age
+            }
+        })
+        console.log(arr1, '--->>')
+    </script>
+</body>
+</html>

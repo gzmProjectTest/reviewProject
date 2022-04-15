@@ -1,0 +1,70 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-21 12:04:57
+ * @LastEditTime: 2021-10-21 12:29:26
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/css/获取div宽度跟内容的宽度，超出添加样式/index.html
+-->
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-09-22 17:19:59
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div ref="divId" style="width:100px;background-color: red;;">
+            我是reff发生纠纷剋拉萨的减肥啦是的减肥啦升级到付款拉萨的烦恼散的饭卡是江东父老科技时代里看见啊分类；就
+        </div>
+    </div>
+    
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    arr: [],
+                    getContent: '',
+                    divWidth: 0,
+                    contentWidth: 0
+                }
+            },
+            mounted() {
+                this.$nextTick(() => {
+                    this.getContent = this.$refs.divId.innerHTML
+                    this.divWidth = this.$refs.divId.clientWidth
+                    let text = this.$refs.divId.innerHTML
+                    let  span = document.createElement("span")
+                    span.setAttribute('id', 'span')
+                    document.body.appendChild(span)
+                    document.querySelector('#span').innerHTML = text
+                    console.log('span', span)
+                    let spanWidth = span.offsetWidth
+                    this.contentWidth = spanWidth
+                    // // 元素的宽
+                    document.body.removeChild(span)
+                    console.log(this.contentWidth,'内容元素的宽度')
+                    console.log(this.getContent,'div里的内容')
+                    console.log(this.divWidth,'div的宽')
+                })
+            },
+            methods : {
+               
+            }
+        });
+    </script>
+</body>
+</html>

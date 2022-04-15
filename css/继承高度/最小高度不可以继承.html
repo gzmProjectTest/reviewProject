@@ -1,0 +1,37 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-16 16:17:22
+ * @LastEditTime: 2021-11-16 17:00:28
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/css/继承高度/001.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 设置高度可以继承 -->
+    <!-- <div style="height:50px;width:500px;border:1px solid;display: flex;">
+        <div>放假啊啥的风景</div>
+        <div style="height: 100%;width: 1px;background-color: red;"></div>
+        <div>发水淀粉</div>
+    </div> -->
+    <!-- 设置最小高度不可以继承 -->
+    <div style="min-height:50px;width:500px;border:1px solid;display: flex;">
+        <div>放假啊啥的风景</div>
+        <div style="height: 100%;width: 1px;background-color: red;"></div>
+        <div>发水淀粉</div>
+    </div>
+    <!-- 解决方案 -->
+    <div style="min-height:50px;width:500px;border:1px solid;display: flex;">
+        <div>放假啊啥的风景</div>
+        <div style="min-height: 50px;width: 1px;background-color: red;"></div>
+        <div>发水淀粉</div>
+    </div>
+</body>
+</html>

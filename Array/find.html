@@ -1,0 +1,32 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-08 20:34:54
+ * @LastEditTime: 2021-09-08 20:34:54
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/find.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var inventory = [
+            {name: 'apples', quantity: 2},
+            {name: 'bananas', quantity: 0},
+            {name: 'cherries', quantity: 5}
+        ];
+
+        function findCherries(fruit) {
+            return fruit.name === 'cherries1';
+        }
+
+        console.log(inventory.find(findCherries)); // { name: 'cherries', quantity: 5 }
+    </script>
+</body>
+</html>

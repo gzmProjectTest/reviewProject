@@ -1,0 +1,111 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-09 15:58:28
+ * @LastEditTime: 2022-02-09 17:21:24
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/多条数据进行分页/01.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <script>
+            //分页数据处理函数
+            const arr = [
+                {a: 1},
+                {a: 2},
+                {a: 3},
+                {a: 4},
+                {a: 5},
+                {a: 6},
+                {a: 7},
+                {a: 8},
+                {a: 9},
+                {a: 10},
+                {a: 11},
+                {a: 12},
+                {a: 13},
+                {a: 14},
+                {a: 15},
+                {a: 16},
+                {a: 17},
+                {a: 18},
+                {a: 19},
+                {a: 20},
+                {a: 21}
+            ]
+            /**
+             * @description: 
+             * @param {*} number 
+             * @param {*} pageSize
+             * @param {*} data
+             * @return {*}
+             */            
+            // function pageDataFn(number, pageSize, data ){
+            //     const printTable = []
+            //     if (data && data.length > 0) {
+            //         let remainderLength = Math.floor(data.length / 8) * 8
+            //         let start = (pageSize * number) - pageSize
+            //         let end = pageSize * number
+            //         end = end > data.length ? data.length : end
+            //         pagedata = []
+            //         size = 0
+            //         for (let i = 0; i < data.length; i ++) {
+            //             if (size < end) {
+            //                 pagedata.push(data[i])
+            //             }
+            //             size ++
+            //             if (size === end || (i > remainderLength && i === data.length - 1)) {
+            //                 printTable.push(pagedata)
+            //                 pagedata = []
+            //                 size = 0
+            //             }
+            //         }
+            //         if (pageSize > data.length && pagedata && pagedata.length > 0) {
+            //             printTable.push(pagedata)
+            //         }
+            //     }
+            //     console.log(printTable, 'printTable')
+            //     return printTable
+
+            // }
+            // pageDataFn(2, 5, arr)
+
+           
+            function pageDataFn(data, pageSize = 20){
+                const printTable = []
+                if (data && data.length > 0) {
+                    let remainderLength = Math.floor(data.length / 8) * 8
+                    pagedata = []
+                    pageNum = 0
+                    for (let i = 0; i < data.length; i ++) {
+                        if (pageNum < pageSize) {
+                            pagedata.push(data[i])
+                        }
+                        pageNum ++
+                        if (pageNum === pageSize || (i > remainderLength && i === data.length - 1)) {
+                            printTable.push(pagedata)
+                            pagedata = []
+                            pageNum = 0
+                        }
+                    }
+                    if (pageSize > data.length && pagedata && pagedata.length > 0) {
+                        printTable.push(pagedata)
+                    }
+                }
+                console.log(printTable, 'printTable')
+                return printTable
+            }
+            pageDataFn(arr)
+            // console.log(, '58---->')
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-23 15:58:46
+ * @LastEditTime: 2021-11-23 17:03:26
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/生成随机数/01.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function getNowFormatDate() {
+           var day = new Date();
+           var Year = 0;
+           var Month = 0;
+           var Day = 0;
+           var CurrentDate = "";
+           Year = day.getFullYear(); //支持IE和火狐浏览器.
+           Month = day.getMonth() + 1;
+           Day = day.getDate();
+           CurrentDate += Year;
+           if (Month >= 10) {
+               CurrentDate += Month;
+           }
+           else {
+               CurrentDate += "0" + Month;
+           }
+           if (Day >= 10) {
+               CurrentDate += Day;
+           }
+           else {
+               CurrentDate += "0" + Day;
+           }
+           return CurrentDate;
+       }
+
+       var OrderID = new Date().getTime() + Math.floor(Math.random() * 1000);
+       var OrderID1 = new Date().getTime() + Math.floor(Math.random() * 1000);
+       var OrderID2 = new Date().getTime() + Math.floor(Math.random() * 1000);
+       var OrderID3 = new Date().getTime() + Math.floor(Math.random() * 1000);
+       var OrderID4 = new Date().getTime() + Math.floor(Math.random() * 1000);
+       var OrderID5 = new Date().getTime() + Math.floor(Math.random() * 1000);
+       var OrderID6 = new Date().getTime() + Math.floor(Math.random() * 1000);
+
+       document.write("随机单号:" + OrderID + "<br />");
+       document.write("随机单号:" + OrderID1 + "<br />");
+       document.write("随机单号:" + OrderID2 + "<br />");
+       document.write("随机单号:" + OrderID3 + "<br />");
+       document.write("随机单号:" + OrderID4 + "<br />");
+       document.write("随机单号:" + OrderID5 + "<br />");
+       document.write("随机单号:" + OrderID6 + "<br />");
+
+        // 物品编码跟条形码存在的问题
+        // 点击条形码的单位 ，生成条形码这条数据唯一的id标识，输入完条码，找价格管理 unitId 相同的，然后将条码赋值给价格管理，同样将条码生成唯一的 id 赋值给价格管理相同的单位
+        // 当我切换条码中的单位， 跟价格管理中第二个单位相同时， 此时价格管理之前的单位应该清空条码跟 唯一 id， 新匹配的条码
+    </script>
+</body>
+</html>

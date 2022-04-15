@@ -24,15 +24,16 @@
 </head>
 
 <body>
-        <div class="box" id="box1" style="background: yellow;">
+        <!-- <div class="box" id="box1" style="background: yellow;">
             <div>测试<span style="font-size:30px">节流</span>（首次不执行）</div>
         </div>
         <div class="box" id="box2" style="background: red;">
             <div>测试<span style="font-size:30px">节流</span>（首次执行）</div>
-        </div>
+        </div> -->
         <input id="ipt" placeholder="测试防抖(首次不执行)">
-        <button id="btn">测试防抖首次执行（自己写的简化版）</button>
-        <button id="btn2">测试防抖首次执行（用lodash库）</button>
+        <button id="btn">111测试防抖首次执行（自己写的简化版）</button>
+        <button id="btn2">2222测试防抖首次执行，到了一定的秒数继续执行（用lodash库）</button>
+        <button id="btn3">333测试防抖首次执行，到了一定的秒数继续执行（用lodash库）</button>
         <script type="text/javascript">
 		function throttle(fn, delay = 100) {
 			//首先设定一个变量，在没有执行我们的定时器时为null
@@ -46,9 +47,9 @@
 				}, delay);
 			}
 		}
-		document.getElementById('box1').onclick = throttle(function () {
-			console.log(1);
-		}, 5000);
+		// document.getElementById('box1').onclick = throttle(function () {
+		// 	console.log(1);
+		// }, 5000);
         function throttle2(fn, delay = 100) {
             let last = 0;
             return function () {
@@ -59,9 +60,9 @@
                 }
             }
         }
-        document.getElementById('box2').onclick = throttle2(function () {
-            console.log(2);
-        }, 3000);
+        // document.getElementById('box2').onclick = throttle2(function () {
+        //     console.log(2);
+        // }, 3000);
 	</script>
 	<script type="text/javascript">
 		function debounce(fn, delay = 200) {
@@ -74,7 +75,14 @@
 				}, delay);
 			}
 		}
-		function debounce2(fn, delay = 200, atBegin = true) {
+		/**
+		 * @description: 防抖函数，当事件快速连续不断触发时，动作只会执行两次，首次执行一次，最后定时器执行一次
+		 * @param {Function} fn 给函数设定防抖
+		 * @param {Number} delay 间隔时间/秒
+		 * @param {Blooean} firstExecutionFlag 是否立即执行
+		 * @return {Function} 回调函数
+		 */		
+		function debounce2(fn, delay = 200, firstExecutionFlag = true) {
 			let timer = null, last = 0, during;
 			return function () {
 
@@ -83,38 +91,76 @@
 				var exec = function () {
 					fn.apply(self, args);
 				}
-				if (atBegin && !timer) {
+				console.log(firstExecutionFlag, !timer)
+				if (firstExecutionFlag && !timer) {
+					console.log(1)
 					exec();
-					atBegin = false;
+					firstExecutionFlag = false;
 				} else {
-					during = Date.now() - last;
-					if (during > delay) {
-						console.log(Date.now(), last, during, delay);
-						exec();
-					} else {
+					// console.log(2, 'Date.now()', Date.now())
+					// console.log(2, 'last', last)
+					// during = Date.now() - last;
+					// console.log(2, 'during', during)
+					// 注释掉这个代码就成每次执行一次了
+					// if (during > delay && last > 0) {
+					// 	console.log(Date.now(), last, during, delay);
+					// 	exec();
+					// } else {
 						if (timer) clearTimeout(timer);
 
 						timer = setTimeout(function () {
 							exec();
 						}, delay);
-					}
+					// }
 				}
-				last = Date.now();
+				// last = Date.now();
+			}
+		}
+		/**
+		 * @description: 防抖函数，当事件快速连续不断触发时，动作只会执行两次，首次执行一次，最后定时器执行一次
+		 * @param {Function} fn 给函数设定防抖
+		 * @param {Number} delay 间隔时间/秒
+		 * @param {Blooean} firstExecutionFlag 是否立即执行
+		 * @return {Function} 回调函数
+		 */	
+		function debounce3(fn, delay = 500, firstExecutionFlag) {
+			let timer;
+			return function() {
+				let that = this,
+					args = arguments;
+					
+				if (timer) clearTimeout(timer);
+				if (firstExecutionFlag) {
+					let callNow = !timer;
+					timer = setTimeout(() => {
+						timer = null;
+					}, delay);
+					if (callNow) {
+						fn.apply(that, args)
+					}
+				} else {
+					timer  = setTimeout(() => {
+						fn.apply(that, args);
+					}, delay)
+				}
 			}
 		}
 		
 		document.getElementById('ipt').onkeydown = debounce(function () {
 			console.log(3);
 		}, 500);
-		document.getElementById('btn').onclick = debounce2(function () {
+		document.getElementById('btn').onclick = debounce(function () {
 			console.log(4);
 		}, 1000, 1);
 		// document.getElementById('btn').onclick = debounce3(1000,1,function(){
 		// 	console.log(4);
 		// });
-		document.getElementById('btn2').onclick = _.debounce(function () {
+		document.getElementById('btn2').onclick = debounce2(function () {
+			console.log(4, debounce2(function () {console.log('123')}));
+		});
+		document.getElementById('btn3').onclick = debounce3(function () {
 			console.log(4);
-		}, 1000, { 'leading': true });
+		}, 1000, true);
 
 
 	</script>

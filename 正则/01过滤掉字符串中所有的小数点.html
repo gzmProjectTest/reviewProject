@@ -1,0 +1,68 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-15 10:45:18
+ * @LastEditTime: 2021-10-28 15:53:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/正则/01.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>过滤掉字符串中所有的逗号</title>
+</head>
+<body>
+    <script>
+        // let str = '1,2,3,4,5,6'
+        // str.replace(/,/g, '')
+
+
+        // let reg = ()
+        let value = '-10.89823332423'
+        value = value.replace(/^(.*\-.{6}).*$/, '$1')
+        console.log(value, 'value')
+
+        
+    </script>
+    <script>
+        // 输出的为数字
+        // var x="345asd0000fwe23分哈康师傅23sfdfs34.";
+        // x=x.replace(/[^\d]/g,'');
+        // alert(x);
+
+        // var x="345asd0000fwe23分哈康师傅23sfdfs34.";
+        // x=x.replace(/^[0]/g,'');
+        // alert(x);
+        // // if(x.length>0)
+        // // x = ''
+        // // alert("wrong", x);
+        var a='004a0b放fsdf假啊失联飞机。.??0c50030';
+
+        console.log(a.replace(/[^\d]/g,""), '111111')
+
+        console.log(a.replace(/0/g,"").replace(/[^\d]/g,''), '222222')
+    </script>
+    <!-- <script>
+        // 过滤纯数字，输出数字以外的值，打印的是字母
+        var x="345asdfwe2323sfdfs34.";
+        x=x.replace(/[0-9\.]+/g,'');
+        alert(x);
+        if(x.length>0)
+        x = ''
+        alert("wrong", x);
+    </script>
+
+    <script>
+        // 过滤除数字以外的任何数，只打印数字
+        var x="345asdfwe2¥%……#323sfdfs34.";
+        x=x.replace(/[a-zA-Z\.\s]+/g,'');
+        alert(x);
+        if(x.length>0)
+        x = ''
+        alert("wrong", x);
+    </script> -->
+</body>
+</html>

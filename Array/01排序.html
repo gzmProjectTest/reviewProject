@@ -1,0 +1,44 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-03 17:52:34
+ * @LastEditTime: 2021-11-03 17:54:39
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/01排序.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function xier(arr){
+         var interval = parseInt(arr.length / 2);//分组间隔设置
+        debugger
+         while(interval > 0){
+          for(var i = 0 ; i < arr.length ; i ++){
+           var n = i;
+           while(arr[n] < arr[n - interval] && n > 0){
+            var temp = arr[n];
+            arr[n] = arr[n - interval];
+            arr[n - interval] = temp;
+            n = n - interval;
+           }
+          }
+          interval = parseInt(interval / 2);
+         }
+         return arr;
+        }
+         
+        // Array
+        var arr = [10, 20, 40, 60, 60, 0, 30]
+ 
+        // 打印排序后的数组
+        console.log(xier(arr))//[0, 10, 20, 30, 40, 60, 60]
+    </script>
+</body>
+</html>
