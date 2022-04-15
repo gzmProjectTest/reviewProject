@@ -64,12 +64,16 @@
             this.name = name;
             this.age = age;
         }
+        transitionTo(val) {
+            console.log('这是父组件的函数,通过子组件继承,我要跳到这里去', val, this.name, this.age)
+        }
     }
     var person = new Person('安好');
     class Son extends Person {
         constructor(name, age) {
             // 必须有 super() 没有会报错, constructor 里继承的属性不需要跟 父类一样,两个是各自的作用域,不会因另一个里的数据改变而改变
             super(name, age);
+            this.transitionTo('子组件来了')
         }
     }
     var son = new Son('lisi', 15);
