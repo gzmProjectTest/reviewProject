@@ -87,6 +87,17 @@
     if ("undefined") {console.log('我可以运行');}
     if ("") {console.log('为假');}
     if("a"){console.log('222')};
+
+    var a = 123
+    function test() {
+        console.log(this)
+        a = 0
+        console.log(a)
+        console.log(this.a)
+        console.log(a)
+        var a
+    }
+    test()
     
     </script>
 </body>
