@@ -1,0 +1,121 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-05 17:30:03
+ * @LastEditTime: 2021-11-10 17:09:31
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/Array/递归回显el-cascader数据.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const arr = [
+            {
+                rowId: '01',
+                name: '一',
+                children: [
+                    {
+                        rowId: '01-1',
+                        name: '一一',
+                        parentId: '01',
+                        children: [
+                            {
+                                parentId: '01-1',
+                                rowId: '01-1-1',
+                                name: '一一一',
+                            }
+                        ]
+                    },
+                    {
+                        rowId: '01-2',
+                        name: '一二',
+                        parentId: '01',
+                        children: [
+                            {
+                                parentId: '01-2',
+                                rowId: '01-2-1',
+                                name: '一二一',
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                rowId: '02',
+                name: '二',
+                children: [
+                    {
+                        rowId: '02-1',
+                        parentId: '02',
+                        name: '二一',
+                        children: [
+                            {
+                                parentId: '02-1',
+                                rowId: '02-1-1',
+                                name: '二一一',
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                rowId: '02333333',
+                name: '二'
+            }
+        ]
+        let rowId = '02333333'
+        let categoryIdArr = []
+        
+        function deepCopy(aa) {
+           let res = []
+           for (let item of aa) {
+            res.push(item)
+           }
+           return res
+        }
+        /**
+		 * @description: 处理物品分类，回显选中分类
+		 * @param {Array} data 所有物品分类
+		 * @param {String} rowId 需要回显的分类
+		 * @param {Array} oldAllRowId 收集所有的rowId
+		 */
+		function handleCascaderDataDisplay(data, rowId, oldAllRowId) {
+			if (data && data.length > 0) {
+				for (let item of data) {
+					if (!item.parentId) {
+							const newArr = []
+							newArr.push(item.rowId)
+							if (item.children && item.children.length > 0) {
+								handleCascaderDataDisplay(item.children, rowId, newArr)
+							} else if (newArr.some(elm => elm === rowId)) {
+                                categoryIdArr = newArr
+                                break
+                            }
+					}else {
+						// 防止旧数据污染
+						const copyOldAllRowId = deepCopy(oldAllRowId)
+                        console.log('copyOldAllRowId--->', copyOldAllRowId)
+						copyOldAllRowId.push(item.rowId)
+						if (item.children && item.children.length > 0) {
+							this.handleCascaderDataDisplay(item.children, rowId, copyOldAllRowId)
+						} else if (copyOldAllRowId.some(elm => elm === rowId)) {
+							categoryIdArr = copyOldAllRowId
+							break
+						}
+					}
+				}
+			}
+		}
+        handleCascaderDataDisplay(arr, rowId)
+        console.log(arr, 'arr---arr')
+        console.log(categoryIdArr, 'categoryIdArr---arr')
+    </script>
+</body>
+</html>

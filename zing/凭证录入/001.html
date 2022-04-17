@@ -1,0 +1,135 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-11 14:45:26
+ * @LastEditTime: 2022-02-11 19:41:47
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/zing/凭证录入/001.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 展示币别 handleCurrenColumn()
+        // 	if (subjectArr[0].isForeignCurrencyAccounting === 'true' && subjectArr[0].foreignCurrencyAccounting.length !== undefined && subjectArr[0].foreignCurrencyAccounting.length === 0
+		// 			|| subjectArr[0].foreignCurrencyAccounting !== null && subjectArr[0].foreignCurrencyAccounting.length > 0 && subjectArr[0].foreignCurrencyAccounting !== '不核算') {
+		// 			// 暂时不做currencyId 币别栏的限制
+		// 			// && subjectArr[0].foreignCurrencyAccounting !== this.systemSettingData.currencyId
+		// 			this.showCurrency = true
+		// 			this.item.showCurrency = true
+		// 			if (this.titleList[this.titleList.length - 3].key !== 'currency') {
+		// 				this.titleList.splice(-2, 0, {
+		// 					key: 'currency',
+		// 					value: '币别',
+		// 					shareLabel: ['币别', '汇率', '原币']
+		// 				})
+		// 			}
+		// 			// 给币别赋值
+		// 			if (
+		// 				this.currencyList.filter(val => {
+		// 					return val.id === subjectArr[0].foreignCurrencyAccounting
+		// 				}).length !== 0
+		// 			) {
+		// 				this.item.currencyCode = this.currencyList.filter(val => {
+		// 					return val.id === subjectArr[0].foreignCurrencyAccounting
+		// 				})[0].code
+		// 				this.changeCurrency()
+		// 			}
+		// 			return
+		// 		}
+
+        // // 展示数量 handleAmountColumn()
+        // if (subjectArr[0].amountAuxiliaryAccounting === 'true') {
+        //     // 科目数量辅助金额判断（控制数量一栏）
+        //     if (this.measureList && this.measureList.length > 0) {
+        //         const nameIndex = this.measureList.findIndex( item => item.rowId === subjectArr[0].measureUnitId)
+        //         if (nameIndex !== -1) {
+        //             this.item.numberName = this.measureList[nameIndex].val
+        //             this.item.unit = subjectArr[0].measureUnitId
+        //         }
+        //         this.showCount = true
+        //         this.item.showCount = true
+        //         if (this.titleList[2].key !== 'amount') {
+        //             this.titleList.splice(2, 0, {
+        //                 key: 'amount',
+        //                 value: '数量',
+        //                 shareLabel: ['数量', '单位', '单价']
+        //             })
+        //         }
+        //     }
+        //     return
+        // }
+        const titleList = [
+            {
+                key: 'abstract',
+                value: '摘要'
+            },
+            {
+                key: 'subject',
+                value: '会计科目'
+            },
+            {
+                key: 'amount',
+                value: '数量',
+                shareLabel: ['数量', '单位', '单价']
+            },
+            {
+                key: 'currency',
+                value: '币别',
+                shareLabel: ['币别', '汇率', '原币']
+            },
+            {
+                key: 'borrower',
+                value: '借方',
+                label: ['亿', '千', '百', '十', '万', '千', '百', '十', '元', '角', '分']
+            },
+            {
+                key: 'lender',
+                value: '贷方',
+                label: ['亿', '千', '百', '十', '万', '千', '百', '十', '元', '角', '分']
+            }
+        ]
+        function fn(data, arr = []) {
+            if (data && data.length > 0) {
+                for (let item of data) {
+                    // 数量
+                    if (item === 'amount') {
+                        fn(['count', 'price'], arr)
+                    // 币别
+                    } else if (item === 'currency') {
+                        fn(['currencyCode', 'rate', 'originalAccount'], arr)
+                    } else {
+                        arr.push(item + '-input-key-up')
+                    }
+                }
+            }
+            return arr
+        }
+        // let arr1 = []
+        let arr = titleList.map(item => item.key)
+        // for (let item of arr) {
+        //     if (item === 'amount') {
+        //         const amountArr = ['count', 'price']
+        //         for (let amountItem of amountArr) {
+        //             arr1.push(amountItem + '-input-key-up')
+        //         }
+        //     } else if (item === 'currency') {
+        //         const currencytArr = ['currencyCode', 'rate', 'originalAccount']
+        //         for (let currencytItem of currencytArr) {
+        //             arr1.push(currencytItem + '-input-key-up')
+        //         }
+        //     } else {
+        //         arr1.push(item + '-input-key-up')
+        //     }
+        // }
+        console.log(fn(arr), '99-->')
+
+    </script>
+</body>
+</html>

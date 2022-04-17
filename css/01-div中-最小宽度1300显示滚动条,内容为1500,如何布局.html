@@ -1,0 +1,64 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-02 15:15:20
+ * @LastEditTime: 2021-12-02 16:12:15
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/css/最小宽度1300显示滚动条，内容为1500，如何布局.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>01-div中-最小宽度1300显示滚动条，内容为1500，如何布局</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        table th,table td{
+            box-sizing: content-box;
+            border: 1px solid #BBBBBE;
+            width: 297px;
+            height: 50px;
+            
+        }
+    </style>
+</head>
+<body>
+    <div style="min-width: 1300px;overflow: auto;background-color: #ccc;height: 1000px;">
+        <table border="1" style="table-layout:fixed;width: 100%;">
+            <tr>
+                <th>摘要</th>
+                <th>科目</th>
+                <th>币别</th>
+                
+                <th>单位</th>
+                <th>借</th>
+                <th>贷</th>
+            </tr>
+            <tr>
+                <td>摘要</td>
+                <td>$科目</td>
+                <td>$币别</td>
+                <td>$单位</td>
+                <td>$借</td>
+                <td>$贷</td>
+            </tr>
+        </table>
+    </div>
+    <!-- <div style="min-width: 1300px;overflow: auto;background-color: #ccc;height: 1000px;">
+        <div style="min-width: 1000px;background-color: pink;height: 800px;display: flex;">
+            <div style="width:300px;height:200px;background-color: green;flex-shrink: 0">摘要</div>
+            <div style="width:300px;height:200px;background-color: #000;flex-shrink: 0">科目</div>
+            <div style="width:300px;height:200px;background-color: #fff;flex-shrink: 0">币别</div>
+            <div style="width:300px;height:200px;background-color: rgb(0, 98, 128);flex-shrink: 0">数量</div>
+            <div style="width:300px;height:200px;background-color: rgb(117, 0, 128);flex-shrink: 0">借</div>
+            <div style="width:300px;height:200px;background-color: rgb(128, 73, 0);flex-shrink: 0">贷</div>
+        </div>
+    </div> -->
+
+</body>
+</html>

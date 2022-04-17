@@ -1,0 +1,66 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-02 15:15:20
+ * @LastEditTime: 2021-12-02 19:34:33
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/css/最小宽度1300显示滚动条，内容为1500，如何布局.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02-表格中-最小宽度1300显示滚动条，内容为1500，且td不被压缩(跟table中的 style样式有关)如何布局</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            height: 100%;
+        }
+        table th,table td{
+            box-sizing: content-box;
+            border: 1px solid #BBBBBE;
+            width: 297px;
+            height: 50px;
+            
+        }
+        .jd{
+            background: url(http://source.qmenhu.com/data/source/imgs/zing/money_rp.png) no-repeat;
+            background-color: #fff;
+            background-size: 100% 50px;
+        }
+table thead tr th{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+table thead tr th:first-child{width:10%;}
+table tbody tr td>div{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    </style>
+</head>
+<body>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>项目名称</th>
+                <th>出访国家(地区)</th>
+                <th>出访时间</th>
+                <th>出访时间</th>
+                <th>出访时间</th>
+            </tr>
+        </thead>
+        <tbody class="applytable">
+            <tr>
+                <td><div>美国金融硕士联合培养项目</div></td>
+                <td><div>美国</div></td>
+                <td><div>2019年6月01日</div></td>
+                <td><div>2019年6月01日</div></td>
+                <td><div>2019年6月01日</div></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</body>
+</html>

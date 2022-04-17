@@ -1,0 +1,44 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-12-01 20:31:15
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+
+                }
+            },
+            created() {
+                console.log(this.handleAverage(1.1, 23.333, 3.44))
+            },
+            methods : {
+                handleAverage(mathematicsAchievement = 0, englishAchievement = 0, computerAchievement = 0) {
+                    let totalScore = (mathematicsAchievement + englishAchievement + computerAchievement) / 3
+                    return Math.round(totalScore * Math.pow(10, 2)) / Math.pow(10, 2)
+                },
+            }
+        });
+    </script>
+</body>
+</html>

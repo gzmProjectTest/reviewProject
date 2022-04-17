@@ -1,0 +1,66 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-07-25 23:39:06
+ * @LastEditTime: 2021-07-26 11:11:43
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/dom/insertBefore.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    技术分享会
+
+    时间点：
+        2021年8月7日 下午 3: 30 -- 5: 30
+
+    分享人：
+        郭志明
+
+    分享内容：
+        虚拟 DOM ， diff 算法。
+
+        
+    <div id="parentElement">
+        <span id="childElement">foo bar</span>
+      </div>
+      
+      <script>
+      //创建一个新的、普通的<span>元素
+      var sp1 = document.createElement("span");
+      
+      //插入节点之前，要获得节点的引用
+      var sp2 = document.getElementById("childElement");
+      //获得父节点的引用
+      var parentDiv = sp2.parentNode;
+      
+      //在DOM中在sp2之前插入一个新元素
+      parentDiv.insertBefore(sp1, sp2);
+
+
+        技术分享会
+
+        时间点：
+            2021年8月7日 下午 3: 30 -- 5: 30
+
+        分享人：
+            郭志明
+
+        分享内容：
+            虚拟 DOM ， diff 算法。
+
+
+
+
+
+      
+      </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-02-23 15:28:47
+ * @LastEditTime: 2022-03-11 20:00:42
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/Array/002-reduce.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // reduce 赋值
+        // let msg = {
+        //     rowId: '1234',
+        //     bindId: '456',
+        //     companyId: 'ddddd',
+        //     msgType: 'CWBX'
+        // }
+        // let msgQuery = {
+        //     rowId: 'bindId',
+        //     companyId: 'companyId',
+        //     msgType: 'msgType'
+        // }
+        // let a = Object.keys(msgQuery).reduce((acc, cur) => {
+        //     console.log(acc, cur)
+        //   acc[cur] = msg[msgQuery[cur]]
+        //   return acc
+        // }, {})
+        // console.log(a, 'aaa')
+
+        // 累加
+        // const numbers = [15.5, 2.3, 1.1, 4.7];
+        // let a = numbers.reduce((total, num) => {
+        //     return total + Number(num)
+        // }, 0);
+        // function getSum(total, num) {
+        //     return total + Math.round(num);
+        // }
+        // console.log(a, 'aaa--->')
+
+        // const arr = [
+        //     {
+        //         age: 1.1
+        //     },
+        //     {
+        //         age: 2.2
+        //     },
+        //     {
+        //         age: 2.3
+        //     },
+        //     {
+        //         age: 1.4
+        //     }
+        // ]
+        // const a = arr.reduce((total, item) => {
+        //     console.log(total, '9999')
+        //     // 1\ 0 + 1.1
+        //     // 2\ 1.1 + 2.2 = 3.3
+        //     // 3\ 3.3 + 2.3 = 5.6
+        //     // 4\ 5.6 + 1.4
+        //     return total + Number(item.age)
+        // }, 0)
+        // console.log(a, 'aaa--->')
+    </script>
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-10 11:25:05
+ * @LastEditTime: 2021-11-10 14:33:18
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/js/防抖debounce.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+        <title>节流和防抖示例</title>
+        <style type="text/css">
+        body {
+            height: 3000px;
+        }
+
+        .box {
+			width:100px;
+            height: 100px;
+            overflow: scroll;
+			font-size: 12px;
+        }
+
+        .box div {
+            height: 3000px;
+        }
+        </style>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.6.1/lodash.min.js"></script> -->
+</head>
+
+<body>
+	<!-- 参考链接：https://www.cnblogs.com/momo798/p/9177767.html -->
+	<!-- 参考链接：https://blog.csdn.net/hupian1989/article/details/80920324 -->
+	<!-- 参考链接：https://www.cnblogs.com/cc-freiheit/p/10827372.html -->
+        <input id="ipt" placeholder="测试防抖(首次不执行)">
+        <button id="btn">测试防抖首次执行（自己写的简化版）</button>
+        <button id="btn2">使用时间戳</button>
+        <button id="btn4">不使用时间戳</button>
+	<script type="text/javascript">
+		function debounce(fn, delay = 200) {
+			let timer = null;
+			return function () {
+				if (timer) clearTimeout(timer);
+				timer = setTimeout(() => {
+					fn.apply(this, arguments);
+					timer = null;
+				}, delay);
+			}
+		}
+		function debounce2(fn, delay = 200, atBegin = true) {
+			let timer = null, last = 0, during;
+			return function () {
+
+				let self = this, args = arguments;
+
+				var exec = function () {
+					fn.apply(self, args);
+				}
+				if (atBegin && !timer) {
+					exec();
+					atBegin = false;
+				} else {
+					during = Date.now() - last;
+					if (during > delay) {
+						console.log(Date.now(), last, during, delay);
+						exec();
+					} else {
+						if (timer) clearTimeout(timer);
+
+						timer = setTimeout(function () {
+							exec();
+						}, delay);
+					}
+				}
+				last = Date.now();
+			}
+		}
+
+		/**
+		 * @description: 不使用时间戳来回调函数
+		 * @param {*} fn
+		 * @param {*} delay
+		 * @param {*} firstExecutionFlag
+		 * @return {*}
+		 */
+		// debounce3 跟 debounce4 的区别：
+		// debounce3： 一直生成新的延时器，且都会执行，将新生成的结果返回给 timer // 问题，会多次执行延时器
+		// debounce4： 每次都会清空上次的timer，上次生成的延时器不会执行，等执行完后，且不在出发了，清空本次执行的 timer
+		function debounce4(fn, delay = 1000, firstExecutionFlag = true) {
+			let timer;
+			return function() {
+				let that = this,
+					args = arguments
+				// 持续点击会把上一次的延时器清空掉，就不会继续执行。等不在点击之后，会执行延时器，并把上次保留的 timer = null，
+				// 等再次点击重新生成，如果没有 timer ，继续第一次执行的顺序。回调函数。
+				if (timer) {
+					// console.log('88---', timer)
+					clearTimeout(timer)
+					// console.log('90---', timer)
+				}
+				if (firstExecutionFlag) {
+					let callNow = !timer;
+					// console.log('91--timer', timer)
+					timer = setTimeout(() => {
+						// console.log('93--timer', timer)
+						timer = null;
+						// console.log('95--timer', timer)
+					}, delay);
+					// console.log('98--timer', timer)
+					if (callNow) {
+						fn.apply(that, args)
+					}
+				} else {
+					timer = setTimeout(() => {
+						fn.apply(that, args);
+					}, delay)
+				}
+			}
+		}
+		// debounce3： 一直生成新的延时器，且都会执行，将新生成的结果返回给 timer
+		// 不会清空上次执行的计时器，会一直生成，每次都是新的延时器，直到最后时间戳不满足，清空最后一次的延时器。
+		// 问题：js中按钮去触发定时器，那么多次点击这个定时器会越来越快,解决方法，并不是越来越快, 而是越来越多;
+		function debounce3 (fn, delay, firstExecutionFlag=false) {
+			let timer, startTimeStamp = 0, context, args
+			let run = (timerInterval)=>{
+				timer = setTimeout(()=>{
+					let newDateTime = Date.now() // (new Date()).getTime()
+					let interval = newDateTime - startTimeStamp //（每次执行run函数的时间戳 - 调用函数时间戳 ）
+					// console.log('newDateTime', newDateTime)
+					// console.log('startTimeStamp', startTimeStamp)
+					// console.log('timerInterval', timerInterval)
+					console.log('timer-----', timer)
+					console.log('1998', newDateTime - startTimeStamp)
+					if(interval < timerInterval){
+						console.log('debounce reset',timerInterval-interval);
+						startTimeStamp = newDateTime
+						run(delay - interval) // 这里一直回调自身，延迟时间 - （每次执行run函数的时间戳 - 调用函数时间戳 ），直到他俩时间间隔不小于，最后清空延时器
+					}else{
+						console.log('return--else')
+						if(!firstExecutionFlag){
+							console.log('首次执行完以后，还会不会执行')
+							fn.apply(context, args)
+						}
+						clearTimeout(timer)
+						timer = null
+					}
+				}, timerInterval)
+			}
+		
+			return function(){
+				context = this
+				args = arguments
+				startTimeStamp = Date.now() // 开始执行回调函数设置的时间戳
+		
+				if(!timer){
+					// console.log('debounce set');
+					if(firstExecutionFlag) {
+						fn.apply(context,args) // 如果设置立即执行，在此执行
+					}
+					console.log('不会立即执行函数', startTimeStamp)
+					run(delay);    // last timer alreay executed, set a new timer
+				}
+				
+			}
+		}
+		// 暴力版： 定时器期间，有新操作时，
+		// 存在的问题，1、 如果使用时间戳 互减，首次会立即执行一次回掉函数 2、清空旧定时器，重设新定时器 3、1秒后再次执行
+		//  会执行两次
+		function debounce999 (fn, delay)  {
+			let timer, timeStamp=0;
+			let context, args;
+		
+			let run = ()=>{
+				timer = setTimeout(()=>{
+					fn.apply(context,args);
+				},delay);
+			}
+			let clean = () => {
+				clearTimeout(timer);
+			}
+		
+			return function(){
+				context=this;
+				args=arguments;
+				let now = (new Date()).getTime();
+				console.log('now', now)
+				console.log('timeStamp', timeStamp)
+				console.log('clean', clean)
+				if(now-timeStamp < delay){
+					// console.log('reset',now);
+					console.log('第一次立即执行')
+					clean();  // clear running timer 
+					run();    // reset new timer from current time
+				}else{
+					// console.log('set',now);
+					console.log('之后1秒后再次执行')
+					run();    // last timer alreay executed, set a new timer
+				}
+				timeStamp=now;
+		
+			}
+		
+		}
+
+
+		
+		document.getElementById('ipt').onkeydown = debounce(function () {
+			console.log(3);
+		}, 500);
+		document.getElementById('btn').onclick = debounce2(function () {
+			console.log(4);
+		}, 1000, 1);
+		document.getElementById('btn2').onclick = debounce3(function () {
+			console.log(4);
+		}, 500, true);
+		document.getElementById('btn4').onclick = debounce4(function () {
+			console.log(4);
+		}, 500, true);
+
+
+	</script>
+</body>
+
+</html>

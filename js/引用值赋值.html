@@ -24,45 +24,65 @@
         // obj1 = {b: 2};
         // obj1 与 obj 无关系，
     /* */
-    function test(person) {
-        person.age = 26;
-        // 函数里面赋值一个对象的时候。其实并不是把原来的对象修改，而是它的地址重新指向了赋值的对象，所以最后函数返回的就是你赋值的那个，
-        // 变量整体重新赋值，相当于重新开辟了一块内存。 了。和原来的无关
+    // 第一题
+        // function test(person) {
+        //     person.age = 26;
+        //     // 函数里面赋值一个对象的时候。其实并不是把原来的对象修改，而是它的地址重新指向了赋值的对象，所以最后函数返回的就是你赋值的那个，
+        //     // 变量整体重新赋值，相当于重新开辟了一块内存。 和原来的无关
 
-        person = {
-            name: 'yyy',
-            age: 30
-        };
-        return person;
-    }
-    //  const let 不在归 window 所有
-    const p1 = {
-        name: 'yck',
-        age: 25
-    };
-    console.log(this.p1);
-    const p2 = test(p1);
-    console.log(p1); // -> ?
-    console.log(p2); // -> ?
+        //     person = {
+        //         name: 'yyy',
+        //         age: 30
+        //     };
+        //     // return person;
+        // }
+        // //  const let 不在归 window 所有
+        // const p1 = {
+        //     name: 'yck',
+        //     age: 25
+        // };
+        // console.log(this.p1);
+        // const p2 = test(p1);
+        // console.log(p1); // -> ?
+        // console.log(p2); // -> ?
+
+
    
 
    
     // 第二题
-    /*
-    var b = [1, 2, 3];
-    function a(b){
-        b[3] = 4;
-        b = [100];
-    }
-    console.log(a(b).b);
-    console.log(b)
-    */
-    // function fn(c) {
-    //     c = 10;
+    // var b = [1, 2, 3];
+    // function a(b){
+    //     b[3] = 4;
+    //     b = [100];
+    //     return b
     // }
-    // fn();
-    // console.log(this);
-    // console.log(this.c);
+    // console.log(a(b));
+    // console.log(b)
+
+    //第三题
+    /*
+        1，创建全局GO:{
+            c1: undefined = 10
+        } 
+            (1).创建AO，
+            (2).找变量声明 var，形参，值为undefined
+            (3).形参与实参相统一
+            (4).在函数体里找到函数声明，将值赋给函数体， 比如：function aaa()  , aaa : function() {}
+        2. 创建局部的AO：{
+            this: window,
+            c2: undefined --> 11
+        }
+    */
+    var c1 = 10
+    function fn(c2) {
+        console.log(this, '66')
+        c2 = 11;
+        this.c3 = 12
+    }
+    fn();
+    console.log(this);
+    console.log(this.c1, this.c2, this.c3);
 
 
 

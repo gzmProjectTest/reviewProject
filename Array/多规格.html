@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    arr: [
+                        {
+                            name: '颜色',
+                            arrlist: ['白色', '红色']
+                        },
+                        {
+                            name: '尺码',
+                            arrlist: ['s', 'm']
+                        },
+                        // {
+                        //     name: '内存',
+                        //     arrlist: ['2g', '3g']
+                        // }
+                    ],
+                    partNameStr: '',
+                    arr1: []
+
+                }
+            },
+            created() {
+                this.handle(this.arr, -1, this.partNameStr, this.arr.length)
+            },
+            methods : {
+                handle(val, zIndex, partNameStr, valLength) {
+                    ++zIndex 
+                    if (val && val.length > 0) {
+                        if (val[zIndex] && val[zIndex].arrlist && val[zIndex].arrlist.length > 0) {
+                            val[zIndex].arrlist.map((elm,index) => {
+                                let str = ''
+                                if (val && val.length === 1) {
+                                    str = partNameStr + elm
+                                    this.arr1.push(str)
+                                    console.log('this.arr1', this.arr1)
+                                } else if(zIndex !== 0){
+                                    str = partNameStr + elm
+                                    this.arr1.push(str)
+                                    console.log('this.arr2', this.arr1)
+                                }
+                                console.log('str', str)
+                                this.handle(val, zIndex, str)
+                                   
+                            })
+                        }
+                    }
+                   
+                }
+            }
+        });
+    </script>
+    <!-- <script>
+        arr.map( (item, index) => {
+            if (index === 0) {
+                arr[0].arrlist.map( a1 => {
+                    if (arr && arr.length > 1) {
+                        arr[1].arrlist.map( a2 => {
+                            if (arr && arr.length > 2) {
+                                arr[2].arrlist.map( a3 => {
+                                    console.log('a3', a1 + a2 + a3)
+                                })
+                            }
+                        })
+                    }
+                })
+            } 
+        })
+    </script> -->
+</body>
+</html>

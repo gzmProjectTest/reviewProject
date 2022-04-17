@@ -1,0 +1,66 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-06-22 14:13:11
+ * @LastEditTime: 2021-10-23 17:17:10
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/css/超出div显示滚动条.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 参考链接https://blog.csdn.net/qq_26766789/article/details/76890311 -->
+    <!-- 参考链接https://zhuanlan.zhihu.com/p/24372279 -->
+    <!-- grow中遇到的问题 -->
+    <!-- .如果直接设置width:100%,那么当前的子元素宽度总和已经超过父元素宽度,那么此时此刻,flex-grow就无效了,因为没有剩余空间了,你分配个毛线啊,给每一个div设置一个width:0;然后进行分配flex-grow,这个时候加上去的宽度就是实实在在的width. -->
+    
+    <!-- 例如这个问题该怎么解决我是右边按钮不被挤压， -->
+    <!-- <div style="height: 200px;width:300px;background:red;display: flex;">
+        <div style="display: flex;width:calc(100% - 130px)">
+            <div style="width:26px;height: 26px;background-color: pink;">icon</div>
+            <div>我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体</div>
+        </div>
+        <div style="width:130px;height: 30px;background-color: green;overflow: hidden;">
+            我是右边的按钮
+        </div>
+    </div> -->
+    <!-- 方案1，给div1 设置width:calc(100% - 130px) -->
+    <!-- <div id="content"style="height: 200px;width:300px;background:red;display: flex;">
+        <div id="div1" style="display: flex;width:calc(100% - 130px)">
+            <div style="width:26px;height: 26px;background-color: pink;">icon</div>
+            <div>我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体</div>
+        </div>
+        <div id="div2" style="width:130px;height: 30px;background-color: green;overflow: hidden;">
+            我是右边的按钮
+        </div>
+    </div> -->
+    <!-- 方案1，给div1 设置width:calc(100% - 130px) -->
+    <!-- <div id="content"style="height: 200px;width:300px;background:red;display: flex;">
+        <div id="div1" style="display: flex;">
+            <div style="width:26px;height: 26px;background-color: pink;">icon</div>
+            <div>我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体我是右边的字体</div>
+        </div>
+        <div id="div2" style="width:130px;height: 30px;background-color: green;overflow: hidden;">
+            我是右边的按钮
+        </div>
+    </div> -->
+      <!-- <div style="display: flex;height: 200px;background-color: red;">
+        <div class="left-side" style="width: 200px;background-color: yellow;">1</div>
+        <div class="content" style="flex-grow: 1;background-color: indigo;">2</div>
+        <div class="right-side" style="width: 200px;background-color: pink;">3</div>
+      </div> -->
+      <div style="display: flex;height: 200px;width:400px;background-color: red;">
+        <div class="content" style="flex-grow: 1;background-color: indigo;display: flex;width:1px;">
+            <div style="width:25px;height:25px;background-color: yellow;">1</div>
+            <div style="flex-grow: 1;width: 1px;;">飞机阿里斯顿放假啦圣诞节风口浪尖撒的快乐减肥啦是江东父老介绍了大家分类介绍的垃圾分类收到了卡</div>
+        </div>
+        <div class="right-side" style="width: 200px;background-color: pink;">3</div>
+      </div>
+</body>
+</html>

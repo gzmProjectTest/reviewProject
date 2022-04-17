@@ -1,0 +1,126 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2022-02-18 16:11:28
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 先引入vue再引入element -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->
+</head>
+<body>
+    <div id="app">
+        <div>
+            <!-- 使用场景 -->
+            <!-- 
+                就是一份表单，有个电话号码的表单项，它的新增是单独的接口，不和表单提交接口共用，然后这个电话的表单项也没有按钮让它新增就只能blur来请求
+                所以如果电话号码填写完直接点提交，就会触发两个方法，就没有按我想执行的顺序执行 
+            -->
+            <el-form label-width="100px" class="demo-ruleForm">
+                <el-form-item
+                  label="电话"
+                >
+                  <el-input type="age" v-model.number="iphone" autocomplete="off" @blur="handleBlur"></el-input>
+                </el-form-item>
+                <el-form-item>
+                  <el-button type="primary" @click="submitForm">提交</el-button>
+                  <el-button @click="resetForm">重置</el-button>
+                </el-form-item>
+            </el-form>
+        </div>
+
+    </div>
+    <script>
+        // 方案一：需要增加if判断
+        // var vm = new Vue({
+        //     el : '#app',
+        //     data() {
+        //         return {
+        //             iphone: '',
+        //             promistStatus: null
+        //         }
+        //     },
+        //     created() {
+               
+        //     },
+        //     methods : {
+        //         handleBlur() {
+        //             console.log('start----->')
+        //             this.promistStatus = new Promise((resolve, reject) => {
+        //                 setTimeout(() => {
+        //                     resolve(1)
+        //                     console.log('axios')
+        //                 },3000)
+        //             })
+                   
+        //         },
+        //         submitForm() {
+        //             if (this.promistStatus) {
+        //                 this.promistStatus.then((res) => {
+        //                     console.log('submitForm1' + res)
+        //                     this.promistStatus = null
+        //                 })
+        //                 return
+        //             }
+        //             console.log('submitForm2')
+        //         },
+        //         resetForm() {
+        //         }
+        //     }
+        // });
+
+        // 方案二： 不需要增加if判断， 执行借用promise
+        //  Promise.resolve().then(() => {alert('1')}) === alert('1')
+
+        // promistStatus 状态值不用改为null， 这样写前后类型都一致，少走一步if判断
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    iphone: '',
+                    promistStatus: Promise.resolve()
+                }
+            },
+            created() {
+               
+            },
+            methods : {
+                handleBlur() {
+                    console.log('start----->')
+                    this.promistStatus = new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            reject('chucuole ')
+                            console.log('axios')
+                        },3000)
+                    })
+                   
+                },
+                submitForm() {
+                    this.promistStatus.then((res) => {
+                        console.log('submitForm1' + res)
+                        this.promistStatus = Promise.resolve()
+                    }), (error) => {
+                        console.log('error')
+                    }
+                },
+                resetForm() {
+                }
+            }
+        });
+    </script>
+</body>
+</html>

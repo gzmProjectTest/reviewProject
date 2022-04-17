@@ -1,0 +1,58 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-30 12:03:54
+ * @LastEditTime: 2021-11-30 13:16:15
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/zing/辅助属性条码跟多属性规格如果对应，生成唯一属性组ID.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function createUniqueId() {
+            return new Date().getTime() + Math.floor(Math.random() * 10000)
+        }
+        const arr1 = [{valueId: 1}, {valueId: 2}]
+        const arr2 = [
+            {
+                valueId: 1,
+                name: '个',
+            },
+            {
+                valueId: 2,
+                name: '个',
+            },
+            {
+                valueId: 1,
+                name: '克',
+            },
+            {
+                valueId: 2,
+                name: '克',
+            }
+        ]
+        let uniqueId = ''
+        arr2.forEach((item, index) => {
+            arr1.forEach((elm, zIndex) => {
+                // 第一次有值，第二次就清空了
+                if (zIndex === 0 && item.valueId === elm.valueId) {
+                    uniqueId = createUniqueId()
+                }
+                item.uniqueId = uniqueId
+                if (arr1.length - 1 === zIndex && item.valueId === elm.valueId) {
+                    uniqueId = ''
+                }
+            })
+        })
+        console.log('arr222', arr2)
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-10-27 16:53:58
+ * @LastEditTime: 2021-10-27 16:56:49
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/正则/03过滤所有的0.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1、正则表达式 删除末尾所有的0的方法
+        var a1='00a0b0c000';
+        a1.replace(/(0+)$/g,"")
+        // 结果：00a0b0c
+        // 2、正则表达式 删除前面所有的0的方法
+        var a2='00a0b0c000';
+        a2.replace(/\b(0+)/g,"")
+        // 结果：a0b0c000
+        // 3、去掉所有的0
+        var a3='00a0b0c000';
+        a3.replace(/(0+)?/g,"")
+        a3.replace(/0/g,"")
+        // 结果：abc
+        // 4、去掉小数点后无用的0
+        let val ='1,111.1111100000'
+        val = val.replace(/(?:\.0*|(\.\d+?)0+)$/, '$1')
+        // 正则表达式中
+        // \b 是js预定义的语法，表示退格符（BackUp）
+        // /i (忽略大小写)
+        // /g (全文查找出现的所有匹配字符)
+        // /m (多行查找)
+        // /gi(全文查找、忽略大小写)
+        // /ig(全文查找、忽略大小写)
+
+        // 链接：https://juejin.cn/post/6844903886973566983
+    </script>
+</body>
+</html>

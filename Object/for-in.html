@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-24 17:27:37
+ * @LastEditTime: 2021-08-24 17:36:48
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Object/map.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const key1= '8/24-005'
+        const obj = {
+            '8/24-001': 10,
+            '8/24-002': 10,
+            '8/24-003': 10,
+            '8/24-004': 10,
+        }
+        console.log(Object.keys(obj), '9999999')
+        let arr = Object.keys(obj)
+        if (obj && Object.keys(obj).length > 0) {
+            // for (let key in obj) {
+            //     console.log(key, '-11--')
+            //     console.log(obj, '-22--')
+            //     console.log(obj[key1], '-1111111--')
+            //     if (obj[key1] === undefined) {
+            //         obj[key1] = 20
+            //     }
+            // }
+                if (arr.some(item => item === key1)) {
+                    console.log('有')
+                } else {
+                    obj[key1] = '20'
+                    console.log('push')
+                }
+            console.log(obj, '34--->')
+        }
+    </script>
+</body>
+</html>

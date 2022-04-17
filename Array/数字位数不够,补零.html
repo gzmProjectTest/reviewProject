@@ -1,0 +1,50 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-11-04 19:42:38
+ * @LastEditTime: 2021-11-04 19:43:56
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/数字位数不够，补零.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数字位数不够，进行前补零的JS最简实现方案</title>
+</head>
+<body>
+    <script>
+        /**
+        * 自定义函数名：PrefixZero
+        * @param num： 被操作数
+        * @param n： 固定的总位数
+        */
+        function PrefixZero(num, n) {
+            return (Array(n).join(0) + num).slice(-n);
+        }
+
+        var myNum = 9;
+        var myNum2 = 12;
+
+        console.log('原变量myNum：'+myNum);//9
+        console.log('处理后myNum：'+PrefixZero(myNum, 3));//009
+        
+        console.log('原变量myNum2：'+myNum2);
+        console.log('处理后myNum2：'+PrefixZero(myNum2, 3));//012
+
+        Array(5) //=> 创建了一个长度为5的空数组
+        console.log(Array(5));// [empty × 5]
+        Array(5).join(0)// => 用0拼接将数组转换成字符串
+        console.log(Array(5).join(0));// 0000
+        Array(5).join(0)+91 // => 通过+,实现字符串的拼接
+        console.log(Array(5).join(0)+91);// 000091
+        (Array(5).join(0) + 91).slice(-5) // => slice(startIndex,endIndex)方法，用于截取
+        // 参数说明：
+        // 参数是起始位置，含头不含尾，
+        // 只有一个参数时，表示从该起始位置一直截取到最后。
+        // 参数值为负数时，表示从后往前数，如最后一位，索引是-1
+    </script>
+</body>
+</html>

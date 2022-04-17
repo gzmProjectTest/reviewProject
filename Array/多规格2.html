@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+
+    </div>
+    <!--  格式以拼接完成  oh oh oh～～～   -->
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    arr: [
+                        {
+                            name: '颜色',
+                            arrlist: ['蓝色','白色', '红色','绿色','霸王色']
+                        },
+                        {
+                            name: '尺码',
+                            arrlist: ['4GB', '6GB', '16GB']
+                        },
+                        {
+                            name: '美女',
+                            arrlist: ['好看']
+                        },
+                        {
+                            name: '妖怪',
+                            arrlist: ['哈哈哈哈好看']
+                        }
+                    ],
+                    partNameStr: '',
+                    productSpecificationList: [],
+                    productSpecificationListItem: {
+                        isStartUse: "true",
+                        lotnumberManage: "false",
+                        mainSourceType: "0",
+                        mainStorehouseId: "158414426000000102",
+                        mainStorehouseName: "河北仓库",
+                        partName: "",
+                        sale: "true",
+                        shelfLife: "false",
+                        snStatus: "false"
+                    }
+                    // 三，想要的格式  最后需要拼接的格式
+                    // partName: "颜色 白 | 尺寸 s "
+
+                }
+            },
+            created() {
+                const a = '颜色 黑色 ｜ 尺码 s'
+                this.handle(this.arr)
+                this.handleParName(this.productSpecificationList[0].partName)
+            },
+            methods : {
+                handleParName(val) {
+                    let str = ''
+                    val.split('|').map(item => {
+                        item.trim().split(' ').map((elm, index) => {
+                            if (index === 0) {
+                                str = str + elm + '：'
+                            } else {
+                                str = str + elm + ' '
+                            }
+                        })
+                    })
+                    console.log('111', str)
+                },
+                // 二，开始写递归
+                handle(val, zIndex = -1, partNameStr = '') {
+                    ++zIndex 
+                    if (val && val.length > 0) {
+                        if (val[zIndex] && val[zIndex].arrlist && val[zIndex].arrlist.length > 0) {
+                            val[zIndex].arrlist.map((item,index) => {
+                                let str = ''
+                                if (val && val.length === 1) {
+                                    str = val[zIndex].name + ' ' + item
+                                    console.log('81--->', str)
+                                    let obj = Object.assign({}, this.productSpecificationListItem)
+                                    obj.partName = str
+                                    this.productSpecificationList.push(obj)
+                                    console.log('7000--<', this.productSpecificationList)
+                                } else if (zIndex < val.length - 1) {
+                                    // 找规律，第一次拼接名字，第二次直接push，数组中多了一项，肯定不对，每次都需要比数组少循环一次
+                                    // 如果是三层循环，肯定第三层才会productSpecificationList.push，其他两层拼接name，
+                                    // name拼接完两层之后不需要push，但是名字还需要继续拼接，所以判断一下
+                                    if (partNameStr) {
+                                        str = partNameStr + ' | ' +  val[zIndex].name + ' ' + item
+                                    } else {
+                                        str = val[zIndex].name + ' ' + item
+                                    }
+                                } else {
+                                    str = partNameStr + ' | ' +  val[zIndex].name + ' ' + item
+                                    console.log('94--->', str)
+                                    let obj = Object.assign({}, this.productSpecificationListItem)
+                                    obj.partName = str
+                                    this.productSpecificationList.push(obj)
+                                    // console.log('75--<', this.productSpecificationList)
+                                }
+                                this.handle(val, zIndex, str)
+                            })
+                        }
+                    }
+                   
+                }
+            }
+        });
+    </script>
+    <!-- 一，先有的这个思路。在把它写成递归 -->
+    <!-- <script>
+        arr.map( (item, index) => {
+            if (index === 0) {
+                arr[0].arrlist.map( a1 => {
+                    if (arr && arr.length > 1) {
+                        arr[1].arrlist.map( a2 => {
+                            if (arr && arr.length > 2) {
+                                arr[2].arrlist.map( a3 => {
+                                    console.log('a3', a1 + a2 + a3)
+                                })
+                            }
+                        })
+                    }
+                })
+            } 
+        })
+    </script> -->
+</body>
+</html>

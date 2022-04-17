@@ -1,0 +1,70 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-10-21 15:07:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <div v-for="(item, index) in newContentList" :key="index">
+            <div>
+                <div class='abdc'>
+                        <div >{{ handleSubjectTopTip(item, 'reference', 'subject', index, newContentList) }}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    newContentList: [
+                        {
+                            specification: '颜色',
+                            valueList: ['白色', '红色']
+                        },
+                        {
+                            specification: '尺码',
+                            valueList: ['s', 'm']
+                        },
+                        {
+                            specification: '内存',
+                            valueList: ['2g', '3g']
+                        },
+                        {
+                            specification: '单位',
+                            valueList: ['厘米', '米','毫米', '纳米']
+                        },
+                    ]
+
+                }
+            },
+            created() {
+               
+            },
+            methods : {
+                handleSubjectTopTip(item, type, aaa, index, contentList) {
+                    console.log('行', index)
+                    console.log('item', item)
+                    console.log('contentList', contentList)
+			    },
+            }
+        });
+    </script>
+</body>
+</html>

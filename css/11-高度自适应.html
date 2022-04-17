@@ -1,0 +1,46 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-12-29 15:57:03
+ * @LastEditTime: 2021-12-29 16:20:00
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/css/11-高度自适应.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>验证flex的高度是否自适应</title>
+    <style>
+        body{
+            height:100%;
+            width:100%;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div style="height: 100%;background-color: #ccc;width: 300px;">
+        <div class="header" style="min-height: 100px;background-color: pink;width:200px;">
+            <div>123</div>
+            <div>123</div>
+            <div>123</div>
+            <div>123</div>
+            <div>123</div>
+        </div>
+        <div class="serch" style="min-height: 100px;background-color: yellowgreen;width:200px;">
+            serch搜索区域
+        </div>
+        <div class="el-container" style="height:100%;background-color: green;width:200px;display: flex;">
+            <div class="el-aside">
+                左侧的树
+            </div>
+            <div class="el-main">
+                右侧区域
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-11 18:47:51
+ * @LastEditTime: 2021-12-21 16:27:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/filter.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 案例一
+        // let arr = [
+        //     {
+        //         url: '123',
+        //         id: '1'
+        //     },
+        //     {
+        //         url: '',
+        //         id: '2'
+        //     },
+        //     {
+        //         url: '345',
+        //         id: '3'
+        //     }
+        // ]
+        // let arr1 = arr.filter( item => {
+        //     if (item.url) {
+        //         return item
+        //     }
+        // })
+        // console.log(arr1, '123-->')
+
+
+
+        // 案例二
+        // let arr1 = [
+        //     {
+        //         isShow: true,
+        //         list: [1]
+        //     },
+        //     {
+        //         isShow: true,
+        //         list: [1]
+        //     },
+        //     {
+        //         isShow: true,
+        //         list: [1]
+        //     },
+        //     {
+        //         isShow: true,
+        //         list: null
+        //     }
+        // ]
+        // const newArr1 = arr1.filter(item => item.isShow && item.list !== null)
+        // console.log(newArr1);
+
+        // 案例三
+        let arr = [
+            {
+                isShow: true,
+                specification: '规格',
+                valueDetailsList: [
+                    {
+                        isShow: true,
+                        value: '颜色'
+                    },
+                    {
+                        isShow: false,
+                        value: '大小'
+                    }
+                ]
+            },
+            {
+                isShow: true,
+                specification: '属性组1',
+                valueDetailsList: [
+                    {
+                        isShow: true,
+                        value: '哈哈1'
+                    },
+                    {
+                        isShow: false,
+                        value: '哈哈2'
+                    }
+                ]
+            },
+            {
+                isShow: false,
+                specification: '属性组2',
+                valueDetailsList: [
+                    {
+                        isShow: true,
+                        value: '哈哈1'
+                    },
+                    {
+                        isShow: false,
+                        value: '哈哈2'
+                    }
+                ]
+            }
+        ]
+        let aaa = arr.filter(elm => {
+            if (elm.isShow) {
+                console.log('elm---->', elm)
+                elm.aaa = 'cccc'
+                // elm.valueDetailsList = elm.valueDetailsList.filter(item => item.isShow)
+                return elm
+            }
+        })
+        console.log('aaa', aaa)
+        console.log('arr', arr)
+
+    </script>
+</body>
+</html>

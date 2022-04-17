@@ -1,0 +1,47 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-24 16:38:57
+ * @LastEditTime: 2021-11-11 20:24:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Array/some.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const arr = ['8/24-0010001', 2, 3, 4, 5]
+        // console.log(arr.some(item => item === '8/24-0010001'))
+        // if (!arr.some(item => item === '8/24-0010001')) {
+        //     arr.push(1)
+        // }
+        // console.log(arr, '000')
+
+
+        const arr = [
+            {
+                name: '1',
+                specLabelId: null
+            },
+            {
+                name: '2',
+                specLabelId: null
+            },
+            {
+                name: '3',
+                specLabelId: '232323'
+            },
+        ]
+        console.log(arr.some(item => item.specLabelId), '999999')
+        
+        arr.splice(2, 0, {name: '4'})
+        console.log(arr, '000000')
+    </script>
+</body>
+</html>

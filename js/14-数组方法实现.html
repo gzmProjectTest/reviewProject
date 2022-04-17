@@ -1,0 +1,31 @@
+<!--
+ * @Author: your name
+ * @Date: 2022-03-03 20:51:43
+ * @LastEditTime: 2022-03-03 20:56:53
+ * @LastEditors: Please set LastEditors
+ * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @FilePath: /review/js/14-数组方法实现.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(Array.prototype, 'jflsdjfkds')
+        const arr = [1, 2, 3]
+        console.log(arr.__proto__, '212121')
+
+        const newArray = new Array({a: 1}, 2, 3)
+        console.log(newArray.__proto__, '2424--->')
+        console.log(arr.__proto__ === newArray.__proto__, '25252525--->')
+        console.log(Array.prototype === newArray.__proto__, '26262626--->')
+        console.log(Array.prototype === arr.__proto__ === newArray.__proto__, '26262626--->')
+        console.log(1 === 1 === 1, '26262626--->')
+    </script>
+</body>
+</html>

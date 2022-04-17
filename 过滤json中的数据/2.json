@@ -1,0 +1,76 @@
+{
+  postParams: {
+    accountId: null
+    amount: "20"
+    approvalStatus: null
+    attacheds: []
+    auditTime: null
+    cardUrl: "Y3AraeBrQrQb3aiENj77RBju"
+    cardUser: "每天睡到日晒三竿后"
+    code: "HKDD2110224400029"
+    companyId: null
+    createTime: "2021-10-22 11:46:07"
+    dataId: null
+    departmentId: null
+    departmentIds: "company1894528920000001021 系统管理"
+    departmentName: ""
+    description: null
+    genTime: null
+    loan: null
+    loanCode: "JKDD2110204400001"
+    projectNum: null
+    rowId: null
+    title: "20"
+    voucherId: null
+    way: "hand"
+    workId: null
+  }
+  subNodeData: "[]"
+  templateId: "189771392000000102"
+  workflow_classify: "财务"
+  workflow_classify_id: "189771368000000101"
+  workflow_describe: ""
+  workflow_name: "每天睡到日晒三竿后:测试1"
+  workflow_nodeData: "{\"canYuZheData\":[],\"nodeData\":[{\"rowId\":\"189771392000020102\",\"nodeId\":\"189771392000020102\",\"templateId\":\"189771392000000102\",\"stepName\":\"发起节点\",\"executor_name\":\"每天睡到日晒三竿后\",\"executor\":\"每天睡到日晒三竿后\",\"cardUrl\":\"Y3AraeBrQrQb3aiENj77RBju\",\"description\":null,\"createDate\":\"2021-08-03 10:16:32\",\"serial\":\"0\",\"companyId\":\"company189452892000000102\",\"relationNodes\":null,\"relationNodesName\":null,\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":\"否\",\"linkNodeNum\":null,\"fwForOrgId\":null,\"fwForOrgName\":null,\"fwForRoleId\":null,\"fwForRoleName\":null,\"genTime\":\"2021-08-03 10:16:32\",\"attributeCode\":null,\"attributeName\":null,\"defaultContentForExecute\":null,\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"是\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":null,\"automaticRejectedDays\":null,\"handleType\":null,\"cashierExpenditure\":null,\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/thumbJpg/checkJpg/Y3/Y3AraeBrQrQb3aiENj77RBju-200x200.jpg?errPath=/thumbJpg/defImage/noimg-100x100.png?v=1606975364073\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null},{\"rowId\":\"189771491000000102\",\"nodeId\":\"189771491000000102\",\"templateId\":\"189771392000000102\",\"stepName\":\"发起\",\"executor_name\":\"每天睡到日晒三竿后\",\"executor\":\"每天睡到日晒三竿后\",\"cardUrl\":\"Y3AraeBrQrQb3aiENj77RBju\",\"description\":null,\"createDate\":\"2021-08-03 10:18:11\",\"serial\":\"1\",\"companyId\":\"company189452892000000102\",\"relationNodes\":\"\",\"relationNodesName\":\"\",\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":null,\"linkNodeNum\":null,\"fwForOrgId\":\"\",\"fwForOrgName\":\"\",\"fwForRoleId\":\"\",\"fwForRoleName\":\"\",\"genTime\":\"2021-08-03 10:18:11\",\"attributeCode\":\"\",\"attributeName\":\"\",\"defaultContentForExecute\":\"同意\",\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":\"\",\"automaticRejectedDays\":\"\",\"handleType\":\"\",\"cashierExpenditure\":\"false\",\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/thumbJpg/checkJpg/Y3/Y3AraeBrQrQb3aiENj77RBju-200x200.jpg?errPath=/thumbJpg/defImage/noimg-100x100.png?v=1606975364073\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null}]}"
+  workflow_sort: "测试1"
+  workflow_sort_describe: "DAASDAD"
+  workflow_sort_id: "189771392000000102"
+}
+
+// 开发：
+postParams: {
+  accountId: null
+  amount: "2"
+  approvalStatus: null
+  attacheds: []
+  auditTime: null
+  cardUrl: "Y3AraeBrQrQb3aiENj77RBju"
+  cardUser: "每天睡到日晒三竿后"
+  code: "HKDD2110224400014"
+  companyId: null
+  createTime: "2021-10-22 11:44:34"
+  dataId: null
+  departmentId: null
+  departmentIds: "company1894528920000001021 系统管理"
+  departmentName: ""
+  description: null
+  genTime: null
+  loan: null
+  loanCode: "JKDD2110204400001"
+  projectNum: null
+  rowId: null
+  title: "2"
+  voucherId: null
+  way: "hand"
+  workId: null
+}
+subNodeData: "{\"subNodeData\":[]}"
+templateId: "189771392000000102"
+workflow_classify: "财务"
+workflow_classify_id: "189771368000000101"
+workflow_describe: ""
+workflow_name: "每天睡到日晒三竿后:测试1"
+workflow_nodeData: "{\"canYuZheData\":[],\"nodeData\":[{\"rowId\":\"189771392000020102\",\"nodeId\":\"189771392000020102\",\"templateId\":\"189771392000000102\",\"stepName\":\"发起节点\",\"executor_name\":\"每天睡到日晒三竿后\",\"executor\":\"每天睡到日晒三竿后\",\"cardUrl\":\"Y3AraeBrQrQb3aiENj77RBju\",\"description\":null,\"createDate\":\"2021-08-03 10:16:32\",\"serial\":\"0\",\"companyId\":\"company189452892000000102\",\"relationNodes\":null,\"relationNodesName\":null,\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":\"否\",\"linkNodeNum\":null,\"fwForOrgId\":null,\"fwForOrgName\":null,\"fwForRoleId\":null,\"fwForRoleName\":null,\"genTime\":\"2021-08-03 10:16:32\",\"attributeCode\":null,\"attributeName\":null,\"defaultContentForExecute\":null,\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"是\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":null,\"automaticRejectedDays\":null,\"handleType\":null,\"cashierExpenditure\":null,\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/thumbJpg/checkJpg/Y3/Y3AraeBrQrQb3aiENj77RBju-200x200.jpg?errPath=/thumbJpg/defImage/noimg-100x100.png?v=1606975364073\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null},{\"rowId\":\"189771491000000102\",\"nodeId\":\"189771491000000102\",\"templateId\":\"189771392000000102\",\"stepName\":\"发起\",\"executor_name\":\"每天睡到日晒三竿后\",\"executor\":\"每天睡到日晒三竿后\",\"cardUrl\":\"Y3AraeBrQrQb3aiENj77RBju\",\"description\":null,\"createDate\":\"2021-08-03 10:18:11\",\"serial\":\"1\",\"companyId\":\"company189452892000000102\",\"relationNodes\":\"\",\"relationNodesName\":\"\",\"stepType\":\"YG\",\"executeType\":null,\"isDefCreator\":null,\"linkNodeNum\":null,\"fwForOrgId\":\"\",\"fwForOrgName\":\"\",\"fwForRoleId\":\"\",\"fwForRoleName\":\"\",\"genTime\":\"2021-08-03 10:18:11\",\"attributeCode\":\"\",\"attributeName\":\"\",\"defaultContentForExecute\":\"同意\",\"linkNodeId\":null,\"executorType\":\"FQR\",\"isFaQiNode\":\"\",\"conditionCode\":null,\"isSignature\":\"否\",\"automaticAuditDays\":\"\",\"automaticRejectedDays\":\"\",\"handleType\":\"\",\"cashierExpenditure\":\"false\",\"customForm\":null,\"executeWay\":null,\"oldNodeId\":null,\"role\":null,\"isExecute\":null,\"headImg\":\"/thumbJpg/checkJpg/Y3/Y3AraeBrQrQb3aiENj77RBju-200x200.jpg?errPath=/thumbJpg/defImage/noimg-100x100.png?v=1606975364073\",\"resetCashierExpenditure\":null,\"depHeads\":null,\"tempName\":null,\"allCardUrl\":null,\"candidate\":null,\"subNodeData\":null,\"zxrfwforCardUrl\":null,\"zxrfwforName\":null}]}"
+workflow_sort: "测试1"
+workflow_sort_describe: "DAASDAD"
+workflow_sort_id: "189771392000000102"

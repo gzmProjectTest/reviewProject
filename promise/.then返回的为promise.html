@@ -1,0 +1,81 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-09-10 12:42:37
+ * @LastEditTime: 2021-09-10 14:07:21
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/promise/.then返回的为promise.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 执行顺序优先级：主 > 微任务 > 宏任务
+        // 0. js执行语句中的属于同步代码，优先执行 ----》 主线程
+        // 1.promise的 .then 中属于------》微任务
+        // 2. setTimeout setInterval 属于0--------》宏任务
+        // 3. 如果为链式调用。  .then() .then() .then() 返回的结果都是对上一个promise结果的处理 
+        // const promise1 = new Promise( (resolve, reject) => {
+        //     // console.log('1')
+        //     resolve('12345')
+        // })
+        // // console.log('promise1', promise1) 
+        // let promise2 = promise1.then( success => {
+        //     // 默认连续.then的话，promise2 默认状态下执行的是成功
+        //     console.log('2', promise2);
+        //     console.log('1', promise1);
+        // })
+        // setTimeout( () => {
+        //     console.log(promise2, '22');
+        //     console.log(promise1, '11');
+        // },0)
+
+
+        
+        // promise 进行函数封装，不需要马上执行
+        const params = {
+            pageSize: 20,
+            pageNumber: 1,
+            name: '我是标题进行搜索'
+        }
+        let str = 'p1'
+        function fn(params, name) {
+            return new Promise( (resolve, reject) => {
+                // 接口请求
+
+                setTimeout( (params, name) => {
+                    console.log(params, 'params')
+                    console.log(name, 'name')
+                    let arr = [1, 2, 3]
+                    let obj = {a: 1, b: 2, c: 3}
+                    if (name === 'p1') {
+                        resolve(arr)
+                    } else if (name === 'p2') {
+                        resolve(obj)
+                    }
+                }, 10)
+                
+            })
+        }
+        fn(params, str)
+        .then(
+            val => {
+                console.log('我接受到了p1', val);
+                // fn(params, str = 'p2')
+            },
+            error => console.log('我是异常请求', error)
+        )
+        // .then(
+        //     val => {
+        //         console.log('我接收到了p2', val)
+        //     }
+        // )
+    </script>
+</body>
+</html>

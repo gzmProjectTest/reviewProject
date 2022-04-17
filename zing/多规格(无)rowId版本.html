@@ -1,0 +1,116 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-11-02 11:22:13
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    arr: [
+                        {
+                            specification: '颜色',
+                            valueList: ['白色', '红色']
+                        },
+                        {
+                            specification: '尺码',
+                            valueList: ['s', 'm']
+                        },
+                        {
+                            specification: '内存',
+                            valueList: ['2g', '3g']
+                        },
+                        // 有单位
+                        // {
+                        //     specification: '单位',
+                        //     valueList: ['厘米', '米','毫米', '纳米']
+                        // },
+                    ],
+                    partNameStr: '',
+                    arr1: []
+
+                }
+            },
+            created() {
+                this.handleMultiSpecificationDelete(this.arr, -1, this.partNameStr, this.arr1)
+                console.log('999--->', this.arr1)
+            },
+            methods : {
+                /**
+                 * @description: 递归多规格，将每个对象中的 key 值 跟 value 拼接，
+                 *  { specification: '颜色', valueList: ['白色', '红色'] },{ specification: '尺码', valueList: ['s', 'm'] }
+                	最后需要拼接的格式 "颜色 白 | 尺寸 s "
+                 * @param {Array} val 需要处理的数组
+                 * @param {Number} zIndex 数组中每一项的下标
+                 * @param {String} partNameStr 需要拼接的格式 "颜色 白 | 尺寸 s "
+                 * @param {Array} variableArr 存放拼接完的数据
+                 */
+                handleMultiSpecificationDelete(val, zIndex = -1, partNameStr = '', variableArr) {
+                    ++zIndex
+                    if (val && val.length > 0) {
+                        if (val[zIndex] && val[zIndex].valueList && val[zIndex].valueList.length > 0) {
+                            val[zIndex].valueList.map( item => {
+                                let str = ''
+                                if (val && val.length === 1) {
+                                    str = val[zIndex].specification + ' ' + item
+                                    // str = item
+                                    variableArr.push(str)
+                                } else if (zIndex < val.length - 1) {
+                                    if (partNameStr) {
+                                        str = partNameStr + ' | ' + val[zIndex].specification + ' ' + item
+                                        // str = partNameStr + '/' + item
+                                    } else {
+                                        str = val[zIndex].specification + ' ' + item
+                                        // str = item
+                                    }
+                                } else {
+                                    str = partNameStr + ' | ' + val[zIndex].specification + ' ' + item
+                                    // str = partNameStr + '/' + item
+                                    variableArr.push(str)
+                                }
+                                this.handleMultiSpecificationDelete(val, zIndex, str, variableArr)
+                            })
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+    <!-- <script>
+        arr.map( (item, index) => {
+            if (index === 0) {
+                arr[0].arrlist.map( a1 => {
+                    if (arr && arr.length > 1) {
+                        arr[1].arrlist.map( a2 => {
+                            if (arr && arr.length > 2) {
+                                arr[2].arrlist.map( a3 => {
+                                    console.log('a3', a1 + a2 + a3)
+                                })
+                            }
+                        })
+                    }
+                })
+            } 
+        })
+    </script> -->
+</body>
+</html>

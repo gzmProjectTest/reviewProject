@@ -1,0 +1,209 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-11-01 17:56:33
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       <div @click="handleClick">点击我开始存</div>
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    // 其他入库单 
+                    obj :{
+                        // 'cardUserName': '',//制单人
+                        // 'inOrOutDate': '',//入库日期,
+                        // 'inOutWay': 'once',
+                        // 'batchType': 'QTRKD', //入库类型
+                        // 'createTime':'',
+                        // 'customerName': '', //客户名称
+                        // 'customerId': '', //客户Id
+                        // 'customerCode': '', //客户编码
+                        // 'supplierName': '', //供应商名称
+                        // 'supplierId': '', //供应商id
+                        // 'supplierCode': '', //供应商code
+                        // 'storehouseId': '', //入库仓库
+                        // 'storehouseName': '', //库名字
+                        'batchInfoItemDetails':[
+                            {
+                                'ableCount': '',
+                                'annexes': '',
+                            }
+                        ],
+                        'account':'',
+                        // 'priceSum':''
+                    },
+                    currentData: {
+                        // cardUserName: '',//制单人
+                        // inOutWay: 'once',
+                        // createTime:'',
+                        // customerName: '', //客户名称
+                        // customerId: '', //客户Id
+                        // customerCode: '', //客户编码
+                        // supplierName: '', //供应商名称
+                        // supplierId: '', //供应商id
+                        // supplierCode: '', //供应商code
+                        // storehouseId: '', //入库仓库
+                        // storehouseName: '', //库名字
+                        batchInfoItemDetails:[
+                            {
+                                'ableCount': 'a1',
+                                'annexes': 'a11',
+                            },
+                            {
+                                'ableCount': 'a3',
+                                'annexes': 'a33',
+                            }
+                        ],
+                        account:'',
+                        // priceSum:'',
+                        // needWorkFlow:'true',//是否走审批的标志
+                    },
+                    arr: [
+                        {
+                            specification: '颜色',
+                            valueList: ['白色', '红色']
+                        },
+                        {
+                            specification: '尺码',
+                            valueList: ['s', 'm']
+                        },
+                        {
+                            specification: '内存',
+                            valueList: ['2g', '3g']
+                        },
+                        {
+                            specification: '单位',
+                            valueList: ['厘米', '米','毫米', '纳米']
+                        },
+                    ]
+
+                }
+            },
+            created() {
+               
+            },
+            methods : {
+                handleClick() {
+                    this.handleContrastTemplate(this.currentData, this.obj)
+                },
+                /**
+                * @description: 新旧模版数据格式是否相同
+                * @param {Array ｜ Object} oldValTemplate 旧模版数据
+                * @param {Array ｜ Object} newValTemplate  新模版数据
+                * @return {Boolean} true
+                */
+                templateType(oldValTemplate, newValTemplate) {
+                    return oldValTemplate && newValTemplate && newValTemplate !== undefined && oldValTemplate !== undefined && Object.prototype.toString.call(oldValTemplate) === Object.prototype.toString.call(newValTemplate)
+                },
+
+                /**
+                * @description: 当前数据是否有值
+                * @param {String | Number} oldValTemplate 旧模版中是否存在值
+                * @param {String} key 遍历对象中获取到的key
+                * @return {Boolean} true
+                */
+                isEmpty(oldValTemplate, {}, key) {
+                    return (typeof(oldValTemplate[key]) === 'string' || typeof(oldValTemplate[key]) === 'number') && oldValTemplate[key] !== undefined && oldValTemplate[key] !== null
+                },
+
+                /**
+                * @description: 旧模版中的数据 赋值 给自定义模版
+                * @param {Array ｜ Object} oldValTemplate 旧模版数据
+                * @param {Array ｜ Object} newValTemplate 新模版数据
+                * @param {String} propsKey 遍历对象中获取到的key
+                * @param {Object} itemTemplate 遍历数组，获取新数组中的模版
+                */
+                handleContrastTemplate(oldValTemplate, newValTemplate, propsKey) {
+                    if (this.isEmpty(oldValTemplate, newValTemplate, propsKey)) {
+                        console.log('oldValTemplate', oldValTemplate)
+                        console.log('newValTemplate', newValTemplate)
+                        console.log('propsKey', propsKey)
+                        newValTemplate[propsKey] = oldValTemplate[propsKey]
+                        return
+                    }
+                    if (this.templateType(oldValTemplate, newValTemplate)) {
+                        for (let key in newValTemplate) {
+                            if (this.isEmpty(oldValTemplate, {}, key)) {
+                                // console.log('oldValTemplate', oldValTemplate)
+                                // console.log('newValTemplate', newValTemplate)
+                                // console.log('key', key)
+                                this.handleContrastTemplate(oldValTemplate, newValTemplate, key)
+                            } else if (this.templateType(oldValTemplate[key], newValTemplate[key])) {
+                                // console.log(oldValTemplate[key], '146')
+                                if (Array.isArray(oldValTemplate[key]) === [] && Array.isArray(newValTemplate[key]) === []) {
+                                    // 旧模版中有数组，且新模版中的数组长度为0
+                                    if (oldValTemplate[key] && oldValTemplate[key].length > 0 && newValTemplate[key] && newValTemplate[key].length === 1) {
+                                    //     console.log(oldValTemplate[key], 'jjjjjj')
+                                    // console.log(newValTemplate[key], 'nnnnnn')
+                                        for (let i = 0; i < oldValTemplate[key].length; i++) {
+                                            console.log(i, 'iiiiiii')
+                                            const aaa = this.deepCopy(newValTemplate[key][0])
+                                            if (i > 0) {
+                                                newValTemplate[key].push(aaa)
+                                                this.handleContrastTemplate(oldValTemplate[key][i], aaa)
+                                            } else {
+                                                this.handleContrastTemplate(oldValTemplate[key][i], newValTemplate[key][0])
+                                            }
+                                            // if (!this.Z_IsEmpty20(itemTemplate)) {
+                                            //     newValTemplate[key].push(itemTemplate)
+                                            // }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                Z_IsEmpty20(value) {
+                    return typeof(value) === 'undefined' || value === null || (typeof(value) === 'string' && (value === 'undefined' || value === '')) || (typeof(value) === 'boolean' && value === false)
+                },
+                deepCopy(obj, cache = []) {
+                    // just return if obj is immutable value
+                    if (obj === null || typeof obj !== 'object') {
+                        return obj
+                    }
+
+                    // if obj is hit, it is in circular structure
+                    const hit = find(cache, c => c.original === obj)
+                    if (hit) {
+                        return hit.copy
+                    }
+
+                    const copy = Array.isArray(obj)
+                        ? []
+                        : {}
+                    // put the copy into cache at first because we want to refer it in recursive
+                    // deepCopy
+                    cache.push({original: obj, copy})
+
+                    Object
+                        .keys(obj)
+                        .forEach(key => {
+                            copy[key] = this.deepCopy(obj[key], cache)
+                        })
+
+                    return copy
+                }
+            }
+        });
+    </script>
+</body>
+</html>

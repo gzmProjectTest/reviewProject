@@ -1,0 +1,415 @@
+
+<!--
+ * @Author: your name
+ * @Date: 2021-06-17 21:09:13
+ * @LastEditTime: 2021-11-04 11:30:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /review/Users/guozhiming/Desktop/多规格.html
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+       
+
+    </div>
+    <script>
+        var vm = new Vue({
+            el : '#app',
+            data() {
+                return {
+                    moreUnitPriceList: [
+                        {
+                            specLabelId: "193320613000000102#193320613000010102",
+                            specValueId: "193336004000000101#193575570000000101",
+                            unitId: '',
+                            unitName: '',
+                            salespPrice: '', // 销售单价/销售价
+                            salePriceMin: '', // 最低销售价
+                            salePriceLately: '', //最近销售单价
+                            salePriceTaxLately: '', // 最近含税销售单价
+                            purchasePrice: '', // 采购价格/采购价
+                            purchasePriceMax: '', // 最高采购价
+                            purchasePriceLately: '', // 最近采购单价
+                            purchasePriceTaxLately: '', // 最近含税采购单价
+                            distributionPrice: '', //配送价
+                            wholesalePrice: '', //批发价
+                            retailPrice: '',//零售价
+                            costPrice: '', //参考成本
+                            priceOneLevel: '',//价格一等级
+                            priceTwoLevel: '',//价格二等级
+                            priceThreeLevel: '', //价格三等级
+                            priceFourLevel: '',// 价格四等级
+                            priceFiveLevel: ''//价格五等级
+                        }
+                    ],
+                    getArr: ['193336004000020101', '193320613000010102'],
+                    // arr: [
+                    //     {
+                    //         specification: '颜色',
+                    //         rowId:'01',
+                    //         valueDetailsList: [
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: '白',
+                    //                 rowId: '01-1'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: '白',
+                    //                 rowId: '01-2'
+                    //             }
+                    //         ]
+                    //     },
+                    //     {
+                    //         specification: '尺寸',
+                    //         isShow: true,
+                    //         rowId:'02',
+                    //         valueDetailsList: [
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 's',
+                    //                 rowId: '02-1'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 'm',
+                    //                 rowId: '02-2'
+                    //             }
+                    //         ]
+                    //     },
+                    //     {
+                    //         specification: '有人',
+                    //         isShow: true,
+                    //         rowId:'03',
+                    //         valueDetailsList: [
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 's',
+                    //                 rowId: '03-1'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 'm',
+                    //                 rowId: '03-2'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 'm',
+                    //                 rowId: '03-3'
+                    //             }
+                    //         ]
+                    //     },
+                    // ],
+                    arr: [
+                        {
+                            specification: '颜色',
+                            rowId:'193336004000020101',
+                            valueDetailsList: [
+                                {
+                                    isShow: true,
+                                    specification: '白',
+                                    rowId: '193336004000000101'
+                                }
+                            ]
+                        },
+                        {
+                            specification: '尺寸',
+                            isShow: true,
+                            rowId:'193320613000010102',
+                            valueDetailsList: [
+                                {
+                                    isShow: true,
+                                    specification: 's',
+                                    rowId: '193575590000000101'
+                                },
+                                {
+                                    isShow: true,
+                                    specification: 'm',
+                                    rowId: '193575570000000101'
+                                }
+                            ]
+                        }
+                    ],
+                    // arr: [
+                    //     {
+                    //         specification: '颜色',
+                    //         rowId:'颜色',
+                    //         valueDetailsList: [
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: '白',
+                    //                 rowId: '白'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: '红',
+                    //                 rowId: '红'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: '绿',
+                    //                 rowId: '绿'
+                    //             }
+                    //         ]
+                    //     },
+                    //     {
+                    //         specification: '尺寸',
+                    //         isShow: true,
+                    //         rowId:'尺寸',
+                    //         valueDetailsList: [
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 's',
+                    //                 rowId: 's'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 'm',
+                    //                 rowId: 'm'
+                    //             },
+                    //             {
+                    //                 isShow: true,
+                    //                 specification: 'l',
+                    //                 rowId: 'l'
+                    //             }
+                    //         ]
+                    //     }
+                    // ],
+                    unitArr: [
+                        {
+                                specification: '单位',
+                                isShow: true,
+                                valueDetailsList: [
+                                    {
+                                        isShow: true,
+                                        unitName: '米',
+                                        unitId: 1001
+                                    },
+                                    {
+                                        isShow: true,
+                                        unitName: '厘米',
+                                        unitId: 1002
+                                    },
+                                    // {
+                                    //     isShow: true,
+                                    //     unitName: '毫米',
+                                    //     unitId: 1003
+                                    // },
+                                    // {
+                                    //     isShow: true,
+                                    //     unitName: '纳米',
+                                    //     unitId: 1004
+                                    // }
+                                ]
+                        }
+                    ],
+                    partNameStr: '',
+                    onceArr: [],
+                    onceObj: {},
+                    arr1: []
+                }
+            },
+            created() {
+                // 第一种
+                // this.handleMultiSpecificationDelete(this.arr, -1, this.arr1, this.onceArr)
+                // 第二种
+                this.handleMultiSpecificationDelete(this.arr, -1, this.arr1, this.onceObj)
+                console.log('169---->', this.arr1)
+                const moreUnitPriceList = []
+                this.arr1.forEach(item => {
+                    if (item && Object.keys(item).length > 0 && this.getArr && this.getArr.length > 0) {
+                        for (let key in item) {
+                            const zIndex = this.getArr.findIndex(elm => elm === key)
+                            if (zIndex !== -1) {
+                                if (!item.specLabelId) {
+                                    this.$set(item, 'specLabelId', key)
+                                    this.$set(item, 'specValueId', item[key])
+                                } else {
+                                    item.specLabelId += '#' + key
+                                    item.specValueId += '#' + item[key]
+                                }
+                            }
+                            console.log(key, 'key')
+                        }
+                    }
+                    console.log(item, '175--->');
+                    moreUnitPriceList.push(item)
+                })
+                console.log('~~~~~!!!!!-22222-->', moreUnitPriceList)
+                moreUnitPriceList.forEach(item => {
+                    let a =  {
+                        unitId: '',
+                        unitName: '',
+                        salespPrice: '', // 销售单价/销售价
+                        salePriceMin: '', // 最低销售价
+                        salePriceLately: '', //最近销售单价
+                        salePriceTaxLately: '', // 最近含税销售单价
+                        purchasePrice: '', // 采购价格/采购价
+                        purchasePriceMax: '', // 最高采购价
+                        purchasePriceLately: '', // 最近采购单价
+                        purchasePriceTaxLately: '', // 最近含税采购单价
+                        distributionPrice: '', //配送价
+                        wholesalePrice: '', //批发价
+                        retailPrice: '',//零售价
+                        costPrice: '', //参考成本
+                        priceOneLevel: '',//价格一等级
+                        priceTwoLevel: '',//价格二等级
+                        priceThreeLevel: '', //价格三等级
+                        priceFourLevel: '',// 价格四等级
+                        priceFiveLevel: ''//价格五等级
+                    }
+                    this.moreUnitPriceList.push(Object.assign(a, item))
+                })
+                // console.log(207, this.moreUnitPriceList);
+
+                console.log(this.moreUnitPriceList, '223---->');
+                this.moreUnitPriceList.forEach( item => {
+                    // specLabelId: "193320613000000102#193320613000010102",
+                    // specValueId: "193336004000000101#193575570000000101",
+                    if (item.specLabelId && item.specValueId) {
+                        const specLabelIds = item.specLabelId.split('#')
+                        const specValueIds = item.specValueId.split('#')
+                        for (let i in specLabelIds) {
+                            this.$set(item, specLabelIds[i], specValueIds[i])
+                        }
+                    }
+                })
+                console.log(this.moreUnitPriceList, '286---->');
+            },
+            methods : {
+                /**
+                 * @description: 递归多规格，将每个对象中的 rowId 跟 valueDetailsList 中的rowId组合为新的对象，
+                 *  val:[
+                        {
+                            specification: '颜色',
+                            rowId:'193336004000020101',
+                            valueDetailsList: [
+                                {
+                                    isShow: true,
+                                    specification: '白',
+                                    rowId: '193336004000000101'
+                                }
+                            ]
+                        },
+                        {
+                            specification: '尺寸',
+                            isShow: true,
+                            rowId:'193320613000010102',
+                            valueDetailsList: [
+                                {
+                                    isShow: true,
+                                    specification: 's',
+                                    rowId: '193575590000000101'
+                                }
+                            ]
+                        }
+                    ],
+                	最后需要拼接的格式
+                    {
+                        颜色(193336004000020101): 白(193336004000000101),
+                        尺寸(193320613000010102): s(193575590000000101)
+                    }
+                 * @param {Array} val 需要处理的数组
+                 * @param {Number} zIndex 数组中每一项的下标
+                 * @param {Array} variableArr 存放拼接完的数据
+                 * @param {Object} oldObject 存放上次拼接后的值
+                 */
+                // 第二种
+                handleMultiSpecificationDelete(val, zIndex = -1, variableArr, newObject = {}, oldObject = {}) {
+                    ++zIndex
+                    if (val && val.length > 0) {
+                        if (val[zIndex] && val[zIndex].valueDetailsList && val[zIndex].valueDetailsList.length > 0) {
+                            val[zIndex].valueDetailsList.forEach( item => {
+                                // 每次遍历下一个数组，需要将这个对象清空，重新赋值
+                                const abcObject = {}
+                                if (val && val.length === 1) {
+                                    this.setObjectKey1(val[zIndex], item, oldObject)
+                                    variableArr.push(oldObject)
+                                } else if (zIndex < val.length - 1) {
+                                    // 为什么这样修改， 因为都为一条数据的时候，oldObject无法向下传递。
+                                    this.setObjectKey1(val[zIndex], item, oldObject)
+                                    // if (oldObject && Object.keys(oldObject).length > 0) {
+                                        // this.setObjectKey1(val[zIndex], item, oldObject)
+                                    // } else {
+                                    //     this.setObjectKey1(val[zIndex], item, abcObject)
+                                    // }
+                                } else {
+                                    this.setObjectKey1(val[zIndex], item, abcObject)
+                                    variableArr.push({...newObject, ...oldObject, ...abcObject})
+                                }
+                                this.handleMultiSpecificationDelete(val, zIndex, variableArr, abcObject, oldObject)
+                            })
+                        }
+                    }
+                },
+                setObjectKey1(attributeItem, item, obj) {
+                    const key = attributeItem.rowId
+                    obj[key] = item.rowId
+                },
+                // 第一种
+                // 遍历之后的格式 [{颜色：白}, {尺码：s}] 我们需要根据价格管理页面的数据格式进行拼接，最后需要处理成[{颜色：白,尺码：s}]
+                handleMultiSpecificationDelete1(val, zIndex = -1, variableArr, onceArr = []) {
+                    ++zIndex
+                    if (val && val.length > 0) {
+                        if (val[zIndex] && val[zIndex].valueDetailsList && val[zIndex].valueDetailsList.length > 0) {
+                            val[zIndex].valueDetailsList.forEach( item => {
+                                let newArr = []
+                                if (val && val.length === 1) {
+                                    this.setObjectKey(val[zIndex], item, onceArr)
+                                    console.log(1, '111111')
+                                    variableArr.push(onceArr)
+                                } else if (zIndex < val.length - 1) {
+                                    if (onceArr && onceArr.length > 0) {
+                                        this.setObjectKey(val[zIndex], item, onceArr)
+                                        console.log(2, '22222')
+                                    } else {
+                                        this.setObjectKey(val[zIndex], item, newArr)
+                                        console.log(3, '33333', newArr)
+                                    }
+                                } else {
+                                    this.setObjectKey(val[zIndex], item, newArr)
+                                    console.log(4, '44444', onceArr, newArr)
+                                    variableArr.push([...onceArr, ...newArr])
+                                }
+                                this.handleMultiSpecificationDelete(val, zIndex, variableArr, newArr)
+                            })
+                        }
+                    }
+                },
+                setObjectKey(item, childrenItem, arr) {
+                    const key = item.rowId
+                    const obj = {}
+                    obj[key] = childrenItem.rowId
+                    arr.push(obj)
+                }
+            }
+        });
+    </script>
+    <!-- <script>
+        arr.map( (item, index) => {
+            if (index === 0) {
+                arr[0].arrlist.map( a1 => {
+                    if (arr && arr.length > 1) {
+                        arr[1].arrlist.map( a2 => {
+                            if (arr && arr.length > 2) {
+                                arr[2].arrlist.map( a3 => {
+                                    console.log('a3', a1 + a2 + a3)
+                                })
+                            }
+                        })
+                    }
+                })
+            } 
+        })
+    </script> -->
+</body>
+</html>
